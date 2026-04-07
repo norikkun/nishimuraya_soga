@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>毎年恒例の❣️ | Nishimuraya News</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body class="news-detail-page">
+
+{% include "nishimuraya/includes/site_header.html" %}
+<header class="news-archive-header">
+  <p>NEWS DETAIL</p>
+  <h1>お知らせ</h1>
+</header>
+
+<main class="news-detail-main">
+  <article class="news-detail-article">
+    <time class="news-detail-date" datetime="2025-11-07">2025.11.07</time>
+    <h2>毎年恒例の❣️</h2>
+    <p class="news-detail-lead">今年も恒例の小布施ワイン&#127863;到着 本日〜開栓グラス&#129346;売り 大量仕入れさせて頂きました♪
+ 他 ゴンドウクジラ&#128051;生肉&#129385; 釣り&#127907;本まぐろ
+ 真鱈白子〜入荷してます
+ #小布施ワイン
+ #…</p>
+
+    <div class="news-detail-links">
+      <a class="news-home-link" href="../news.html">ニュース一覧へ</a>
+      <a class="news-home-link" href="../index.html#news">トップへ戻る</a>
+    </div>
+  </article>
+</main>
+
+{% include "nishimuraya/includes/site_footer.html" %}
+
+<script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+

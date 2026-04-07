@@ -1,0 +1,31 @@
+{% load static %}
+<header class="header">
+    <a class="header-logo" href="{% url 'home' %}#top">
+        <img src="{% static 'img/logo_nishimuraya.svg' %}" alt="Nishimuraya 和洋創作料理 ロゴ">
+    </a>
+
+    <button class="nav-toggle" type="button" aria-label="メニューを開く" aria-expanded="false" aria-controls="primary-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <nav class="header-nav" id="primary-nav" aria-label="メインナビゲーション">
+        <ul class="nav-list">
+            <li><a href="{% url 'home' %}#top">Concept</a></li>
+            <li><a href="{% url 'home' %}#pickup">Pick Up</a></li>
+            <li><a href="{% url 'home' %}#news">News</a></li>
+            <li><a href="{% url 'home' %}#access">Access</a></li>
+            <li><a href="{% url 'recruit' %}"{% if request.resolver_match.url_name == "recruit" %} aria-current="page"{% endif %}>Recruit</a></li>
+            <li class="menu">
+                <a href="#">Menu</a>
+                <ul class="dropdown">
+                    <li><a href="{% url 'lunch' %}">Lunch Menu</a></li>
+                    <li><a href="{% url 'food' %}">Food</a></li>
+                    <li><a href="{% url 'drink' %}">Drink</a></li>
+                    <li><a href="{% url 'dessert' %}">Dessert</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+</header>

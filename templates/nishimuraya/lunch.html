@@ -1,0 +1,112 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Lunch Menu | Nishimuraya</title>
+	<link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body class="lunch-page">
+
+	{% include "nishimuraya/includes/site_header.html" %}
+
+	<main class="food-main">
+		<section class="menu-hero" id="top">
+			<p class="hero-kicker">A LITTLE LUXURY LUNCH COURSE</p>
+			<h1>Lunch Menu</h1>
+			<p class="hero-copy">
+				ちょっと贅沢ランチコース（御予約制・税込）<br>
+				3,500円 / 4,500円
+			</p>
+		</section>
+
+		<section class="menu-section" id="lunch-course">
+			<div class="section-head">
+				<h2>ランチコース</h2>
+				<p>Lunch Course</p>
+			</div>
+
+			<div class="course-list">
+				<article class="course-item">
+					<h3>3,500円コース（税込）</h3>
+					<p>
+						御家族・御友人とのお食事や会食におすすめのスタンダードコース。<br>
+						前菜からデザートまで全6品をゆったりお楽しみいただけます。
+					</p>
+					<p class="price">3,500円</p>
+				</article>
+
+				<article class="course-item">
+					<h3>4,500円コース（税込）</h3>
+					<p>
+						お祝いの席にも対応したグレードアップコース。<br>
+						肉料理は牛肉を含む内容でご用意します。
+					</p>
+					<p class="price">4,500円</p>
+				</article>
+			</div>
+		</section>
+
+		<section class="menu-section" id="course-detail">
+			<div class="section-head">
+				<h2>コース内容</h2>
+				<p>All 6 Dishes</p>
+			</div>
+
+			<div class="menu-block">
+				<h3>全6品</h3>
+				<ul class="menu-items">
+					<li><span>前菜盛り合わせ</span><span></span></li>
+					<li><span>オーガニック海鮮サラダ</span><span></span></li>
+					<li><span>本日のパスタ</span><span></span></li>
+					<li><span>肉料理（牛肉は4,500円コースから）</span><span></span></li>
+					<li><span>デザート</span><span></span></li>
+					<li><span>コーヒー付き</span><span></span></li>
+				</ul>
+			</div>
+
+			<div class="pairing-box">
+				<p>
+					御家族・御友人とのお食事、会食、お祝いのご利用を承ります。<br>
+					お祝い利用のご相談は、ご予約時に必ずお伝えください。
+				</p>
+			</div>
+		</section>
+
+		<section class="menu-section" id="option">
+			<div class="section-head">
+				<h2>オプション・ご案内</h2>
+				<p>Option & Info</p>
+			</div>
+
+			<div class="menu-block">
+				<h3>サプライズ・演出</h3>
+				<ul class="menu-items">
+					<li><span>サプライズデザートプレート（文字のみ）</span><span>710円</span></li>
+					<li><span>サプライズデザートプレート（デザイン）</span><span>1,810円</span></li>
+					<li><span>BGM演出</span><span>ご相談</span></li>
+					<li><span>テーブルマット印字製作</span><span>無料（要予約）</span></li>
+				</ul>
+			</div>
+
+			<div class="pairing-box">
+				<p>
+					コース提供時間は1時間程、2時間制のお席となります。<br>
+					テーブルマット印字製作の内容は事前相談制です。
+				</p>
+				<a class="pairing-link" href="https://airrsv.net/nishimuraya/calendar">ランチコースを予約する</a>
+			</div>
+		</section>
+	</main>
+
+	{% include "nishimuraya/includes/site_footer.html" %}
+
+	<script src="{% static 'js/script.js' %}"></script>
+</body>
+
+</html>
+
+

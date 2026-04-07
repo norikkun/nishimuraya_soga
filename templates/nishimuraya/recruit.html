@@ -1,0 +1,83 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>求人情報 | Nishimuraya</title>
+	<link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body class="recruit-page">
+
+	{% include "nishimuraya/includes/site_header.html" %}
+
+	<main class="recruit-main" id="top">
+		<section class="recruit-hero">
+			<p class="home-kicker">RECRUITMENT</p>
+			<h1>求人情報</h1>
+			<p class="recruit-catch">大学生・Wワーク・フリーター歓迎</p>
+			<p class="recruit-hero-text">
+				Nishimuraya では、ホールスタッフを募集しています。<br>
+				初めての方でも安心して働けるよう、接客の基本から丁寧にサポートします。
+			</p>
+		</section>
+
+		<section class="recruit-panel" aria-labelledby="recruit-detail-title">
+			<h2 id="recruit-detail-title">募集要項</h2>
+			<dl class="recruit-info">
+				<div class="recruit-row">
+					<dt>募集職種</dt>
+					<dd>ホールスタッフ</dd>
+				</div>
+				<div class="recruit-row">
+					<dt>雇用形態</dt>
+					<dd>アルバイト</dd>
+				</div>
+				<div class="recruit-row">
+					<dt>仕事内容</dt>
+					<dd>ホール配膳、レジ打ち等</dd>
+				</div>
+				<div class="recruit-row">
+					<dt>給与</dt>
+					<dd>時給 1,150円〜1,300円（能力・スキルに応じて随時昇給）</dd>
+				</div>
+				<div class="recruit-row">
+					<dt>応募資格</dt>
+					<dd>初めての方でも丁寧に教えます</dd>
+				</div>
+				<div class="recruit-row">
+					<dt>求める人材</dt>
+					<dd>明るく元気な方</dd>
+				</div>
+				<div class="recruit-row">
+					<dt>勤務時間</dt>
+					<dd>17:30〜22:30 の間</dd>
+				</div>
+				<div class="recruit-row">
+					<dt>勤務地</dt>
+					<dd>JR蘇我駅西口から徒歩10分、Nishimuraya店舗</dd>
+				</div>
+			</dl>
+		</section>
+
+		<section class="recruit-contact" aria-labelledby="recruit-contact-title">
+			<h2 id="recruit-contact-title">応募について</h2>
+			<p>
+				ご興味のある方は、店舗スタッフまでお声がけいただくか、
+				お電話またはInstagramのDMよりお問い合わせください。
+			</p>
+			<div class="recruit-actions">
+				<a class="recruit-action" href="#">お問い合わせはこちら</a>
+			</div>
+		</section>
+	</main>
+
+	{% include "nishimuraya/includes/site_footer.html" %}
+
+	<script src="{% static 'js/script.js' %}"></script>
+</body>
+
+</html>
+

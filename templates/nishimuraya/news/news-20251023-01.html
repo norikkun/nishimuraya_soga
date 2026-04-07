@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>新入荷〜 | Nishimuraya News</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body class="news-detail-page">
+
+{% include "nishimuraya/includes/site_header.html" %}
+<header class="news-archive-header">
+  <p>NEWS DETAIL</p>
+  <h1>お知らせ</h1>
+</header>
+
+<main class="news-detail-main">
+  <article class="news-detail-article">
+    <time class="news-detail-date" datetime="2025-10-23">2025.10.23</time>
+    <h2>新入荷〜</h2>
+    <p class="news-detail-lead">東京 八丈島 釣り&#127907;物 アオダイ サワラ〜入荷です♪
+ #アオダイ
+ #高級魚
+ #珍しい魚
+ #珍しい魚が食べれるお店&#160;
+ #千葉グルメ
+ #釣り物
+ #美味い
+ #豊洲
+ #寿司</p>
+
+    <div class="news-detail-links">
+      <a class="news-home-link" href="../news.html">ニュース一覧へ</a>
+      <a class="news-home-link" href="../index.html#news">トップへ戻る</a>
+    </div>
+  </article>
+</main>
+
+{% include "nishimuraya/includes/site_footer.html" %}
+
+<script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+

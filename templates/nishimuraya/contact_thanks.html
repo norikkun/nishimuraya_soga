@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>送信完了 | Nishimuraya</title>
+	<link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body class="contact-page">
+
+	{% include "nishimuraya/includes/site_header.html" %}
+
+	<main class="contact-main" id="top">
+		<section class="contact-hero">
+			<p class="home-kicker">THANK YOU</p>
+			<h1>送信が完了しました</h1>
+			<p>お問い合わせありがとうございます。内容を確認し、順次ご連絡いたします。</p>
+		</section>
+
+		<section class="contact-form-wrap" aria-labelledby="contact-done-title">
+			<h2 id="contact-done-title">次の操作</h2>
+			<p class="contact-note contact-next-step">
+				追加のご質問がある場合は、再度フォームからご連絡ください。
+			</p>
+			<p class="contact-next-action">
+				<a class="site-footer-contact-btn" href="contact.html">お問い合わせフォームへ戻る</a>
+			</p>
+		</section>
+	</main>
+
+	{% include "nishimuraya/includes/site_footer.html" %}
+
+	<script src="{% static 'js/script.js' %}"></script>
+</body>
+
+</html>
+
+

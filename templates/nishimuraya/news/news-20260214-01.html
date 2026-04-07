@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>バレンタイン | Nishimuraya News</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body class="news-detail-page">
+
+{% include "nishimuraya/includes/site_header.html" %}
+<header class="news-archive-header">
+  <p>NEWS DETAIL</p>
+  <h1>お知らせ</h1>
+</header>
+
+<main class="news-detail-main">
+  <article class="news-detail-article">
+    <time class="news-detail-date" datetime="2026-02-14">2026.02.14</time>
+    <h2>バレンタイン</h2>
+    <p class="news-detail-lead">本日バレンタイン&#128140; 先付け(お通し)は魚介ブロード冷やし茶碗蒸しにカカオみたらしソース 3種の野菜&#129382;と&#128016;チーズのカカオ塩 数の子味噌お和えとホタルイカ❤️ お席少し&#129295;空き&#127539;あります…</p>
+
+    <div class="news-detail-links">
+      <a class="news-home-link" href="../news.html">ニュース一覧へ</a>
+      <a class="news-home-link" href="../index.html#news">トップへ戻る</a>
+    </div>
+  </article>
+</main>
+
+{% include "nishimuraya/includes/site_footer.html" %}
+
+<script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+

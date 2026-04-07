@@ -1,0 +1,431 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Drink Menu | Nishimuraya</title>
+	<link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body class="drink-page">
+
+	{% include "nishimuraya/includes/site_header.html" %}
+
+	<main class="drink-main">
+		<section class="menu-hero" id="top">
+			<p class="hero-kicker">WINE & ALCOHOL SELECTION</p>
+			<h1>Drink Menu</h1>
+			<p class="hero-copy">
+				ワインをはじめ、ビール・カクテル・ノンアルコールまで幅広くご用意しています。<br>
+				お食事に合わせた一杯から、食後にゆっくり楽しむ一杯までお選びいただけます。
+			</p>
+		</section>
+
+		<section class="menu-section" id="sommelier">
+			<div class="section-head">
+				<h2>ソムリエセレクション</h2>
+				<p>Sommelier's Choice</p>
+			</div>
+
+			<div class="featured-grid featured-grid--trio">
+				<article class="featured-card featured-card--text">
+					<div class="featured-body">
+						<h3>特選グラスワイン ベッカー ロゼ 桜ラベル</h3>
+						<p>春らしい香りとやわらかな果実味を楽しめる、華やかなロゼ。</p>
+						<p class="price-note">グラス 790円～ / ボトル 5,500円～</p>
+					</div>
+				</article>
+
+				<article class="featured-card featured-card--text">
+					<div class="featured-body">
+						<h3>小布施 ちゃぶ台 赤</h3>
+						<p>和の食卓にも合わせやすい、やさしい飲み口の国産赤ワイン。</p>
+						<p class="price-note">グラス 720円～ / ボトル 5,000円～</p>
+					</div>
+				</article>
+
+				<article class="featured-card featured-card--text">
+					<div class="featured-body">
+						<h3>ラ・ボーム カベルネソーヴィニヨン 赤ワイン フランス</h3>
+						<p>しっかりした果実感と余韻を楽しめる、食中向きの赤ワイン。</p>
+						<p class="price-note">グラス 720円～ / ボトル 4,500円～</p>
+					</div>
+				</article>
+			</div>
+		</section>
+
+		<section class="menu-section" id="drink-guide">
+			<div class="section-head">
+				<h2>ドリンクカテゴリー</h2>
+				<p>Category Guide</p>
+			</div>
+
+			<div class="menu-summary">
+				<p>カテゴリごとに見やすく整理しています。気になる一杯があれば、そのまま下の一覧で内容をご確認いただけます。</p>
+			</div>
+
+			<div class="category-nav" aria-label="ドリンクメニューカテゴリ">
+				<a href="#menu-wine">ワイン</a>
+				<a href="#menu-beer">ビール</a>
+				<a href="#menu-cocktail">カクテル</a>
+				<a href="#menu-shochu">焼酎</a>
+				<a href="#menu-fruit">果実酒</a>
+				<a href="#menu-herbal">ハーブコーディアル</a>
+				<a href="#menu-nonalcohol">ノンアルコール</a>
+				<a href="#menu-softdrink">ソフトドリンク</a>
+			</div>
+		</section>
+
+		<section class="menu-section" id="menu-wine">
+			<div class="section-head">
+				<h2>ワイン</h2>
+				<p>Wine</p>
+			</div>
+
+			<p class="notice">ソムリエセレクションは上記の3種です。そのほかのワインは下記をご覧ください。</p>
+
+			<div class="menu-block">
+				<h3>ハウスワイン</h3>
+				<ul class="detailed-menu-list">
+					<li>
+						<div><strong>白ワイン シャルドネ</strong>
+							<p>グラス / デキャンター（約4～5杯分）</p>
+						</div><span>680円～ / 2,680円～</span>
+					</li>
+					<li>
+						<div><strong>赤ワイン シラー</strong>
+							<p>グラス / デキャンター（約4～5杯分）</p>
+						</div><span>680円～ / 2,680円～</span>
+					</li>
+				</ul>
+			</div>
+
+			<div class="menu-block">
+				<h3>スパークリング・ワインカクテル</h3>
+				<ul class="detailed-menu-list">
+					<li>
+						<div><strong>スパークリングワイン</strong>
+							<p>グラス / ボトル</p>
+						</div><span>800円～ / 4,200円～</span>
+					</li>
+					<li>
+						<div><strong>キールロワイヤル</strong>
+							<p>スパークリング＆プレミアムカシス / グラス / シャンパン200mlボトル</p>
+						</div><span>880円～ / 3,800円～</span>
+					</li>
+				</ul>
+			</div>
+		</section>
+
+		<section class="menu-section" id="menu-beer">
+			<div class="section-head">
+				<h2>ビール</h2>
+				<p>Beer</p>
+			</div>
+
+			<ul class="detailed-menu-list">
+				<li>
+					<div><strong>エビス 樽生</strong>
+						<p>グラス / 中</p>
+					</div><span>420円～ / 630円～</span>
+				</li>
+				<li>
+					<div><strong>エビス黒 樽生</strong>
+						<p>グラス / 中</p>
+					</div><span>450円～ / 650円～</span>
+				</li>
+				<li>
+					<div><strong>ハーフ＆ハーフ</strong>
+						<p>グラス / 中</p>
+					</div><span>450円～ / 650円～</span>
+				</li>
+			</ul>
+		</section>
+
+		<section class="menu-section" id="menu-cocktail">
+			<div class="section-head">
+				<h2>カクテル</h2>
+				<p>Cocktail</p>
+			</div>
+
+			<div class="menu-block">
+				<h3>スタンダードカクテル</h3>
+				<ul class="detailed-menu-list">
+					<li>
+						<div><strong>ウォッカ</strong>
+							<p>モスコミュール / スクリュードライバー / ソルティドッグ</p>
+						</div><span>680円～</span>
+					</li>
+					<li>
+						<div><strong>ジン</strong>
+							<p>ジンリッキー / ジンバック</p>
+						</div><span>680円～</span>
+					</li>
+					<li>
+						<div><strong>カンパリ</strong>
+							<p>ソーダ / オレンジ / グレープフルーツ / パイン</p>
+						</div><span>680円～</span>
+					</li>
+					<li>
+						<div><strong>スーズ</strong>
+							<p>ソーダ割り / グレープフルーツ</p>
+						</div><span>680円～</span>
+					</li>
+					<li>
+						<div><strong>ピーチ</strong>
+							<p>ソーダ / オレンジ / グレープフルーツ / パイン / ウーロン茶</p>
+						</div><span>680円～</span>
+					</li>
+					<li>
+						<div><strong>ココナッツ</strong>
+							<p>コーラ / オレンジ / グレープフルーツ / パイン / ミルク</p>
+						</div><span>680円～</span>
+					</li>
+					<li>
+						<div><strong>ライチ</strong>
+							<p>ソーダ / オレンジ / グレープフルーツ / パイン / トマト</p>
+						</div><span>800円～</span>
+					</li>
+					<li>
+						<div><strong>カシス</strong>
+							<p>ソーダ / オレンジ / グレープフルーツ / パイン / ウーロン / ミルク</p>
+						</div><span>800円～</span>
+					</li>
+				</ul>
+			</div>
+
+			<div class="menu-block">
+				<h3>ワイン・ビールベース</h3>
+				<ul class="detailed-menu-list">
+					<li>
+						<div><strong>ワイン</strong>
+							<p>キール / カーディナル</p>
+						</div><span>800円～</span>
+					</li>
+					<li>
+						<div><strong>ビール</strong>
+							<p>シャンディガフ / レッドアイ / カシスビール / レモンビール / 柚子ビール</p>
+						</div><span>680円～</span>
+					</li>
+				</ul>
+			</div>
+		</section>
+
+		<section class="menu-section" id="menu-shochu">
+			<div class="section-head">
+				<h2>焼酎</h2>
+				<p>Shochu</p>
+			</div>
+
+			<ul class="detailed-menu-list">
+				<li>
+					<div><strong>焼酎 各種</strong>
+						<p>ロック / ソーダ割り / お湯割り</p>
+					</div><span>660円～</span>
+				</li>
+			</ul>
+		</section>
+
+		<section class="menu-section" id="menu-fruit">
+			<div class="section-head">
+				<h2>果実酒</h2>
+				<p>Fruit Liqueur</p>
+			</div>
+
+			<p class="notice">ロック or ソーダ割りでお楽しみいただけます。</p>
+
+			<ul class="detailed-menu-list">
+				<li>
+					<div><strong>柚子酒</strong></div><span>660円～</span>
+				</li>
+				<li>
+					<div><strong>温州みかん</strong></div><span>660円～</span>
+				</li>
+				<li>
+					<div><strong>あらごし 梅酒</strong></div><span>660円～</span>
+				</li>
+				<li>
+					<div><strong>あらごし もも酒</strong></div><span>660円～</span>
+				</li>
+				<li>
+					<div><strong>あらごし りんご</strong></div><span>660円～</span>
+				</li>
+			</ul>
+		</section>
+
+		<section class="menu-section" id="menu-herbal">
+			<div class="section-head">
+				<h2>ハーブコーディアル</h2>
+				<p>Herbal Cordial</p>
+			</div>
+
+			<div class="menu-summary">
+				<p>美容・健康にうれしいノンアルコールドリンクです。ソーダ割り / HOT お湯割りは各500円～、スパークリングワイン割り（アルコール）は750円～です。</p>
+			</div>
+
+			<ul class="detailed-menu-list">
+				<li>
+					<div><strong>エルダーフラワー</strong>
+						<p>リラックス効果</p>
+					</div><span>500円～</span>
+				</li>
+				<li>
+					<div><strong>ピンクジンジャー</strong>
+						<p>冷え性・風邪予防</p>
+					</div><span>500円～</span>
+				</li>
+				<li>
+					<div><strong>ローズヒップ</strong>
+						<p>疲労回復・肌荒れ予防</p>
+					</div><span>500円～</span>
+				</li>
+				<li>
+					<div><strong>ハーバルリコリス</strong>
+						<p>デトックス効果</p>
+					</div><span>500円～</span>
+				</li>
+				<li>
+					<div><strong>ネトル</strong>
+						<p>アレルギー改善効果 / ビタミン・鉄分・ミネラルが豊富</p>
+					</div><span>500円～</span>
+				</li>
+			</ul>
+		</section>
+
+		<section class="menu-section" id="menu-nonalcohol">
+			<div class="section-head">
+				<h2>ノンアルコール</h2>
+				<p>Non-Alcohol</p>
+			</div>
+
+			<ul class="detailed-menu-list">
+				<li>
+					<div><strong>ノンアルコール ビール 龍馬1865 無添加</strong></div><span>495円</span>
+				</li>
+				<li>
+					<div><strong>ノンアルコール 梅酒</strong>
+						<p>ロック / ソーダ割</p>
+					</div><span>660円</span>
+				</li>
+				<li>
+					<div><strong>カシス</strong>
+						<p>ミルク / 烏龍茶 / ソーダ割 / 他</p>
+					</div><span>495円</span>
+				</li>
+				<li>
+					<div><strong>フランボワーズ</strong>
+						<p>ミルク / ソーダ割 / 他</p>
+					</div><span>495円</span>
+				</li>
+				<li>
+					<div><strong>クランベリー</strong>
+						<p>コーラ / ソーダ割 / 他</p>
+					</div><span>495円</span>
+				</li>
+				<li>
+					<div><strong>ココナッツ</strong>
+						<p>ミルク / パイン / コーラ割 / 他</p>
+					</div><span>495円</span>
+				</li>
+			</ul>
+		</section>
+
+		<section class="menu-section" id="menu-softdrink">
+			<div class="section-head">
+				<h2>ソフトドリンク</h2>
+				<p>Soft Drink</p>
+			</div>
+
+			<div class="menu-block">
+				<h3>定番ドリンク</h3>
+				<p class="notice">各種 418円</p>
+				<ul class="detailed-menu-list">
+					<li>
+						<div><strong>コーヒー</strong>
+							<p>アイス or ホット</p>
+						</div><span>418円</span>
+					</li>
+					<li>
+						<div><strong>烏龍茶</strong>
+							<p>アイス or ホット</p>
+						</div><span>418円</span>
+					</li>
+					<li>
+						<div><strong>紅茶</strong>
+							<p>アイス or ホット</p>
+						</div><span>418円</span>
+					</li>
+					<li>
+						<div><strong>ジャスミンティー</strong>
+							<p>アイスのみ</p>
+						</div><span>418円</span>
+					</li>
+					<li>
+						<div><strong>ロイヤルミルクティー</strong>
+							<p>アイスのみ</p>
+						</div><span>418円</span>
+					</li>
+					<li>
+						<div><strong>ティーソーダ</strong></div><span>418円</span>
+					</li>
+					<li>
+						<div><strong>オレンジジュース100％</strong></div><span>418円</span>
+					</li>
+					<li>
+						<div><strong>パイナップルジュース100％</strong></div><span>418円</span>
+					</li>
+					<li>
+						<div><strong>グレープフルーツジュース100％</strong></div><span>418円</span>
+					</li>
+					<li>
+						<div><strong>トマトジュース</strong></div><span>418円</span>
+					</li>
+					<li>
+						<div><strong>コーラ</strong></div><span>418円</span>
+					</li>
+					<li>
+						<div><strong>ジンジャーエール</strong></div><span>418円</span>
+					</li>
+				</ul>
+			</div>
+
+			<div class="menu-block">
+				<h3>おすすめソフトドリンク</h3>
+				<ul class="detailed-menu-list">
+					<li>
+						<div><strong>有機レモンスカッシュ</strong></div><span>418円</span>
+					</li>
+					<li>
+						<div><strong>有機ジンジャーエール</strong></div><span>495円</span>
+					</li>
+					<li>
+						<div><strong>有機ジンジャー ホット</strong></div><span>495円</span>
+					</li>
+					<li>
+						<div><strong>自家製クラフトコーラ（飲む漢方）</strong></div><span>580円～</span>
+					</li>
+				</ul>
+			</div>
+		</section>
+
+		<section class="menu-section" id="pairing-link">
+			<div class="pairing-box">
+				<p>
+					料理との組み合わせに迷った場合は、
+					コース・アラカルトどちらもペアリング提案が可能です。お気軽にご相談ください。
+				</p>
+				<a class="pairing-link" href="food.html">フードメニューを見る</a>
+			</div>
+		</section>
+	</main>
+
+	{% include "nishimuraya/includes/site_footer.html" %}
+
+	<script src="{% static 'js/script.js' %}"></script>
+</body>
+
+</html>
+
+

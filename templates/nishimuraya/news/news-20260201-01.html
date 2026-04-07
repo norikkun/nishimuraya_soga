@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2月限定ドリンクの販売を開始しました | Nishimuraya News</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body class="news-detail-page">
+
+{% include "nishimuraya/includes/site_header.html" %}
+<header class="news-archive-header">
+  <p>NEWS DETAIL</p>
+  <h1>お知らせ</h1>
+</header>
+
+<main class="news-detail-main">
+  <article class="news-detail-article">
+    <time class="news-detail-date" datetime="2026-02-01">2026.02.01</time>
+    <h2>2月限定ドリンクの販売を開始しました</h2>
+    <p class="news-detail-lead">2月限定のグラスワインとノンアルコールドリンクを追加しました。</p>
+    <p>料理との相性を重視したラインアップです。仕入れ状況により内容が変わる場合があります。</p>
+
+    <div class="news-detail-links">
+      <a class="news-home-link" href="../news.html">ニュース一覧へ</a>
+      <a class="news-home-link" href="../index.html#news">トップへ戻る</a>
+    </div>
+  </article>
+</main>
+
+{% include "nishimuraya/includes/site_footer.html" %}
+
+<script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

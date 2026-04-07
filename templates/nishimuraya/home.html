@@ -1,13 +1,184 @@
-{% extends "base.html" %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
 
-{% block content %}
-<section class="mx-auto flex min-h-screen max-w-5xl items-center px-6 py-16">
-    <div class="w-full">
-        <p class="text-sm font-semibold uppercase tracking-wide text-cyan-400">Nishimuraya</p>
-        <h1 class="mt-4 max-w-3xl text-4xl font-semibold text-white sm:text-5xl">準備完了</h1>
-        <p class="mt-6 max-w-2xl text-base leading-7 text-slate-300 sm:text-lg">
-            最初のページを起点に、機能と画面を追加できます。
-        </p>
-    </div>
-</section>
-{% endblock %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nishimuraya</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+    <main>
+
+        <!-- トップ -->
+        <div class="top-area" id="top">
+            {% include "nishimuraya/includes/site_header.html" %}
+            <section class="main-visual" aria-label="トップ写真">
+                <div class="top-slideshow" aria-hidden="true">
+                    <div class="top-slide is-active" style="background-image: url('{% static 'img/nishimuraya1.jpg' %}');"></div>
+                    <div class="top-slide" style="background-image: url('{% static 'img/nishimuraya2.jpg' %}');"></div>
+                    <div class="top-slide" style="background-image: url('{% static 'img/nishimuraya3.jpg' %}');"></div>
+                    <div class="top-slide" style="background-image: url('{% static 'img/nishimuraya4.jpg' %}');"></div>
+                </div>
+            </section>
+
+            <div class="top-copy-panel">
+                <p class="top-copy-lead">Nishimurayaは<br>和の感性×イタリア料理技法の<br>和洋創作レストランです</p>
+                <p class="top-copy-text">季節の移ろいに合わせてコース構成を更新し、記念日から日常の会食まで幅広くお楽しみいただける一皿をご提案します。</p>
+            </div>
+
+        </div>
+
+
+        <!-- ピックアップ -->
+        <section class="pick-up" id="pickup">
+            <div class="home-section-head">
+                <p class="home-kicker">SEASONAL RECOMMENDATION</p>
+                <h1 class="home-title">Pick Up</h1>
+            </div>
+
+            <div class="pickup-card-list">
+                <article class="pickup-card">
+                    <img src="{% static 'img/Course_meal.jpg' %}" alt="季節のおすすめコース">
+                    <div class="pickup-card-body">
+                        <h2>季節に合わせた食材</h2>
+                        <p>単品からコース料理までご用意しております。<br>
+                            季節ごとに切り替わる料理を是非、お楽しみください。</p>
+                        <a class="home-link" href="food.html#course">コース詳細へ</a>
+                    </div>
+                </article>
+
+                <article class="pickup-card">
+                    <img src="{% static 'img/wine.jpg' %}" alt="ワインペアリング">
+                    <div class="pickup-card-body">
+                        <h2>充実したドリンクメニュー</h2>
+                        <p>ワインを中心に、多くのドリンクもご用意しております。</p>
+                        <a class="home-link" href="drink.html">ドリンクを見る</a>
+                    </div>
+                </article>
+
+                <article class="pickup-card">
+                    <img src="{% static 'img/dessert_plate.jpg' %}" alt="記念日デザートプレート">
+                    <div class="pickup-card-body">
+                        <h2>デザートプレート</h2>
+                        <p>お祝いメッセージ付きのデザートプレートを、予約時のご相談でご用意可能です。</p>
+                        <a class="home-link" href="dessert.html">デザートを見る</a>
+                    </div>
+                </article>
+            </div>
+        </section>
+        <!-- ニュース -->
+        <section class="news" id="news">
+            <h1>News</h1>
+
+            <ul class="news-list news-list-latest">
+                <li class="news-item">
+                    <a href="news/news-20260226-01.html">
+                        <time class="news-date" datetime="2026-02-26">2026.02.26</time>
+                        <span class="news-title">&#127800;春のお通し〜</span>
+                    </a>
+                </li>
+                <li class="news-item">
+                    <a href="news/news-20260220-01.html">
+                        <time class="news-date" datetime="2026-02-20">2026.02.20</time>
+                        <span class="news-title">特売です</span>
+                    </a>
+                </li>
+                <li class="news-item">
+                    <a href="news/news-20260214-01.html">
+                        <time class="news-date" datetime="2026-02-14">2026.02.14</time>
+                        <span class="news-title">バレンタイン</span>
+                    </a>
+                </li>
+                <li class="news-item">
+                    <a href="news/news-20260206-01.html">
+                        <time class="news-date" datetime="2026-02-06">2026.02.06</time>
+                        <span class="news-title">新商品&#127774;</span>
+                    </a>
+                </li>
+            </ul>
+
+            <p class="news-more-wrap">
+                <a class="news-more" href="news.html">過去のニュース一覧はこちら</a>
+            </p>
+        </section>
+
+        <!-- アクセス -->
+        <section class="access" id="access">
+            <div class="access-top">
+                <div class="access-info">
+                    <h1 class="access-title">Access</h1>
+                    <p class="access-description">
+                        住所：千葉県 千葉市中央区今井2-11-15 蘇我第一マンション101<br>
+                        最寄り駅：ＪＲ蘇我駅 西口<br>
+                        (専用駐車場はないため、お車でお越しの方は近隣の有料コインパーキングをご利用ください)
+                    </p>
+                    <p class="access-tel">営業時間<br>
+                        ◎ 火-金 18:00-22:30（Lo.21:30）<br>
+                        ◎ 土 17:30-23:00（Lo.22:00）<br>
+                        ◎ 日・祝 17:30-22:00（Lo.21：00）</p>
+                    <p class="access-tel">定休日：月曜日</p>
+                    <p class="access-tel">電話番号：043-264-3939</p>
+                    <p class="access-note">※運営上、21:00前後入店は深夜料金10%頂きます。（基本深夜料金は22：00～のオーダー）<br>
+                        ※お通し代、テーブルチャージ料金で550円頂いております。</p>
+                    <a class="access-link" href="https://airrsv.net/nishimuraya/calendar">ご予約はこちらから</a>
+                </div>
+                <div class="access-map" aria-label="Nishimuraya 店舗地図">
+                    <iframe
+                        src="https://www.google.com/maps?q=%E5%8D%83%E8%91%89%E7%9C%8C%20%E5%8D%83%E8%91%89%E5%B8%82%E4%B8%AD%E5%A4%AE%E5%8C%BA%E4%BB%8A%E4%BA%952-11-15%20%E8%98%87%E6%88%91%E7%AC%AC%E4%B8%80%E3%83%9E%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%B3101&z=17&output=embed&hl=ja"
+                        title="Nishimuraya アクセスマップ" loading="lazy" allowfullscreen
+                        referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+
+            <div class="access-route-list">
+                <article class="access-route-card">
+                    <div class="access-route-text">
+                        <h2>JR蘇我駅 西口からの徒歩</h2>
+                    </div>
+                    <div class="access-route-map" aria-label="JR蘇我駅 西口からNishimurayaまでの徒歩地図">
+                        <iframe
+                            src="https://www.google.com/maps?hl=ja&amp;f=d&amp;source=s_d&amp;saddr=JR%E8%98%87%E6%88%91%E9%A7%85%20%E8%A5%BF%E5%8F%A3&amp;daddr=%E5%8D%83%E8%91%89%E7%9C%8C%20%E5%8D%83%E8%91%89%E5%B8%82%E4%B8%AD%E5%A4%AE%E5%8C%BA%E4%BB%8A%E4%BA%952-11-15%20%E8%98%87%E6%88%91%E7%AC%AC%E4%B8%80%E3%83%9E%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%B3101&amp;dirflg=w&amp;output=embed"
+                            title="JR蘇我駅 西口からNishimurayaまでの徒歩地図" loading="lazy" allowfullscreen
+                            referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </article>
+
+                <article class="access-route-card">
+                    <div class="access-route-text">
+                        <h2>アーバンホテル三幸からの徒歩</h2>
+                    </div>
+                    <div class="access-route-map" aria-label="アーバンホテル三幸からNishimurayaまでの徒歩地図">
+                        <iframe
+                            src="https://www.google.com/maps?hl=ja&amp;f=d&amp;source=s_d&amp;saddr=%E5%8D%83%E8%91%89%E7%9C%8C%20%E5%8D%83%E8%91%89%E5%B8%82%E4%B8%AD%E5%A4%AE%E5%8C%BA%E4%BB%8A%E4%BA%952%E4%B8%81%E7%9B%AE11-11-8&amp;daddr=%E5%8D%83%E8%91%89%E7%9C%8C%20%E5%8D%83%E8%91%89%E5%B8%82%E4%B8%AD%E5%A4%AE%E5%8C%BA%E4%BB%8A%E4%BA%952-11-15%20%E8%98%87%E6%88%91%E7%AC%AC%E4%B8%80%E3%83%9E%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%B3101&amp;dirflg=w&amp;output=embed"
+                            title="アーバンホテル三幸からNishimurayaまでの徒歩地図" loading="lazy" allowfullscreen
+                            referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </article>
+
+                <article class="access-route-card">
+                    <div class="access-route-text">
+                        <h2>千葉市蘇我スポーツ公園からの徒歩</h2>
+                    </div>
+                    <div class="access-route-map" aria-label="千葉市蘇我スポーツ公園からNishimurayaまでの徒歩地図">
+                        <iframe
+                            src="https://www.google.com/maps?hl=ja&amp;f=d&amp;source=s_d&amp;saddr=%E5%8D%83%E8%91%89%E5%B8%82%E8%98%87%E6%88%91%E3%82%B9%E3%83%9D%E3%83%BC%E3%83%84%E5%85%AC%E5%9C%92&amp;daddr=%E5%8D%83%E8%91%89%E7%9C%8C%20%E5%8D%83%E8%91%89%E5%B8%82%E4%B8%AD%E5%A4%AE%E5%8C%BA%E4%BB%8A%E4%BA%952-11-15%20%E8%98%87%E6%88%91%E7%AC%AC%E4%B8%80%E3%83%9E%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%B3101&amp;dirflg=w&amp;output=embed"
+                            title="千葉市蘇我スポーツ公園からNishimurayaまでの徒歩地図" loading="lazy" allowfullscreen
+                            referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+    </main>
+
+    {% include "nishimuraya/includes/site_footer.html" %}
+
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+
+</html>
+
+

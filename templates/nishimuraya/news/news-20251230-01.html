@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>最終日&#127541; | Nishimuraya News</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body class="news-detail-page">
+
+{% include "nishimuraya/includes/site_header.html" %}
+<header class="news-archive-header">
+  <p>NEWS DETAIL</p>
+  <h1>お知らせ</h1>
+</header>
+
+<main class="news-detail-main">
+  <article class="news-detail-article">
+    <time class="news-detail-date" datetime="2025-12-30">2025.12.30</time>
+    <h2>最終日&#127541;</h2>
+    <p class="news-detail-lead">最終日 &#127541; 今年もお世話になりました また来年もよろしくお願いします&#128583;
+ 新年3日〜営業&#127546;です</p>
+
+    <div class="news-detail-links">
+      <a class="news-home-link" href="../news.html">ニュース一覧へ</a>
+      <a class="news-home-link" href="../index.html#news">トップへ戻る</a>
+    </div>
+  </article>
+</main>
+
+{% include "nishimuraya/includes/site_footer.html" %}
+
+<script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+

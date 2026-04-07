@@ -1,0 +1,174 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Plate＆Dessert | Nishimuraya</title>
+	<link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body class="dessert-page">
+
+	{% include "nishimuraya/includes/site_header.html" %}
+
+	<main class="dessert-main">
+		<section class="menu-hero" id="top">
+			<p class="hero-kicker">CELEBRATION PLATE & SWEETS</p>
+			<h1>Plate＆Dessert</h1>
+			<p class="hero-copy">
+				ご予約制のデザートプレートを中心に、記念日や日々の気持ちを伝える一皿をご用意しています。<br>
+				食後に楽しめる通常デザートもご案内しております。
+			</p>
+		</section>
+
+		<section class="menu-section" id="plate-dessert">
+			<div class="section-head section-head--plate">
+				<h2>デザートプレート</h2>
+				<p>Recommended Plate</p>
+			</div>
+
+			<div class="plate-overview">
+				<div class="plate-copy-card">
+					<p class="plate-lead">当店ではデザートプレートの予約を承っております。</p>
+					<p class="plate-text">感謝の気持ちをデザートプレートで伝えてみませんか？</p>
+					<p class="plate-text">お誕生日、卒業式や入学式などの行事、妊娠・出産祝い、日々の感謝、記念日などに合わせてご相談いただけます。</p>
+				</div>
+
+				<aside class="plate-price-card" aria-label="デザートプレート料金">
+					<p class="price-card-kicker">Price Guide</p>
+					<dl class="price-card-list">
+						<div>
+							<dt>単品 文字のみ</dt>
+							<dd>1100円</dd>
+						</div>
+						<div>
+							<dt>単品 デザイン</dt>
+							<dd>2200円</dd>
+						</div>
+					</dl>
+					<p class="price-card-note">詳しい金額や細かいご相談はお電話にて。</p>
+					<a class="plate-contact-link" href="tel:0432643939">043-264-3939</a>
+				</aside>
+			</div>
+
+			<div class="plate-gallery" aria-label="デザートプレートの作例">
+				<article class="plate-pair">
+					<div class="plate-tile plate-tile--image">
+						<img src="{% static 'img/happybirthday_m.png' %}" alt="お誕生日向けのデザートプレート">
+					</div>
+					<div class="plate-tile plate-tile--text">
+						<p class="plate-tile-tag">BIRTHDAY</p>
+						<h3>お誕生日</h3>
+						<p>主役の方に合わせた華やかなプレート。</p>
+					</div>
+				</article>
+
+				<article class="plate-pair">
+					<div class="plate-tile plate-tile--image">
+						<img src="{% static 'img/happybirthday_f.png' %}" alt="お誕生日向けの華やかなデザートプレート">
+					</div>
+					<div class="plate-tile plate-tile--text">
+						<p class="plate-tile-tag">BIRTHDAY</p>
+						<h3>お誕生日</h3>
+						<p>色味や雰囲気も含めてご相談いただけます。</p>
+					</div>
+				</article>
+
+				<article class="plate-pair plate-pair--reverse">
+					<div class="plate-tile plate-tile--image">
+						<img src="{% static 'img/happybirthday_d.png' %}" alt="落ち着いた雰囲気のお誕生日デザートプレート">
+					</div>
+					<div class="plate-tile plate-tile--text">
+						<p class="plate-tile-tag">BIRTHDAY</p>
+						<h3>お誕生日</h3>
+						<p>大人っぽい雰囲気のお祝いにも対応します。</p>
+					</div>
+				</article>
+
+				<article class="plate-pair plate-pair--reverse">
+					<div class="plate-tile plate-tile--image">
+						<img src="{% static 'img/graduation.png' %}" alt="卒業式や入学式などの行事向けデザートプレート">
+					</div>
+					<div class="plate-tile plate-tile--text">
+						<p class="plate-tile-tag">CEREMONY</p>
+						<h3>卒業式・入学式などの行事</h3>
+						<p>節目の食事会に合わせたプレートです。</p>
+					</div>
+				</article>
+
+				<article class="plate-pair">
+					<div class="plate-tile plate-tile--image">
+						<img src="{% static 'img/childbirth.png' %}" alt="妊娠や出産祝い向けデザートプレート">
+					</div>
+					<div class="plate-tile plate-tile--text">
+						<p class="plate-tile-tag">GIFT</p>
+						<h3>妊娠・出産祝い</h3>
+						<p>やさしい雰囲気で気持ちを伝える一皿。</p>
+					</div>
+				</article>
+
+				<article class="plate-pair">
+					<div class="plate-tile plate-tile--image">
+						<img src="{% static 'img/good_job.png' %}" alt="日々の感謝を伝えるデザートプレート">
+					</div>
+					<div class="plate-tile plate-tile--text">
+						<p class="plate-tile-tag">THANKS</p>
+						<h3>日々の感謝</h3>
+						<p>ちょっとした「ありがとう」にもご利用いただけます。</p>
+					</div>
+				</article>
+
+				<article class="plate-pair plate-pair--reverse">
+					<div class="plate-tile plate-tile--image">
+						<img src="{% static 'img/thanks.png' %}" alt="感謝を伝えるデザートプレート">
+					</div>
+					<div class="plate-tile plate-tile--text">
+						<p class="plate-tile-tag">THANKS</p>
+						<h3>日々の感謝</h3>
+						<p>さりげないお礼を形にしたい日に。</p>
+					</div>
+				</article>
+
+				<article class="plate-pair plate-pair--reverse">
+					<div class="plate-tile plate-tile--image">
+						<img src="{% static 'img/wedding.png' %}" alt="記念日向けのデザートプレート">
+					</div>
+					<div class="plate-tile plate-tile--text">
+						<p class="plate-tile-tag">ANNIVERSARY</p>
+						<h3>記念日など</h3>
+						<p>大切な一日を締めくくるアニバーサリープレート。</p>
+					</div>
+				</article>
+			</div>
+		</section>
+
+		<section class="menu-section menu-section--compact" id="regular-dessert">
+			<div class="section-head">
+				<h2>通常デザートもあります！</h2>
+				<p>Regular Dessert</p>
+			</div>
+
+			<div class="regular-dessert-card">
+				<ul class="menu-items">
+					<li><span>バニラアイス</span><span>350円〜</span></li>
+					<li><span>大人のバニラアイス ①極甘シェリー酒 ②高級カシスリキュール</span><span>各500円〜</span></li>
+					<li><span>千葉酪農無添加ミルク ジェラート</span><span>420円〜</span></li>
+					<li><span>千葉酪農無添加ミルク 濃厚キャラメルジェラート（落花生クランチのせ）</span><span>450円〜</span></li>
+					<li><span>イタリアンカタラーナ2種（抹茶＆ベリー）</span><span>450円</span></li>
+					<li><span>本日のチーズケーキ（店内黒板にて）</span><span>500円（ハーフ330円）</span></li>
+				</ul>
+				<p class="regular-note">その他デザートは店内黒板にてご確認ください。</p>
+			</div>
+		</section>
+	</main>
+
+	{% include "nishimuraya/includes/site_footer.html" %}
+
+	<script src="{% static 'js/script.js' %}"></script>
+</body>
+
+</html>
+
+
