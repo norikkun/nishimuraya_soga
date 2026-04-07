@@ -1,0 +1,38 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Django: runserver",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}\\manage.py",
+      "args": [
+        "runserver"
+      ],
+      "django": true,
+      "console": "integratedTerminal",
+      "python": "C:\\Users\\Owner\\.virtualenvs\\nishimuraya-JO_KgjM5\\Scripts\\python.exe",
+      "envFile": "${workspaceFolder}\\.env",
+      "env": {
+        "PYTHONUTF8": "1"
+      }
+    },
+    {
+      "name": "Django: tailwind runserver",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}\\manage.py",
+      "args": [
+        "tailwind",
+        "runserver"
+      ],
+      "django": true,
+      "console": "integratedTerminal",
+      "python": "C:\\Users\\Owner\\.virtualenvs\\nishimuraya-JO_KgjM5\\Scripts\\python.exe",
+      "envFile": "${workspaceFolder}\\.env",
+      "env": {
+        "PYTHONUTF8": "1"
+      }
+    }
+  ]
+}

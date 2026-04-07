@@ -1,0 +1,15 @@
+{
+  "python.defaultInterpreterPath": "C:\\Users\\Owner\\.virtualenvs\\nishimuraya-JO_KgjM5\\Scripts\\python.exe",
+  "python.terminal.activateEnvironment": true,
+  "python.analysis.extraPaths": [
+    "${workspaceFolder}"
+  ],
+  "editor.formatOnSave": true,
+  "tailwindCSS.includeLanguages": {
+    "django-html": "html"
+  },
+  "files.exclude": {
+    "**/__pycache__": true,
+    ".django_tailwind_cli": true
+  }
+}

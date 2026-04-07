@@ -1,0 +1,70 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Django: migrate",
+      "type": "shell",
+      "command": "C:\\Users\\Owner\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+      "args": [
+        "-m",
+        "pipenv",
+        "run",
+        "python",
+        "manage.py",
+        "migrate"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}",
+        "env": {
+          "PIPENV_IGNORE_VIRTUALENVS": "1",
+          "PYTHONUTF8": "1"
+        }
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Django: tailwind build",
+      "type": "shell",
+      "command": "C:\\Users\\Owner\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+      "args": [
+        "-m",
+        "pipenv",
+        "run",
+        "python",
+        "manage.py",
+        "tailwind",
+        "build"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}",
+        "env": {
+          "PIPENV_IGNORE_VIRTUALENVS": "1",
+          "PYTHONUTF8": "1"
+        }
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Django: tailwind watch",
+      "type": "shell",
+      "command": "C:\\Users\\Owner\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+      "args": [
+        "-m",
+        "pipenv",
+        "run",
+        "python",
+        "manage.py",
+        "tailwind",
+        "watch"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}",
+        "env": {
+          "PIPENV_IGNORE_VIRTUALENVS": "1",
+          "PYTHONUTF8": "1"
+        }
+      },
+      "problemMatcher": []
+    }
+  ]
+}
