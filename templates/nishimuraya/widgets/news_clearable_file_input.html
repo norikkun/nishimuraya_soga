@@ -1,0 +1,20 @@
+<div class="news-clear-widget">
+    {% if widget.is_initial %}
+    <div class="news-clear-widget-current">
+        <p class="news-clear-widget-kicker">{{ widget.initial_text }}</p>
+        <a class="news-clear-widget-link" href="{{ widget.value.url }}" target="_blank" rel="noopener">{{ widget.value }}</a>
+    </div>
+    {% if not widget.required %}
+    <label class="news-clear-toggle" for="{{ widget.checkbox_id }}">
+        <input type="checkbox" name="{{ widget.checkbox_name }}" id="{{ widget.checkbox_id }}"{% if widget.attrs.disabled %} disabled{% endif %}{% if widget.attrs.checked %} checked{% endif %}>
+        <span class="news-clear-toggle-box" aria-hidden="true"></span>
+        <span class="news-clear-toggle-copy">{{ widget.clear_checkbox_label }}</span>
+    </label>
+    {% endif %}
+    {% endif %}
+
+    <div class="news-clear-widget-input">
+        <p class="news-clear-widget-kicker">{% if widget.is_initial %}{{ widget.input_text }}{% else %}写真を選択{% endif %}</p>
+        {% include "django/forms/widgets/input.html" %}
+    </div>
+</div>

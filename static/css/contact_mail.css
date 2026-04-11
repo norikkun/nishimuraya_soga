@@ -1,0 +1,16 @@
+.contact-form-errors {
+  margin: -2px 0 8px;
+  color: #ffb8ad;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.contact-form-errors ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.contact-form-dev-note {
+  margin-top: 12px;
+}

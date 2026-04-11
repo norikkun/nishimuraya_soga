@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>プレビュー | {{ article.title }}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/news_admin.css' %}">
+    <link rel="stylesheet" href="{% static 'css/news_detail_wrap.css' %}">
+</head>
+
+<body class="news-detail-page news-preview-page">
+
+    {% include "nishimuraya/includes/site_header.html" %}
+    <header class="news-archive-header">
+        <p>NEWS PREVIEW</p>
+        <h1>お知らせプレビュー</h1>
+    </header>
+
+    <main class="news-detail-main">
+        <article class="news-detail-article">
+            <div class="news-preview-meta">
+                <span class="news-editor-status is-publish">未保存プレビュー</span>
+                <p class="news-editor-copy">この画面で初めて公開または下書き保存を行います。公開日を入力する必要はなく、公開時に自動で設定されます。</p>
+            </div>
+
+            <h2>{{ article.title }}</h2>
+            {% if article.image_url %}
+            <figure class="news-detail-image-wrap">
+                <img class="news-detail-image" src="{{ article.image_url }}" alt="{{ article.title }}">
+            </figure>
+            {% endif %}
+            <div class="news-detail-content">{{ article.content|linebreaks }}</div>
+
+            <div class="news-preview-actions">
+                <form method="post" class="news-inline-form" onsubmit="return window.confirm('この内容で公開しますか？');">
+                    {% csrf_token %}
+                    <button class="news-form-submit news-form-submit-primary" type="submit" name="action" value="publish">公開する</button>
+                </form>
+                <form method="post" class="news-inline-form">
+                    {% csrf_token %}
+                    <button class="news-form-submit news-form-submit-secondary" type="submit" name="action" value="save_draft">下書き保存する</button>
+                </form>
+                <form method="post" class="news-inline-form">
+                    {% csrf_token %}
+                    <button class="news-home-link news-home-link-button" type="submit" name="action" value="edit">編集に戻る</button>
+                </form>
+            </div>
+        </article>
+    </main>
+
+    {% include "nishimuraya/includes/site_footer.html" %}
+
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+
+</html>

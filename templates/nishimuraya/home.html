@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nishimuraya</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/news_admin.css' %}">
 </head>
 
 <body>
@@ -46,7 +47,7 @@
                         <h2>季節に合わせた食材</h2>
                         <p>単品からコース料理までご用意しております。<br>
                             季節ごとに切り替わる料理を是非、お楽しみください。</p>
-                        <a class="home-link" href="food.html#course">コース詳細へ</a>
+                        <a class="home-link" href="{% url 'food' %}#course">コース詳細へ</a>
                     </div>
                 </article>
 
@@ -55,7 +56,7 @@
                     <div class="pickup-card-body">
                         <h2>充実したドリンクメニュー</h2>
                         <p>ワインを中心に、多くのドリンクもご用意しております。</p>
-                        <a class="home-link" href="drink.html">ドリンクを見る</a>
+                        <a class="home-link" href="{% url 'drink' %}">ドリンクを見る</a>
                     </div>
                 </article>
 
@@ -64,7 +65,7 @@
                     <div class="pickup-card-body">
                         <h2>デザートプレート</h2>
                         <p>お祝いメッセージ付きのデザートプレートを、予約時のご相談でご用意可能です。</p>
-                        <a class="home-link" href="dessert.html">デザートを見る</a>
+                        <a class="home-link" href="{% url 'dessert' %}">デザートを見る</a>
                     </div>
                 </article>
             </div>
@@ -74,34 +75,22 @@
             <h1>News</h1>
 
             <ul class="news-list news-list-latest">
+                {% for article in latest_articles %}
                 <li class="news-item">
-                    <a href="news/news-20260226-01.html">
-                        <time class="news-date" datetime="2026-02-26">2026.02.26</time>
-                        <span class="news-title">&#127800;春のお通し〜</span>
+                    <a href="{{ article.get_absolute_url }}">
+                        <time class="news-date" datetime="{{ article.published_at|date:'Y-m-d' }}">{{ article.published_at|date:"Y.m.d" }}</time>
+                        <span class="news-title">{{ article.title }}</span>
                     </a>
                 </li>
+                {% empty %}
                 <li class="news-item">
-                    <a href="news/news-20260220-01.html">
-                        <time class="news-date" datetime="2026-02-20">2026.02.20</time>
-                        <span class="news-title">特売です</span>
-                    </a>
+                    <div class="news-empty">現在お知らせはありません。</div>
                 </li>
-                <li class="news-item">
-                    <a href="news/news-20260214-01.html">
-                        <time class="news-date" datetime="2026-02-14">2026.02.14</time>
-                        <span class="news-title">バレンタイン</span>
-                    </a>
-                </li>
-                <li class="news-item">
-                    <a href="news/news-20260206-01.html">
-                        <time class="news-date" datetime="2026-02-06">2026.02.06</time>
-                        <span class="news-title">新商品&#127774;</span>
-                    </a>
-                </li>
+                {% endfor %}
             </ul>
 
             <p class="news-more-wrap">
-                <a class="news-more" href="news.html">過去のニュース一覧はこちら</a>
+                <a class="news-more" href="{% url 'news_archive' %}">お知らせ一覧はこちら</a>
             </p>
         </section>
 

@@ -1,0 +1,61 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>管理者ログイン | Nishimuraya</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/news_admin.css' %}">
+</head>
+
+<body class="news-detail-page news-editor-page news-login-page">
+
+    {% include "nishimuraya/includes/site_header.html" %}
+    <header class="news-archive-header">
+        <p>STAFF LOGIN</p>
+        <h1>管理者ログイン</h1>
+        <a class="news-home-link" href="{% url 'home' %}">トップページへ戻る</a>
+    </header>
+
+    <main class="news-detail-main">
+        <section class="news-form-panel">
+            <div class="news-editor-guide">
+                <span class="news-editor-status">管理者専用</span>
+                <p class="news-editor-copy">このログインURLは一般ナビゲーションには表示していません。管理者アカウントでログインすると、お知らせの作成・編集・削除・下書き管理が行えます。</p>
+            </div>
+
+            <form method="post" class="news-form">
+                {% csrf_token %}
+                {% if next %}
+                <input type="hidden" name="next" value="{{ next }}">
+                {% endif %}
+
+                {% if form.non_field_errors %}
+                <div class="news-form-errors">{{ form.non_field_errors }}</div>
+                {% endif %}
+
+                {% for field in form %}
+                <div class="news-form-row">
+                    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                    {{ field }}
+                    {% if field.errors %}
+                    <div class="news-form-errors">{{ field.errors }}</div>
+                    {% endif %}
+                </div>
+                {% endfor %}
+
+                <div class="news-form-actions">
+                    <button class="news-form-submit news-form-submit-primary" type="submit">ログイン</button>
+                </div>
+            </form>
+        </section>
+    </main>
+
+    {% include "nishimuraya/includes/site_footer.html" %}
+
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+
+</html>

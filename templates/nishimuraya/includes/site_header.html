@@ -1,4 +1,45 @@
 {% load static %}
+<style>
+    .header-auth-form {
+        margin: 0;
+    }
+
+    .header-auth-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 40px;
+        padding: 0 16px;
+        border: 1px solid rgba(203, 94, 76, 0.88);
+        border-radius: 999px;
+        background: rgba(181, 78, 64, 0.24);
+        color: #ffe1d8;
+        font-size: 15px;
+        line-height: 1;
+        cursor: pointer;
+        transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+    }
+
+    .header-auth-button:hover {
+        border-color: rgba(221, 111, 92, 0.96);
+        background: rgba(200, 89, 71, 0.38);
+        color: #fff3ee;
+    }
+
+    @media (max-width: 900px) {
+        .header-auth-form {
+            width: 100%;
+        }
+
+        .header-auth-button {
+            width: 100%;
+            justify-content: flex-start;
+            padding: 12px 14px;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+    }
+</style>
 <header class="header">
     <a class="header-logo" href="{% url 'home' %}#top">
         <img src="{% static 'img/logo_nishimuraya.svg' %}" alt="Nishimuraya 和洋創作料理 ロゴ">
@@ -26,6 +67,14 @@
                     <li><a href="{% url 'dessert' %}">Dessert</a></li>
                 </ul>
             </li>
+            {% if user.is_authenticated %}
+            <li>
+                <form method="post" action="{% url 'staff_logout' %}" class="header-auth-form">
+                    {% csrf_token %}
+                    <button class="header-auth-button" type="submit">ログアウト</button>
+                </form>
+            </li>
+            {% endif %}
         </ul>
     </nav>
 </header>

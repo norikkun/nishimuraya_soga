@@ -23,6 +23,7 @@ shellingham = "==1.5.4"
 sqlparse = "==0.5.5"
 typer = "==0.24.1"
 tzdata = "==2026.1"
+pillow = "==11.3.0"
 
 [dev-packages]
 

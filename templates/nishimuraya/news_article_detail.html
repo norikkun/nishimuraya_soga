@@ -1,0 +1,50 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ article.title }} | Nishimuraya News</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/news_admin.css' %}">
+    <link rel="stylesheet" href="{% static 'css/news_detail_wrap.css' %}">
+</head>
+
+<body class="news-detail-page">
+
+    {% include "nishimuraya/includes/site_header.html" %}
+    <header class="news-archive-header">
+        <p>NEWS DETAIL</p>
+        <h1>お知らせ</h1>
+    </header>
+
+    <main class="news-detail-main">
+        <article class="news-detail-article">
+            <time class="news-detail-date" datetime="{{ article.published_at|date:'Y-m-d' }}">{{ article.published_at|date:"Y.m.d" }}</time>
+            <h2>{{ article.title }}</h2>
+            {% if article.image %}
+            <figure class="news-detail-image-wrap">
+                <img class="news-detail-image" src="{{ article.image.url }}" alt="{{ article.title }}">
+            </figure>
+            {% endif %}
+            <div class="news-detail-content">{{ article.content|linebreaks }}</div>
+
+            <div class="news-detail-links">
+                <a class="news-detail-action news-detail-action-primary" href="{% url 'news_archive' %}">ニュース一覧へ</a>
+                {% if user.is_authenticated and user.is_staff %}
+                <a class="news-detail-action" href="{% url 'news_drafts' %}">下書き一覧へ</a>
+                <a class="news-detail-action" href="{% url 'news_update' article.url_segment %}">編集する</a>
+                <a class="news-detail-action news-detail-action-danger" href="{% url 'news_delete' article.url_segment %}">削除する</a>
+                {% endif %}
+                <a class="news-detail-action" href="{% url 'home' %}#news">トップへ戻る</a>
+            </div>
+        </article>
+    </main>
+
+    {% include "nishimuraya/includes/site_footer.html" %}
+
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+
+</html>

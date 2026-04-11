@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>お知らせ削除 | Nishimuraya</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/news_admin.css' %}">
+</head>
+
+<body class="news-detail-page news-editor-page">
+
+    {% include "nishimuraya/includes/site_header.html" %}
+    <header class="news-archive-header">
+        <p>NEWS DELETE</p>
+        <h1>お知らせを削除</h1>
+        <a class="news-home-link" href="{{ cancel_url }}">{{ back_label }}</a>
+    </header>
+
+    <main class="news-detail-main">
+        <section class="news-form-panel">
+            <form method="post" class="news-form">
+                {% csrf_token %}
+                <p class="news-delete-copy">「{{ article.title }}」を削除します。この操作は元に戻せません。</p>
+                <div class="news-form-actions">
+                    <button class="news-form-submit news-form-submit-danger" type="submit">削除する</button>
+                    <a class="news-home-link" href="{{ cancel_url }}">キャンセル</a>
+                </div>
+            </form>
+        </section>
+    </main>
+
+    {% include "nishimuraya/includes/site_footer.html" %}
+
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+
+</html>

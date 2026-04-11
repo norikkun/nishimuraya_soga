@@ -1,0 +1,72 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page_title }} | Nishimuraya</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/news_admin.css' %}">
+</head>
+
+<body class="news-detail-page news-editor-page">
+
+    {% include "nishimuraya/includes/site_header.html" %}
+    <header class="news-archive-header">
+        <p>NEWS EDITOR</p>
+        <h1>{{ page_title }}</h1>
+        <a class="news-home-link" href="{{ back_url }}">{{ back_label }}</a>
+    </header>
+
+    <main class="news-detail-main">
+        <section class="news-form-panel">
+            <div class="news-editor-guide">
+                <span class="news-editor-status">{{ current_status }}</span>
+                <p class="news-editor-copy">この画面ではまだ保存されません。プレビュー画面で内容を確認したあと、公開または下書き保存を選びます。</p>
+            </div>
+
+            <form method="post" enctype="multipart/form-data" class="news-form">
+                {% csrf_token %}
+                {% if active_preview_token %}
+                <input type="hidden" name="preview_token" value="{{ active_preview_token }}">
+                {% endif %}
+
+                {% if form.non_field_errors %}
+                <div class="news-form-errors">{{ form.non_field_errors }}</div>
+                {% endif %}
+
+                {% for field in form %}
+                <div class="news-form-row">
+                    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                    {{ field }}
+                    {% if field.help_text %}
+                    <p class="news-form-help">{{ field.help_text }}</p>
+                    {% endif %}
+                    {% if field.errors %}
+                    <div class="news-form-errors">{{ field.errors }}</div>
+                    {% endif %}
+                </div>
+                {% endfor %}
+
+                {% if form_image_preview %}
+                <div class="news-current-image">
+                    <p>{{ form_image_preview.label }}</p>
+                    <img src="{{ form_image_preview.url }}" alt="ニュース写真プレビュー">
+                </div>
+                {% endif %}
+
+                <div class="news-form-actions">
+                    <button class="news-form-submit news-form-submit-primary" type="submit">プレビュー</button>
+                    <a class="news-home-link" href="{{ cancel_url }}">キャンセル</a>
+                </div>
+            </form>
+        </section>
+    </main>
+
+    {% include "nishimuraya/includes/site_footer.html" %}
+
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+
+</html>

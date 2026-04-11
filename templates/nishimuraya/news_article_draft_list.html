@@ -1,0 +1,126 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drafts | Nishimuraya</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/news_admin.css' %}">
+</head>
+
+<body class="news-archive-page">
+
+    {% include "nishimuraya/includes/site_header.html" %}
+    <header class="news-archive-header">
+        <p>DRAFTS</p>
+        <h1>下書き一覧</h1>
+        <div class="news-page-actions">
+            <a class="news-more" href="{% url 'news_create' %}">新規作成</a>
+            <a class="news-home-link" href="{% url 'news_archive' %}">公開済み一覧へ</a>
+            <a class="news-home-link" href="{% url 'home' %}#news">トップページへ戻る</a>
+        </div>
+    </header>
+
+    <main>
+        <section class="news news-archive">
+            {% if messages %}
+            <div class="news-flash-list">
+                {% for message in messages %}
+                <div class="news-flash-item">{{ message }}</div>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            {% if is_paginated %}
+            <nav class="news-pagination news-pagination-top" aria-label="下書き一覧のページ送り 上部">
+                {% if page_obj.has_previous %}
+                <a class="news-pagination-link" href="{% url 'news_drafts' %}?page={{ page_obj.previous_page_number }}">前へ</a>
+                {% endif %}
+
+                {% if show_first_page_link %}
+                <a class="news-pagination-link" href="{% url 'news_drafts' %}?page=1">1</a>
+                {% endif %}
+                {% if show_leading_ellipsis %}
+                <span class="news-pagination-link news-pagination-gap" aria-hidden="true">...</span>
+                {% endif %}
+                {% for page_number in visible_page_numbers %}
+                {% if page_number == page_obj.number %}
+                <span class="news-pagination-link is-current">{{ page_number }}</span>
+                {% else %}
+                <a class="news-pagination-link" href="{% url 'news_drafts' %}?page={{ page_number }}">{{ page_number }}</a>
+                {% endif %}
+                {% endfor %}
+                {% if show_trailing_ellipsis %}
+                <span class="news-pagination-link news-pagination-gap" aria-hidden="true">...</span>
+                {% endif %}
+                {% if show_last_page_link %}
+                <a class="news-pagination-link" href="{% url 'news_drafts' %}?page={{ paginator.num_pages }}">{{ paginator.num_pages }}</a>
+                {% endif %}
+
+                {% if page_obj.has_next %}
+                <a class="news-pagination-link" href="{% url 'news_drafts' %}?page={{ page_obj.next_page_number }}">次へ</a>
+                {% endif %}
+            </nav>
+            {% endif %}
+
+            {% if articles %}
+            <ul class="news-draft-list">
+                {% for article in articles %}
+                <li class="news-draft-item">
+                    <div class="news-draft-meta">
+                        <span class="news-editor-status">{{ article.status_label }}</span>
+                        <time class="news-date" datetime="{{ article.updated_at|date:'Y-m-d\\TH:i' }}">更新 {{ article.updated_at|date:"Y.m.d H:i" }}</time>
+                    </div>
+                    <h2>{{ article.title }}</h2>
+                    <p class="news-summary">{{ article.content|striptags|truncatechars:140 }}</p>
+                    <div class="news-item-actions">
+                        <a class="news-manage-link" href="{% url 'news_update' article.url_segment %}">編集</a>
+                        <a class="news-manage-link news-manage-link-danger" href="{% url 'news_delete' article.url_segment %}">削除</a>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+            {% if is_paginated %}
+            <nav class="news-pagination" aria-label="下書き一覧のページ送り 下部">
+                {% if page_obj.has_previous %}
+                <a class="news-pagination-link" href="{% url 'news_drafts' %}?page={{ page_obj.previous_page_number }}">前へ</a>
+                {% endif %}
+
+                {% if show_first_page_link %}
+                <a class="news-pagination-link" href="{% url 'news_drafts' %}?page=1">1</a>
+                {% endif %}
+                {% if show_leading_ellipsis %}
+                <span class="news-pagination-link news-pagination-gap" aria-hidden="true">...</span>
+                {% endif %}
+                {% for page_number in visible_page_numbers %}
+                {% if page_number == page_obj.number %}
+                <span class="news-pagination-link is-current">{{ page_number }}</span>
+                {% else %}
+                <a class="news-pagination-link" href="{% url 'news_drafts' %}?page={{ page_number }}">{{ page_number }}</a>
+                {% endif %}
+                {% endfor %}
+                {% if show_trailing_ellipsis %}
+                <span class="news-pagination-link news-pagination-gap" aria-hidden="true">...</span>
+                {% endif %}
+                {% if show_last_page_link %}
+                <a class="news-pagination-link" href="{% url 'news_drafts' %}?page={{ paginator.num_pages }}">{{ paginator.num_pages }}</a>
+                {% endif %}
+
+                {% if page_obj.has_next %}
+                <a class="news-pagination-link" href="{% url 'news_drafts' %}?page={{ page_obj.next_page_number }}">次へ</a>
+                {% endif %}
+            </nav>
+            {% endif %}
+            {% else %}
+            <p class="news-empty-state">下書きはまだありません。</p>
+            {% endif %}
+        </section>
+    </main>
+
+    {% include "nishimuraya/includes/site_footer.html" %}
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+
+</html>

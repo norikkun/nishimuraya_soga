@@ -1,0 +1,6 @@
+.news-detail-article h2,
+.news-detail-content,
+.news-detail-content p {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}

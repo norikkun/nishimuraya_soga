@@ -1,4 +1,5 @@
-from django.urls import path
+from django.urls import path, re_path
+from django.views.generic import RedirectView
 
 from .views import (
     ContactThanksView,
@@ -7,22 +8,40 @@ from .views import (
     DrinkView,
     FoodView,
     HomeView,
+    LegacyNewsDetailRedirectView,
     LunchView,
+    NewsCreateView,
     NewsArchiveView,
+    NewsDeleteView,
     NewsDetailView,
+    NewsDraftListView,
+    NewsPreviewView,
+    NewsUpdateView,
     RecruitView,
+    StaffLoginRedirectView,
+    StaffLoginView,
+    StaffLogoutView,
 )
 
 urlpatterns = [
     path("", HomeView.as_view(), name="home"),
-    path("index.html", HomeView.as_view(), name="index"),
-    path("food.html", FoodView.as_view(), name="food"),
-    path("drink.html", DrinkView.as_view(), name="drink"),
-    path("dessert.html", DessertView.as_view(), name="dessert"),
-    path("lunch.html", LunchView.as_view(), name="lunch"),
-    path("recruit.html", RecruitView.as_view(), name="recruit"),
-    path("contact.html", ContactView.as_view(), name="contact"),
-    path("contact-thanks.html", ContactThanksView.as_view(), name="contact_thanks"),
-    path("news.html", NewsArchiveView.as_view(), name="news_archive"),
-    path("news/<slug:slug>.html", NewsDetailView.as_view(), name="news_detail"),
+    path("index/", RedirectView.as_view(pattern_name="home", permanent=True), name="index"),
+    path("staff/", StaffLoginRedirectView.as_view(), name="staff_entry"),
+    path("staff/login/", StaffLoginView.as_view(), name="staff_login"),
+    path("staff/logout/", StaffLogoutView.as_view(), name="staff_logout"),
+    path("food/", FoodView.as_view(), name="food"),
+    path("drink/", DrinkView.as_view(), name="drink"),
+    path("dessert/", DessertView.as_view(), name="dessert"),
+    path("lunch/", LunchView.as_view(), name="lunch"),
+    path("recruit/", RecruitView.as_view(), name="recruit"),
+    path("contact/", ContactView.as_view(), name="contact"),
+    path("contact-thanks/", ContactThanksView.as_view(), name="contact_thanks"),
+    path("news/", NewsArchiveView.as_view(), name="news_archive"),
+    path("news/drafts/", NewsDraftListView.as_view(), name="news_drafts"),
+    path("news/create/", NewsCreateView.as_view(), name="news_create"),
+    path("news/preview/<str:preview_token>/", NewsPreviewView.as_view(), name="news_preview"),
+    re_path(r"^news/(?P<legacy_slug>news-\d{8}-\d+)/$",LegacyNewsDetailRedirectView.as_view(),name="legacy_news_detail",),
+    path("news/<str:url_key>/", NewsDetailView.as_view(), name="news_detail"),
+    path("news/<str:url_key>/edit/", NewsUpdateView.as_view(), name="news_update"),
+    path("news/<str:url_key>/delete/", NewsDeleteView.as_view(), name="news_delete"),
 ]
