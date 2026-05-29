@@ -26,6 +26,29 @@
         color: #fff3ee;
     }
 
+    .header-staff-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .header-pending-badge {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 24px;
+        padding: 0 9px;
+        border-radius: 999px;
+        background: rgba(216, 176, 122, 0.22);
+        color: #f7d6af;
+        font-size: 12px;
+        line-height: 1;
+    }
+
+    .header-pending-badge.is-hidden {
+        display: none;
+    }
+
     @media (max-width: 900px) {
         .header-auth-form {
             width: 100%;
@@ -37,6 +60,11 @@
             padding: 12px 14px;
             font-size: 15px;
             line-height: 1.6;
+        }
+
+        .header-staff-link {
+            justify-content: space-between;
+            width: 100%;
         }
     }
 </style>
@@ -68,6 +96,18 @@
                 </ul>
             </li>
             {% if user.is_authenticated %}
+            {% if user.is_staff %}
+            <li>
+                <a class="header-staff-link" href="{% url 'contact_inquiry_list' %}"
+                    data-contact-status-url="{% url 'contact_inquiry_status' %}"
+                    data-contact-pending-initial="{{ pending_contact_inquiry_count|default:0 }}"
+                    data-contact-latest-inquiry-id="{{ latest_contact_inquiry_id|default:0 }}"
+                    data-contact-inquiry-total="{{ contact_inquiry_total_count|default:0 }}">
+                    問い合わせ一覧
+                    <span class="header-pending-badge{% if not pending_contact_inquiry_count %} is-hidden{% endif %}" data-contact-pending-count>未対応 {{ pending_contact_inquiry_count|default:0 }}</span>
+                </a>
+            </li>
+            {% endif %}
             <li>
                 <form method="post" action="{% url 'staff_logout' %}" class="header-auth-form">
                     {% csrf_token %}
@@ -78,3 +118,63 @@
         </ul>
     </nav>
 </header>
+{% if user.is_authenticated and user.is_staff %}
+<script>
+    (() => {
+        const link = document.querySelector("[data-contact-status-url]");
+        const badge = document.querySelector("[data-contact-pending-count]");
+        if (!link || !badge || !window.fetch) {
+            return;
+        }
+
+        const statusUrl = link.dataset.contactStatusUrl;
+        const initialPendingCount = Number(link.dataset.contactPendingInitial || 0);
+        const initialLatestId = Number(link.dataset.contactLatestInquiryId || 0);
+        const initialTotalCount = Number(link.dataset.contactInquiryTotal || 0);
+        const isListPage = document.body.dataset.contactListPage === "true";
+
+        const renderPendingCount = (count) => {
+            badge.textContent = `未対応 ${count}`;
+            badge.classList.toggle("is-hidden", count <= 0);
+        };
+
+        const refreshContactStatus = async () => {
+            try {
+                const response = await fetch(statusUrl, {
+                    credentials: "same-origin",
+                    headers: { "X-Requested-With": "XMLHttpRequest" },
+                });
+                if (!response.ok) {
+                    return;
+                }
+
+                const data = await response.json();
+                const pendingCount = Number(data.pending_count || 0);
+                const latestId = Number(data.latest_id || 0);
+                const totalCount = Number(data.total_count || 0);
+                renderPendingCount(pendingCount);
+
+                if (
+                    isListPage
+                    && (
+                        pendingCount !== initialPendingCount
+                        || latestId !== initialLatestId
+                        || totalCount !== initialTotalCount
+                    )
+                ) {
+                    window.location.reload();
+                }
+            } catch (error) {
+                return;
+            }
+        };
+
+        window.setInterval(refreshContactStatus, 60000);
+        document.addEventListener("visibilitychange", () => {
+            if (!document.hidden) {
+                refreshContactStatus();
+            }
+        });
+    })();
+</script>
+{% endif %}

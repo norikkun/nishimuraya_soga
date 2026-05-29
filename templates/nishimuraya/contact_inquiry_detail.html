@@ -1,0 +1,79 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>問い合わせ詳細 | Nishimuraya</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/news_admin.css' %}">
+</head>
+
+<body class="news-detail-page contact-inquiry-page">
+
+    {% include "nishimuraya/includes/site_header.html" %}
+    <header class="news-archive-header">
+        <p>CONTACT DETAIL</p>
+        <h1>問い合わせ詳細</h1>
+    </header>
+
+    <main class="news-detail-main">
+        <article class="news-detail-article contact-inquiry-detail">
+            {% if messages %}
+            <div class="news-flash-list">
+                {% for message in messages %}
+                <div class="news-flash-item">{{ message }}</div>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            <div class="news-draft-meta">
+                <span class="news-editor-status contact-inquiry-status {{ inquiry.status_css_class }}">{{ inquiry.status_label }}</span>
+                <time class="news-date" datetime="{{ inquiry.created_at|date:'Y-m-d\\TH:i' }}">受付 {{ inquiry.created_at|date:"Y.m.d H:i" }}</time>
+            </div>
+
+            <dl class="contact-inquiry-detail-list">
+                <div>
+                    <dt>お名前</dt>
+                    <dd>{{ inquiry.name }}</dd>
+                </div>
+                <div>
+                    <dt>メールアドレス</dt>
+                    <dd>{{ inquiry.email }}</dd>
+                </div>
+                <div>
+                    <dt>電話番号</dt>
+                    <dd>{{ inquiry.phone_display }}</dd>
+                </div>
+                <div>
+                    <dt>対応日時</dt>
+                    <dd>{% if inquiry.handled_at %}{{ inquiry.handled_at|date:"Y.m.d H:i" }}{% else %}未対応{% endif %}</dd>
+                </div>
+            </dl>
+
+            <section class="contact-inquiry-message" aria-labelledby="contact-inquiry-message-title">
+                <h3 id="contact-inquiry-message-title">お問い合わせ内容</h3>
+                <div class="news-detail-content">{{ inquiry.message|linebreaks }}</div>
+            </section>
+
+            <div class="news-detail-links">
+                <a class="news-detail-action news-detail-action-primary" href="{% url 'contact_inquiry_list' %}">問い合わせ一覧へ</a>
+                <form class="news-inline-form" method="post" action="{% url 'contact_inquiry_toggle' inquiry.pk %}">
+                    {% csrf_token %}
+                    {% if inquiry.is_handled %}
+                    <button class="news-form-submit news-form-submit-secondary" type="submit">未対応に戻す</button>
+                    {% else %}
+                    <button class="news-form-submit news-form-submit-primary" type="submit">対応済みにする</button>
+                    {% endif %}
+                </form>
+                <a class="news-detail-action" href="{% url 'home' %}#top">トップへ戻る</a>
+            </div>
+        </article>
+    </main>
+
+    {% include "nishimuraya/includes/site_footer.html" %}
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+
+</html>

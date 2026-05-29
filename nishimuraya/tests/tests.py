@@ -4,13 +4,11 @@ from zoneinfo import ZoneInfo
 
 from django.conf import settings
 from django.contrib.auth import get_user_model
-from django.core import mail
 from django.test import TestCase
-from django.test.utils import override_settings
 from django.urls import reverse
 from django.utils import timezone
 
-from nishimuraya.models import NewsArticle
+from nishimuraya.models import ContactInquiry, NewsArticle
 
 
 class StaffUserMixin:
@@ -73,11 +71,6 @@ class HomePageTests(StaffUserMixin, TestCase):
         self.assertContains(response, f'action="{reverse("staff_logout")}"', count=1, html=False)
 
 
-@override_settings(
-    EMAIL_BACKEND="django.core.mail.backends.locmem.EmailBackend",
-    DEFAULT_FROM_EMAIL="noreply@nishimuraya.local",
-    CONTACT_RECIPIENT_EMAIL="owner@example.com",
-)
 class ContactViewTests(TestCase):
     def test_contact_page_renders_form(self):
         response = self.client.get(reverse("contact"))
@@ -86,7 +79,7 @@ class ContactViewTests(TestCase):
         self.assertContains(response, 'action="/contact/"', html=False)
         self.assertContains(response, 'name="csrfmiddlewaretoken"', html=False)
 
-    def test_contact_form_sends_email_and_redirects(self):
+    def test_contact_form_creates_inquiry_and_redirects(self):
         response = self.client.post(
             reverse("contact"),
             {
@@ -98,15 +91,14 @@ class ContactViewTests(TestCase):
         )
 
         self.assertRedirects(response, reverse("contact_thanks"), fetch_redirect_response=False)
-        self.assertEqual(len(mail.outbox), 1)
-        self.assertEqual(mail.outbox[0].to, ["owner@example.com"])
-        self.assertEqual(mail.outbox[0].from_email, "noreply@nishimuraya.local")
-        self.assertEqual(mail.outbox[0].reply_to, ["taro@example.com"])
-        self.assertIn("田中太郎", mail.outbox[0].subject)
-        self.assertIn("貸切利用について相談したいです。", mail.outbox[0].body)
-        self.assertIn("090-1234-5678", mail.outbox[0].body)
+        inquiry = ContactInquiry.objects.get()
+        self.assertEqual(inquiry.name, "田中太郎")
+        self.assertEqual(inquiry.email, "taro@example.com")
+        self.assertEqual(inquiry.phone, "090-1234-5678")
+        self.assertEqual(inquiry.message, "貸切利用について相談したいです。")
+        self.assertFalse(inquiry.is_handled)
 
-    def test_contact_form_with_invalid_email_does_not_send(self):
+    def test_contact_form_with_invalid_email_does_not_create_inquiry(self):
         response = self.client.post(
             reverse("contact"),
             {
@@ -118,8 +110,95 @@ class ContactViewTests(TestCase):
         )
 
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(len(mail.outbox), 0)
+        self.assertEqual(ContactInquiry.objects.count(), 0)
         self.assertContains(response, "有効なメールアドレスを入力してください。")
+
+
+class ContactInquiryAdminViewTests(StaffUserMixin, TestCase):
+    def create_inquiry(self, **overrides):
+        defaults = {
+            "name": "田中太郎",
+            "email": "taro@example.com",
+            "phone": "090-1234-5678",
+            "message": "貸切利用について相談したいです。",
+        }
+        defaults.update(overrides)
+        return ContactInquiry.objects.create(**defaults)
+
+    def test_list_requires_login(self):
+        response = self.client.get(reverse("contact_inquiry_list"))
+
+        self.assertRedirects(
+            response,
+            f"{reverse('staff_login')}?next={reverse('contact_inquiry_list')}",
+            fetch_redirect_response=False,
+        )
+
+    def test_list_shows_pending_inquiry_and_count_to_staff(self):
+        inquiry = self.create_inquiry()
+        self.create_inquiry(name="対応済み", email="done@example.com", is_handled=True)
+        self.login_staff_user()
+
+        response = self.client.get(reverse("contact_inquiry_list"))
+
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, inquiry.name)
+        self.assertContains(response, "未対応 (1)")
+        self.assertNotContains(response, "done@example.com")
+
+    def test_list_paginates_five_inquiries(self):
+        for index in range(1, 8):
+            self.create_inquiry(name=f"問い合わせ{index}", email=f"user{index}@example.com")
+        self.login_staff_user()
+
+        first_page = self.client.get(reverse("contact_inquiry_list"))
+        second_page = self.client.get(reverse("contact_inquiry_list"), {"page": 2})
+
+        self.assertEqual(first_page.status_code, 200)
+        self.assertEqual(first_page.context["page_obj"].paginator.per_page, 5)
+        self.assertEqual(len(first_page.context["page_obj"].object_list), 5)
+        self.assertEqual(list(first_page.context["visible_page_numbers"]), [1, 2])
+        self.assertContains(first_page, "?status=pending&amp;page=2")
+        self.assertEqual(second_page.status_code, 200)
+        self.assertEqual(len(second_page.context["page_obj"].object_list), 2)
+
+    def test_detail_shows_all_inquiry_information(self):
+        inquiry = self.create_inquiry()
+        self.login_staff_user()
+
+        response = self.client.get(inquiry.get_absolute_url())
+
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "田中太郎")
+        self.assertContains(response, "taro@example.com")
+        self.assertContains(response, "090-1234-5678")
+        self.assertContains(response, "貸切利用について相談したいです。")
+        self.assertContains(response, "対応済みにする")
+
+    def test_toggle_switches_handled_status(self):
+        inquiry = self.create_inquiry()
+        self.login_staff_user()
+
+        self.client.post(reverse("contact_inquiry_toggle", kwargs={"pk": inquiry.pk}))
+        inquiry.refresh_from_db()
+        self.assertTrue(inquiry.is_handled)
+        self.assertIsNotNone(inquiry.handled_at)
+
+        self.client.post(reverse("contact_inquiry_toggle", kwargs={"pk": inquiry.pk}))
+        inquiry.refresh_from_db()
+        self.assertFalse(inquiry.is_handled)
+        self.assertIsNone(inquiry.handled_at)
+
+    def test_status_endpoint_returns_pending_count(self):
+        self.create_inquiry()
+        self.create_inquiry(name="対応済み", email="done@example.com", is_handled=True)
+        self.login_staff_user()
+
+        response = self.client.get(reverse("contact_inquiry_status"))
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json()["pending_count"], 1)
+        self.assertEqual(response.json()["total_count"], 2)
 
 
 class NewsArchiveViewTests(StaffUserMixin, TestCase):

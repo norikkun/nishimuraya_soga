@@ -1,3 +1,9 @@
+from .contact_inquiry_view import (
+    ContactInquiryDetailView,
+    ContactInquiryListView,
+    ContactInquiryStatusView,
+    ContactInquiryToggleHandledView,
+)
 from .auth_view import StaffLoginRedirectView, StaffLoginView, StaffLogoutView
 from .contact_thanks_view import ContactThanksView
 from .contact_view import ContactView

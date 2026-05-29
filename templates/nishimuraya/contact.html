@@ -7,7 +7,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>お問い合わせ | Nishimuraya</title>
 	<link rel="stylesheet" href="{% static 'css/style.css' %}">
-	<link rel="stylesheet" href="{% static 'css/contact_mail.css' %}">
+	<link rel="stylesheet" href="{% static 'css/contact.css' %}">
 </head>
 
 <body class="contact-page">
@@ -60,11 +60,6 @@
 				<button type="submit">送信する</button>
 			</form>
 
-			{% if uses_console_email_backend %}
-			<p class="contact-note contact-form-dev-note">
-				ローカル開発中は、送信内容がサーバーを起動しているターミナルに表示されます。
-			</p>
-			{% endif %}
 		</section>
 	</main>
 
