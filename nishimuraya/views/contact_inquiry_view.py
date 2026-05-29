@@ -54,16 +54,14 @@ class ContactInquiryListView(StaffRequiredMixin, PaginationWindowMixin, ListView
 
     def get_status_filter(self):
         status = self.request.GET.get("status", "pending")
-        return status if status in {"all", "pending", "handled"} else "pending"
+        return status if status in {"pending", "handled"} else "pending"
 
     def get_queryset(self):
         queryset = ContactInquiry.objects.all()
         status = self.get_status_filter()
         if status == "pending":
             return queryset.filter(is_handled=False)
-        if status == "handled":
-            return queryset.filter(is_handled=True)
-        return queryset
+        return queryset.filter(is_handled=True)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -71,7 +69,6 @@ class ContactInquiryListView(StaffRequiredMixin, PaginationWindowMixin, ListView
         context["status_query"] = f"status={context['status_filter']}&"
         context["pending_count"] = ContactInquiry.objects.filter(is_handled=False).count()
         context["handled_count"] = ContactInquiry.objects.filter(is_handled=True).count()
-        context["total_count"] = ContactInquiry.objects.count()
         return context
 
 

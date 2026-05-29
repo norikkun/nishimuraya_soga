@@ -1,3 +1,5 @@
+from urllib.parse import urlencode
+
 from django.db import models
 from django.urls import reverse
 from django.utils import timezone
@@ -33,6 +35,52 @@ class ContactInquiry(models.Model):
     @property
     def phone_display(self) -> str:
         return self.phone or "未入力"
+
+    @property
+    def reply_subject(self) -> str:
+        return "お問い合わせについて"
+
+    @property
+    def reply_body(self) -> str:
+        return "\n".join(
+            [
+                f"{self.name} 様",
+                "",
+                "お問い合わせありがとうございます。",
+                "Nishimurayaです。",
+                "",
+                "お問い合わせいただいた内容について、以下の通りご連絡いたします。",
+                "",
+                "【お問い合わせ内容】",
+                self.message,
+                "",
+                "【返信内容】",
+                "",
+                "",
+                "どうぞよろしくお願いいたします。",
+                "",
+                "Nishimuraya",
+            ]
+        )
+
+    @property
+    def reply_gmail_url(self) -> str:
+        query = urlencode(
+            {
+                "view": "cm",
+                "fs": "1",
+                "to": self.email,
+                "su": self.reply_subject,
+                "body": self.reply_body,
+            }
+        )
+        return f"https://mail.google.com/mail/?{query}"
+
+    @property
+    def reply_mailto_url(self) -> str:
+        subject = "お問い合わせについて"
+        query = urlencode({"subject": subject, "body": self.reply_body})
+        return f"mailto:{self.email}?{query}"
 
     def get_absolute_url(self) -> str:
         return reverse("contact_inquiry_detail", kwargs={"pk": self.pk})

@@ -19,7 +19,6 @@
         <div class="news-page-actions">
             <a class="news-filter-link{% if status_filter == 'pending' %} is-active{% endif %}" href="{% url 'contact_inquiry_list' %}?status=pending">未対応{% if pending_count %} ({{ pending_count }}){% endif %}</a>
             <a class="news-filter-link{% if status_filter == 'handled' %} is-active{% endif %}" href="{% url 'contact_inquiry_list' %}?status=handled">対応済み{% if handled_count %} ({{ handled_count }}){% endif %}</a>
-            <a class="news-filter-link{% if status_filter == 'all' %} is-active{% endif %}" href="{% url 'contact_inquiry_list' %}?status=all">すべて{% if total_count %} ({{ total_count }}){% endif %}</a>
             <a class="news-home-link" href="{% url 'home' %}#top">トップページへ戻る</a>
         </div>
     </header>

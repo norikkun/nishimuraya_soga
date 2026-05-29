@@ -59,6 +59,7 @@
 
             <div class="news-detail-links">
                 <a class="news-detail-action news-detail-action-primary" href="{% url 'contact_inquiry_list' %}">問い合わせ一覧へ</a>
+                <a class="news-detail-action news-detail-action-primary" href="{{ inquiry.reply_gmail_url }}" target="_blank" rel="noopener">Gmailで返信する</a>
                 <form class="news-inline-form" method="post" action="{% url 'contact_inquiry_toggle' inquiry.pk %}">
                     {% csrf_token %}
                     {% if inquiry.is_handled %}

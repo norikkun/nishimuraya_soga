@@ -89,9 +89,15 @@
                 {% endfor %}
             </ul>
 
-            <p class="news-more-wrap">
-                <a class="news-more" href="{% url 'news_archive' %}">お知らせ一覧はこちら</a>
-            </p>
+            <div class="news-link-row">
+                <div class="news-instagram-links" aria-label="Instagramリンク">
+                    <a class="news-instagram-link" href="https://www.instagram.com/nishimuraya.soga.dessert_plate/?hl=ja" target="_blank" rel="noopener">Instagram デザート用</a>
+                    <a class="news-instagram-link" href="https://www.instagram.com/nishimuraya_soga/?hl=ja" target="_blank" rel="noopener">Instagram 料理用</a>
+                </div>
+                <p class="news-more-wrap">
+                    <a class="news-more" href="{% url 'news_archive' %}">お知らせ一覧はこちら</a>
+                </p>
+            </div>
         </section>
 
         <!-- アクセス -->

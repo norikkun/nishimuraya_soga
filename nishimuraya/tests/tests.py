@@ -174,6 +174,10 @@ class ContactInquiryAdminViewTests(StaffUserMixin, TestCase):
         self.assertContains(response, "090-1234-5678")
         self.assertContains(response, "貸切利用について相談したいです。")
         self.assertContains(response, "対応済みにする")
+        self.assertContains(response, "https://mail.google.com/mail/?view=cm")
+        self.assertContains(response, "to=taro%40example.com")
+        self.assertContains(response, "su=%E3%81%8A%E5%95%8F%E3%81%84%E5%90%88%E3%82%8F%E3%81%9B")
+        self.assertContains(response, "%E3%80%90%E3%81%8A%E5%95%8F%E3%81%84%E5%90%88%E3%82%8F%E3%81%9B%E5%86%85%E5%AE%B9%E3%80%91")
 
     def test_toggle_switches_handled_status(self):
         inquiry = self.create_inquiry()
