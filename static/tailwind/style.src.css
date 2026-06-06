@@ -296,7 +296,7 @@ body {
 .news-archive-header {
 	max-width: 1120px;
 	margin: 0 auto;
-	padding: 48px 24px 0;
+	padding: 48px 24px 32px;
 	color: #ece3e2;
 }
 
@@ -316,10 +316,10 @@ body {
 }
 
 .news-archive {
-	margin-top: 48px;
-	margin-bottom: 90px;
-	padding-top: 0;
-	padding-bottom: 0;
+	margin-top: 0;
+	margin-bottom: 0;
+	padding-top: 48px;
+	padding-bottom: 56px;
 }
 
 @media (max-width: 780px) {
@@ -927,6 +927,10 @@ main {
 
 	.news {
 		padding: 110px 24px 72px;
+	}
+
+	.news-archive {
+		padding-top: 40px;
 	}
 
 	.access {
