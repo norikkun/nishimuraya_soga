@@ -1,4 +1,5 @@
 .env
+.db-backups/
 .django_tailwind_cli/
 __pycache__/
 *.py[cod]

@@ -8,8 +8,6 @@ django-typer==3.7.1
 markdown-it-py==4.0.0
 mdurl==0.1.2
 Pillow==11.3.0
-psycopg==3.3.3
-psycopg-binary==3.3.3
 Pygments==2.20.0
 python-dotenv==1.2.2
 rich==14.3.3
