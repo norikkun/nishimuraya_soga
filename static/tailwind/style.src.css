@@ -45,11 +45,28 @@ body {
 	background-position: center center;
 	background-repeat: no-repeat;
 	transform: scale(1.02);
-	transition: opacity 1.2s ease;
+	transition: opacity 2.2s ease-in-out;
 }
 
 .top-slide.is-active {
 	opacity: 1;
+}
+
+@media (max-width: 640px) and (prefers-reduced-motion: no-preference) {
+	.top-slide.is-active,
+	.top-slide.is-leaving {
+		animation: mobile-slide-pan 9.2s linear both;
+	}
+
+	@keyframes mobile-slide-pan {
+		from {
+			background-position: 42% center;
+		}
+
+		to {
+			background-position: 58% center;
+		}
+	}
 }
 
 .header {

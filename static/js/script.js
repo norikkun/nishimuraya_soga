@@ -184,8 +184,17 @@
   let activeIndex = 0;
 
   const showSlide = (nextIndex) => {
-    slides[activeIndex].classList.remove('is-active');
+    const currentSlide = slides[activeIndex];
+    currentSlide.classList.add('is-leaving');
+    currentSlide.classList.remove('is-active');
+    currentSlide.addEventListener('transitionend', (event) => {
+      if (event.propertyName === 'opacity') {
+        currentSlide.classList.remove('is-leaving');
+      }
+    }, { once: true });
+
     activeIndex = nextIndex;
+    slides[activeIndex].classList.remove('is-leaving');
     slides[activeIndex].classList.add('is-active');
   };
 
@@ -199,5 +208,5 @@
   window.setInterval(() => {
     const nextIndex = (activeIndex + 1) % slides.length;
     showSlide(nextIndex);
-  }, 5000);
+  }, 7000);
 })();
