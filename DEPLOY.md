@@ -166,26 +166,24 @@ sudo systemctl reload nginx
 
 ## 9. お名前.comのDNSを設定
 
-2026年7月5日時点では、次のDNS設定になっています。
-
-- ネームサーバー：`ns-rs1.gmoserver.jp`、`ns-rs2.gmoserver.jp`
-- Web用Aレコード：`nishimuraya-soga.com`と`www`の両方が`157.120.209.58`
-- MXレコード：`mail1036.onamae.ne.jp`
-- TXTレコード：`v=spf1 include:_spf.onamae.ne.jp ~all`
-
-このネームサーバー構成では、お名前.comのレンタルサーバー
-コントロールパネルからDNSレコードを編集します。ネームサーバー自体は変更せず、
-次のAレコード2件の値だけをVPSのIPv4アドレスへ変更してください。
+誤って契約したレンタルサーバーは解約手続き済みで、独自ドメインのメールも
+利用していません。お名前.com Naviの「ドメインDNS設定」から次のAレコードを
+追加し、DNSレコード設定用ネームサーバーへの変更も有効にします。
 
 | ホスト名 | TYPE | VALUE |
 | --- | --- | --- |
 | 空欄 | A | 133.167.125.134 |
 | www | A | 133.167.125.134 |
 
-AレコードはドメインをVPSのIPv4アドレスへ向ける設定です。メールを利用している
-場合、既存のMX・TXTレコードはメール配送と送信元認証に必要なので、
-値を変更したり削除したりしないでください。
-IPv6をVPS側で設定していない場合、AAAAレコードは追加しません。
+AレコードはドメインをVPSのIPv4アドレスへ向ける設定です。ホスト名には
+完全なドメイン名ではなく、ルートは空欄、`www.nishimuraya-soga.com`は`www`
+だけを入力します。TTLは`3600`、状態は「有効」にします。
+
+2件を追加した後、「DNSレコード設定用ネームサーバー変更確認」にチェックを付け、
+確認画面から設定を確定します。これにより、解約予定レンタルサーバー用の
+`ns-rs1.gmoserver.jp`、`ns-rs2.gmoserver.jp`から、お名前.com標準DNSへ
+切り替わります。メールは利用していないため、MX・TXTレコードの移行は不要です。
+IPv6をVPS側で設定していないため、AAAAレコードは追加しません。
 
 ## 10. HTTPS証明書を取得
 
@@ -235,20 +233,28 @@ VPS自体の障害に備え、このディレクトリは定期的に別のPCや
 
 ## 12. 更新時の手順
 
+SourceTreeでのコミット、`develop`から`main`への統合、VPSへの反映は、
+[UPDATE_DEPLOY.md](UPDATE_DEPLOY.md) にまとめています。
+
+VPSは公開用の`main`ブランチから更新します。
+
 ```bash
 cd /srv/nishimuraya/app
 sudo systemctl start nishimuraya-backup.service
-git pull --ff-only origin develop
+git fetch origin
+git pull --ff-only origin main
 .venv/bin/python -m pip install -r requirements.txt
 .venv/bin/python manage.py migrate
 .venv/bin/python manage.py collectstatic --noinput
 .venv/bin/python manage.py check --deploy
 sudo systemctl restart nishimuraya
-sudo systemctl reload nginx
+sudo systemctl status nishimuraya --no-pager
 ```
 
 更新前にバックアップし、コード、依存パッケージ、DB構造、静的ファイルを
-順番に更新します。`--ff-only`はVPS上で意図しないマージコミットが作られるのを防ぎます。
+順番に更新します。`--ff-only`はVPS上で意図しないマージコミットが
+作られるのを防ぎます。通常更新では、Certbotが追加したHTTPS設定を
+維持するためNginx設定ファイルを上書きしません。
 
 ## 13. 問題が起きたときの確認
 
