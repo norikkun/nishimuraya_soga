@@ -1,0 +1,30 @@
+[Unit]
+Description=Nishimuraya Django application
+After=network.target
+
+[Service]
+Type=simple
+User=ubuntu
+Group=www-data
+WorkingDirectory=/srv/nishimuraya/app
+EnvironmentFile=/srv/nishimuraya/app/.env
+RuntimeDirectory=nishimuraya
+RuntimeDirectoryMode=0750
+UMask=0007
+ExecStart=/srv/nishimuraya/app/.venv/bin/gunicorn \
+    --workers 2 \
+    --bind unix:/run/nishimuraya/gunicorn.sock \
+    --access-logfile - \
+    --error-logfile - \
+    --timeout 30 \
+    config.wsgi:application
+ExecReload=/bin/kill -s HUP $MAINPID
+Restart=on-failure
+RestartSec=5
+TimeoutStopSec=30
+PrivateTmp=true
+NoNewPrivileges=true
+ProtectSystem=full
+
+[Install]
+WantedBy=multi-user.target

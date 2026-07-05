@@ -1,0 +1,14 @@
+[Unit]
+Description=Back up Nishimuraya database and uploaded media
+
+[Service]
+Type=oneshot
+User=ubuntu
+Group=www-data
+Environment=APP_DIR=/srv/nishimuraya/app
+Environment=BACKUP_DIR=/var/backups/nishimuraya
+Environment=RETENTION_DAYS=14
+ExecStart=/bin/bash /srv/nishimuraya/app/deploy/backup.sh
+Nice=10
+PrivateTmp=true
+NoNewPrivileges=true

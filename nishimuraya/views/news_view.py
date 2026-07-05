@@ -6,6 +6,7 @@ from uuid import uuid4
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.core.files.base import File
+from django.core.files.storage import default_storage
 from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse, reverse_lazy
@@ -14,7 +15,6 @@ from django.views.generic import CreateView, DeleteView, DetailView, ListView, T
 
 from ..forms import NewsArticleForm
 from ..models import NewsArticle
-from ..storages import news_static_image_storage
 
 
 PREVIEW_SESSION_KEY = "news_article_previews"
@@ -166,8 +166,8 @@ class NewsPreviewSessionMixin:
         if not payload:
             return
         temp_path = payload.get("image_temp_path")
-        if temp_path and news_static_image_storage.exists(temp_path):
-            news_static_image_storage.delete(temp_path)
+        if temp_path and default_storage.exists(temp_path):
+            default_storage.delete(temp_path)
 
 
 class NewsEditorMixin(NewsPreviewSessionMixin):
@@ -205,7 +205,7 @@ class NewsEditorMixin(NewsPreviewSessionMixin):
     def save_temp_upload(self, uploaded_file):
         filename = Path(uploaded_file.name).name
         temp_path = f"{PREVIEW_UPLOAD_DIR}/{uuid4().hex}-{filename}"
-        return news_static_image_storage.save(temp_path, uploaded_file)
+        return default_storage.save(temp_path, uploaded_file)
 
     def build_preview_payload(self, form):
         article = self.get_current_article()
@@ -248,12 +248,12 @@ class NewsEditorMixin(NewsPreviewSessionMixin):
         if payload:
             if payload.get("image_temp_path"):
                 return {
-                    "url": news_static_image_storage.url(payload["image_temp_path"]),
+                    "url": default_storage.url(payload["image_temp_path"]),
                     "label": "プレビュー用の写真",
                 }
             if payload.get("existing_image_name"):
                 return {
-                    "url": news_static_image_storage.url(payload["existing_image_name"]),
+                    "url": default_storage.url(payload["existing_image_name"]),
                     "label": "現在の写真",
                 }
             return None
@@ -328,9 +328,9 @@ class NewsPreviewView(NewsAdminRequiredMixin, NewsPreviewSessionMixin, TemplateV
     def build_preview_article(self, payload):
         image_url = None
         if payload.get("image_temp_path"):
-            image_url = news_static_image_storage.url(payload["image_temp_path"])
+            image_url = default_storage.url(payload["image_temp_path"])
         elif payload.get("existing_image_name"):
-            image_url = news_static_image_storage.url(payload["existing_image_name"])
+            image_url = default_storage.url(payload["existing_image_name"])
 
         return SimpleNamespace(
             title=payload["title"],
@@ -375,7 +375,7 @@ class NewsPreviewView(NewsAdminRequiredMixin, NewsPreviewSessionMixin, TemplateV
                 article.image.delete(save=False)
             article.image = None
         elif payload.get("image_temp_path"):
-            with news_static_image_storage.open(payload["image_temp_path"], "rb") as temp_file:
+            with default_storage.open(payload["image_temp_path"], "rb") as temp_file:
                 article.image.save(payload["image_name"], File(temp_file), save=False)
 
         article.save()

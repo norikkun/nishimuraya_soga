@@ -1,6 +1,7 @@
 import os
 from pathlib import Path
 
+from django.core.exceptions import ImproperlyConfigured
 from dotenv import load_dotenv
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,9 +22,40 @@ def env_list(name: str, default: list[str]) -> list[str]:
     return [item.strip() for item in value.split(",") if item.strip()]
 
 
+def env_int(name: str, default: int) -> int:
+    value = os.getenv(name)
+    if value is None:
+        return default
+    return int(value)
+
+
 SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", "django-insecure-change-this-for-production")
 DEBUG = env_bool("DJANGO_DEBUG", True)
+
+if not DEBUG and (
+    not SECRET_KEY
+    or SECRET_KEY.startswith("django-insecure-")
+    or SECRET_KEY == "REPLACE_WITH_A_LONG_RANDOM_SECRET"
+):
+    raise ImproperlyConfigured(
+        "Set DJANGO_SECRET_KEY to a long random value before starting production."
+    )
+
 ALLOWED_HOSTS = env_list("DJANGO_ALLOWED_HOSTS", ["127.0.0.1", "localhost"])
+CSRF_TRUSTED_ORIGINS = env_list("DJANGO_CSRF_TRUSTED_ORIGINS", [])
+
+if env_bool("DJANGO_TRUST_PROXY_SSL_HEADER", False):
+    SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+
+SECURE_SSL_REDIRECT = env_bool("DJANGO_SECURE_SSL_REDIRECT", not DEBUG)
+SESSION_COOKIE_SECURE = env_bool("DJANGO_SESSION_COOKIE_SECURE", not DEBUG)
+CSRF_COOKIE_SECURE = env_bool("DJANGO_CSRF_COOKIE_SECURE", not DEBUG)
+SECURE_HSTS_SECONDS = env_int("DJANGO_SECURE_HSTS_SECONDS", 0)
+SECURE_HSTS_INCLUDE_SUBDOMAINS = env_bool(
+    "DJANGO_SECURE_HSTS_INCLUDE_SUBDOMAINS",
+    False,
+)
+SECURE_HSTS_PRELOAD = env_bool("DJANGO_SECURE_HSTS_PRELOAD", False)
 
 
 INSTALLED_APPS = [

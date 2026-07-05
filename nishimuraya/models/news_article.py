@@ -2,15 +2,12 @@ from django.db import models
 from django.urls import reverse
 from django.utils import timezone
 
-from ..storages import news_static_image_storage
-
 
 class NewsArticle(models.Model):
     title = models.CharField("タイトル", max_length=200)
     content = models.TextField("内容")
     image = models.ImageField(
         "写真",
-        storage=news_static_image_storage,
         upload_to="news/",
         blank=True,
         null=True,

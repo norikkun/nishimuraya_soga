@@ -672,11 +672,11 @@ class NewsArticleModelTests(TestCase):
 
         self.assertIsNotNone(article.published_at)
 
-    def test_news_image_storage_uses_static_img_directory(self):
+    def test_news_image_storage_uses_media_directory(self):
         article = NewsArticle(title="画像保存", content="本文")
 
         self.assertEqual(
             Path(article.image.storage.location),
-            Path(settings.BASE_DIR) / "static" / "img",
+            Path(settings.MEDIA_ROOT),
         )
-        self.assertEqual(article.image.storage.base_url, "/static/img/")
+        self.assertEqual(article.image.storage.base_url, "/media/")
