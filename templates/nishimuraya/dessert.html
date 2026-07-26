@@ -9,36 +9,38 @@
 	<link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 
-<body class="dessert-page">
+<body class="dessert-page menu-page m-0 p-0 overflow-x-hidden font-mincho text-[var(--text)] [background:radial-gradient(circle_at_12%_8%,rgba(179,90,117,0.22),transparent_44%),linear-gradient(180deg,#2f2222_0%,var(--bg)_46%,#1d1515_100%)]">
+
+{% with main="w-[min(1200px,calc(100%_-_48px))] mx-auto px-0 pt-[calc(var(--header-offset,190px)_+_8px)] pb-[120px] [overflow-x:clip] max-[640px]:w-[calc(100%_-_24px)] max-[640px]:pb-[90px]" hero="border border-[var(--line)] rounded-[28px] p-[46px_48px] [background:radial-gradient(circle_at_right_top,rgba(221,178,125,0.14),transparent_36%),linear-gradient(135deg,rgba(74,44,49,0.72),rgba(37,25,25,0.92))] max-[980px]:p-[36px_34px] max-[640px]:rounded-[22px] max-[640px]:p-[28px_22px] [&_h1]:mx-0 [&_h1]:mt-3 [&_h1]:mb-[18px] [&_h1]:font-medium [&_h1]:text-[56px] max-[980px]:[&_h1]:text-[46px] max-[640px]:[&_h1]:text-[36px]" kicker="m-0 text-[var(--accent)] text-[13px] tracking-[0.18em]" hcopy="m-0 max-w-[760px] text-[var(--muted)] text-[17px] leading-[1.95] max-[640px]:text-[15px]" sec="mt-[72px]" sec_compact="mt-[56px]" head="mb-6 pb-3.5 [border-bottom:1px_solid_var(--line)] [&_h2]:m-0 [&_h2]:font-medium [&_h2]:text-[35px] max-[640px]:[&_h2]:text-[28px] [&_p]:mt-1.5 [&_p]:mb-0 [&_p]:text-[var(--accent)] [&_p]:text-[13px] [&_p]:tracking-[0.14em]" overview="grid grid-cols-[minmax(0,1.35fr)_minmax(280px,0.8fr)] gap-[18px] items-stretch max-[980px]:grid-cols-1" copycard="border border-[var(--line)] rounded-[24px] bg-[rgba(43,31,31,0.72)] py-7 px-[30px] max-[640px]:px-[18px]" lead="m-0 text-[25px] leading-[1.6] max-[640px]:text-[22px]" ptext="mx-0 mb-0 mt-3.5 text-[var(--muted)] text-[16px] leading-[1.95] max-[640px]:text-[15px]" pricecard="border border-[var(--line)] rounded-[24px] bg-[rgba(43,31,31,0.72)] pt-6 pb-[26px] px-6 max-[640px]:px-[18px]" pckicker="m-0 text-[var(--accent)] text-[12px] tracking-[0.16em]" pclist="mx-0 mb-0 mt-5 [&>div+div]:mt-3 [&>div+div]:pt-3 [&>div+div]:[border-top:1px_solid_rgba(236,220,197,0.18)] [&_dt]:text-[var(--muted)] [&_dt]:text-[14px] [&_dd]:mx-0 [&_dd]:mb-0 [&_dd]:mt-1.5 [&_dd]:text-[28px] max-[640px]:[&_dd]:text-[24px]" pcnote="mx-0 mb-0 mt-[18px] text-[var(--muted)] text-[14px] leading-[1.8]" contact="inline-flex items-center justify-center mt-[18px] min-h-[44px] px-[18px] rounded-[999px] border border-[rgba(236,220,197,0.36)] text-[var(--text)] no-underline text-[14px] tracking-[0.08em] hover:text-[var(--accent)]" gallery="grid grid-cols-2 gap-4 mt-[22px] max-[980px]:grid-cols-1" pair="grid grid-cols-2 gap-4 items-stretch max-[640px]:grid-cols-1" pair_rev="grid grid-cols-2 gap-4 items-stretch max-[640px]:grid-cols-1 [&>*:first-child]:order-2 [&>*:last-child]:order-1 max-[980px]:[&>*:first-child]:order-0 max-[980px]:[&>*:last-child]:order-0" tile_img="min-h-[248px] flex items-center justify-center p-3 max-[640px]:min-h-[220px] [&_img]:block [&_img]:w-full [&_img]:h-full [&_img]:object-contain" tile_text="min-h-[248px] flex flex-col justify-center py-[22px] px-6 max-[640px]:min-h-[220px] max-[640px]:px-[18px] [&>h3]:m-0 [&>h3]:font-medium [&>h3]:text-[24px] [&>h3]:leading-[1.4] max-[640px]:[&>h3]:text-[22px] [&>p:last-child]:mx-0 [&>p:last-child]:mb-0 [&>p:last-child]:mt-2.5 [&>p:last-child]:text-[var(--muted)] [&>p:last-child]:text-[14px] [&>p:last-child]:leading-[1.8] max-[640px]:[&>p:last-child]:text-[13px]" tiletag="mx-0 mt-0 mb-2.5 text-[var(--accent)] text-[11px] tracking-[0.2em]" regcard="border border-[var(--line)] rounded-[24px] bg-[rgba(43,31,31,0.72)] pt-[18px] pb-[22px] px-6 max-[640px]:px-[18px]" mitems="m-0 p-0 list-none [border-top:1px_solid_var(--line)] [&>li]:flex [&>li]:justify-between [&>li]:gap-4 [&>li]:py-[15px] [&>li]:px-0.5 [&>li]:[border-bottom:1px_solid_var(--line)] [&>li]:leading-[1.7] max-[640px]:[&>li]:flex-col max-[640px]:[&>li]:gap-1 [&>li>span:first-child]:text-[var(--text)] [&>li>span:last-child]:text-[var(--accent)] [&>li>span:last-child]:whitespace-nowrap" regnote="mx-0 mb-0 mt-3.5 text-[var(--muted)] text-[14px]" %}
 
 	{% include "nishimuraya/includes/site_header.html" %}
 
-	<main class="dessert-main">
-		<section class="menu-hero" id="top">
-			<p class="hero-kicker">CELEBRATION PLATE & SWEETS</p>
+	<main class="{{ main }}">
+		<section class="{{ hero }}" id="top">
+			<p class="{{ kicker }}">CELEBRATION PLATE & SWEETS</p>
 			<h1>Plate＆Dessert</h1>
-			<p class="hero-copy">
+			<p class="{{ hcopy }}">
 				ご予約制のデザートプレートを中心に、記念日や日々の気持ちを伝える一皿をご用意しています。<br>
 				食後に楽しめる通常デザートもご案内しております。
 			</p>
 		</section>
 
-		<section class="menu-section" id="plate-dessert">
-			<div class="section-head section-head--plate">
+		<section class="{{ sec }}" id="plate-dessert">
+			<div class="{{ head }}">
 				<h2>デザートプレート</h2>
 				<p>Recommended Plate</p>
 			</div>
 
-			<div class="plate-overview">
-				<div class="plate-copy-card">
-					<p class="plate-lead">当店ではデザートプレートの予約を承っております。</p>
-					<p class="plate-text">感謝の気持ちをデザートプレートで伝えてみませんか？</p>
-					<p class="plate-text">お誕生日、卒業式や入学式などの行事、妊娠・出産祝い、日々の感謝、記念日などに合わせてご相談いただけます。</p>
+			<div class="{{ overview }}">
+				<div class="{{ copycard }}">
+					<p class="{{ lead }}">当店ではデザートプレートの予約を承っております。</p>
+					<p class="{{ ptext }}">感謝の気持ちをデザートプレートで伝えてみませんか？</p>
+					<p class="{{ ptext }}">お誕生日、卒業式や入学式などの行事、妊娠・出産祝い、日々の感謝、記念日などに合わせてご相談いただけます。</p>
 				</div>
 
-				<aside class="plate-price-card" aria-label="デザートプレート料金">
-					<p class="price-card-kicker">Price Guide</p>
-					<dl class="price-card-list">
+				<aside class="{{ pricecard }}" aria-label="デザートプレート料金">
+					<p class="{{ pckicker }}">Price Guide</p>
+					<dl class="{{ pclist }}">
 						<div>
 							<dt>単品 文字のみ</dt>
 							<dd>1100円</dd>
@@ -48,95 +50,95 @@
 							<dd>2200円</dd>
 						</div>
 					</dl>
-					<p class="price-card-note">詳しい金額や細かいご相談はお電話にて。</p>
-					<a class="plate-contact-link" href="tel:0432643939">043-264-3939</a>
+					<p class="{{ pcnote }}">詳しい金額や細かいご相談はお電話にて。</p>
+					<a class="{{ contact }}" href="tel:0432643939">043-264-3939</a>
 				</aside>
 			</div>
 
-			<div class="plate-gallery" aria-label="デザートプレートの作例">
-				<article class="plate-pair">
-					<div class="plate-tile plate-tile--image">
+			<div class="{{ gallery }}" aria-label="デザートプレートの作例">
+				<article class="{{ pair }}">
+					<div class="{{ tile_img }}">
 						<img src="{% static 'img/happybirthday_m.png' %}" alt="お誕生日向けのデザートプレート">
 					</div>
-					<div class="plate-tile plate-tile--text">
-						<p class="plate-tile-tag">BIRTHDAY</p>
+					<div class="{{ tile_text }}">
+						<p class="{{ tiletag }}">BIRTHDAY</p>
 						<h3>お誕生日</h3>
 						<p>主役の方に合わせた華やかなプレート。</p>
 					</div>
 				</article>
 
-				<article class="plate-pair">
-					<div class="plate-tile plate-tile--image">
+				<article class="{{ pair }}">
+					<div class="{{ tile_img }}">
 						<img src="{% static 'img/happybirthday_f.png' %}" alt="お誕生日向けの華やかなデザートプレート">
 					</div>
-					<div class="plate-tile plate-tile--text">
-						<p class="plate-tile-tag">BIRTHDAY</p>
+					<div class="{{ tile_text }}">
+						<p class="{{ tiletag }}">BIRTHDAY</p>
 						<h3>お誕生日</h3>
 						<p>色味や雰囲気も含めてご相談いただけます。</p>
 					</div>
 				</article>
 
-				<article class="plate-pair plate-pair--reverse">
-					<div class="plate-tile plate-tile--image">
+				<article class="{{ pair_rev }}">
+					<div class="{{ tile_img }}">
 						<img src="{% static 'img/happybirthday_d.png' %}" alt="落ち着いた雰囲気のお誕生日デザートプレート">
 					</div>
-					<div class="plate-tile plate-tile--text">
-						<p class="plate-tile-tag">BIRTHDAY</p>
+					<div class="{{ tile_text }}">
+						<p class="{{ tiletag }}">BIRTHDAY</p>
 						<h3>お誕生日</h3>
 						<p>大人っぽい雰囲気のお祝いにも対応します。</p>
 					</div>
 				</article>
 
-				<article class="plate-pair plate-pair--reverse">
-					<div class="plate-tile plate-tile--image">
+				<article class="{{ pair_rev }}">
+					<div class="{{ tile_img }}">
 						<img src="{% static 'img/graduation.png' %}" alt="卒業式や入学式などの行事向けデザートプレート">
 					</div>
-					<div class="plate-tile plate-tile--text">
-						<p class="plate-tile-tag">CEREMONY</p>
+					<div class="{{ tile_text }}">
+						<p class="{{ tiletag }}">CEREMONY</p>
 						<h3>卒業式・入学式などの行事</h3>
 						<p>節目の食事会に合わせたプレートです。</p>
 					</div>
 				</article>
 
-				<article class="plate-pair">
-					<div class="plate-tile plate-tile--image">
+				<article class="{{ pair }}">
+					<div class="{{ tile_img }}">
 						<img src="{% static 'img/childbirth.png' %}" alt="妊娠や出産祝い向けデザートプレート">
 					</div>
-					<div class="plate-tile plate-tile--text">
-						<p class="plate-tile-tag">GIFT</p>
+					<div class="{{ tile_text }}">
+						<p class="{{ tiletag }}">GIFT</p>
 						<h3>妊娠・出産祝い</h3>
 						<p>やさしい雰囲気で気持ちを伝える一皿。</p>
 					</div>
 				</article>
 
-				<article class="plate-pair">
-					<div class="plate-tile plate-tile--image">
+				<article class="{{ pair }}">
+					<div class="{{ tile_img }}">
 						<img src="{% static 'img/good_job.png' %}" alt="日々の感謝を伝えるデザートプレート">
 					</div>
-					<div class="plate-tile plate-tile--text">
-						<p class="plate-tile-tag">THANKS</p>
+					<div class="{{ tile_text }}">
+						<p class="{{ tiletag }}">THANKS</p>
 						<h3>日々の感謝</h3>
 						<p>ちょっとした「ありがとう」にもご利用いただけます。</p>
 					</div>
 				</article>
 
-				<article class="plate-pair plate-pair--reverse">
-					<div class="plate-tile plate-tile--image">
+				<article class="{{ pair_rev }}">
+					<div class="{{ tile_img }}">
 						<img src="{% static 'img/thanks.png' %}" alt="感謝を伝えるデザートプレート">
 					</div>
-					<div class="plate-tile plate-tile--text">
-						<p class="plate-tile-tag">THANKS</p>
+					<div class="{{ tile_text }}">
+						<p class="{{ tiletag }}">THANKS</p>
 						<h3>日々の感謝</h3>
 						<p>さりげないお礼を形にしたい日に。</p>
 					</div>
 				</article>
 
-				<article class="plate-pair plate-pair--reverse">
-					<div class="plate-tile plate-tile--image">
+				<article class="{{ pair_rev }}">
+					<div class="{{ tile_img }}">
 						<img src="{% static 'img/wedding.png' %}" alt="記念日向けのデザートプレート">
 					</div>
-					<div class="plate-tile plate-tile--text">
-						<p class="plate-tile-tag">ANNIVERSARY</p>
+					<div class="{{ tile_text }}">
+						<p class="{{ tiletag }}">ANNIVERSARY</p>
 						<h3>記念日など</h3>
 						<p>大切な一日を締めくくるアニバーサリープレート。</p>
 					</div>
@@ -144,14 +146,14 @@
 			</div>
 		</section>
 
-		<section class="menu-section menu-section--compact" id="regular-dessert">
-			<div class="section-head">
+		<section class="{{ sec_compact }}" id="regular-dessert">
+			<div class="{{ head }}">
 				<h2>通常デザートもあります！</h2>
 				<p>Regular Dessert</p>
 			</div>
 
-			<div class="regular-dessert-card">
-				<ul class="menu-items">
+			<div class="{{ regcard }}">
+				<ul class="{{ mitems }}">
 					<li><span>バニラアイス</span><span>385円〜</span></li>
 					<li><span>大人のバニラアイス ①極甘シェリー酒 ②高級カシスリキュール</span><span>各550円〜</span></li>
 					<li><span>千葉酪農無添加ミルク ジェラート</span><span>460円〜</span></li>
@@ -159,12 +161,14 @@
 					<li><span>イタリアンカタラーナ2種（抹茶＆ベリー）</span><span>550円</span></li>
 					<li><span>本日のチーズケーキ（店内黒板にて）</span><span>600円（ハーフ400円）</span></li>
 				</ul>
-				<p class="regular-note">その他デザートは店内黒板にてご確認ください。</p>
+				<p class="{{ regnote }}">その他デザートは店内黒板にてご確認ください。</p>
 			</div>
 		</section>
 	</main>
 
 	{% include "nishimuraya/includes/site_footer.html" %}
+
+	{% endwith %}
 
 	<script src="{% static 'js/script.js' %}"></script>
 </body>

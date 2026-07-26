@@ -10,125 +10,127 @@
     <link rel="stylesheet" href="{% static 'css/news_admin.css' %}">
 </head>
 
-<body class="news-archive-page">
+<body class="news-archive-page min-h-screen overflow-x-hidden">
+
+{% with arch_header="mx-auto mb-0 mt-0 max-w-[1120px] px-6 pb-8 pt-[calc(var(--header-offset,120px)_+_16px)] text-[#ece3e2] [&>p]:m-0 [&>p]:text-[14px] [&>p]:tracking-[0.08em] [&>h1]:mx-0 [&>h1]:mt-3 [&>h1]:mb-5 [&>h1]:text-[46px] max-[780px]:[&>h1]:text-[36px]" actions="flex flex-wrap items-center gap-x-[18px] gap-y-3.5" homelink="text-[#ece3e2]" more="inline-block px-[18px] py-2.5 rounded-[999px] border border-[rgba(236,227,226,0.5)] text-[#ece3e2] no-underline hover:bg-[rgba(236,227,226,0.12)]" section="relative z-0 mx-auto max-w-[1120px] px-6 pt-12 pb-14 text-[#ece3e2] scroll-mt-[var(--header-offset,130px)] before:content-[''] before:absolute before:inset-y-0 before:left-1/2 before:w-screen before:-translate-x-1/2 before:z-[-1] before:pointer-events-none before:bg-[#5f4947] before:[border-top:1px_solid_rgba(236,227,226,0.25)] max-[960px]:pt-10 max-[960px]:pb-[72px] max-[900px]:px-4 max-[640px]:pt-8 max-[640px]:pb-[60px] max-[640px]:w-[min(1120px,calc(100%_-_24px))]" flashlist="grid gap-3 mx-0 mt-0 mb-7" flashitem="py-3.5 px-[18px] border border-[rgba(216,176,122,0.32)] rounded-[18px] bg-[rgba(216,176,122,0.14)] text-[#f6ddbc]" filterbar="flex flex-wrap gap-3 mx-0 mt-0 mb-7 max-[780px]:gap-2.5" pill="inline-flex items-center justify-center min-h-10 px-4 rounded-[999px] no-underline [transition:background-color_0.2s_ease,border-color_0.2s_ease] hover:bg-[rgba(236,227,226,0.12)] border border-[rgba(236,227,226,0.32)] text-[#ece3e2]" pill_on="inline-flex items-center justify-center min-h-10 px-4 rounded-[999px] no-underline [transition:background-color_0.2s_ease,border-color_0.2s_ease] hover:bg-[rgba(236,227,226,0.12)] border border-[rgba(216,176,122,0.68)] bg-[rgba(216,176,122,0.18)] text-[#f7d6af]" pagination="flex flex-wrap gap-2.5 justify-center mx-0 max-[780px]:justify-start mt-9 mb-0" pagination_top="flex flex-wrap gap-2.5 justify-center mx-0 max-[780px]:justify-start mt-0 mb-7" list="m-0 p-0 list-none [border-top:1px_solid_rgba(236,227,226,0.35)]" item="[border-bottom:1px_solid_rgba(236,227,226,0.35)]" itemrow="pt-[22px] px-1.5 pb-3" itemlink="flex items-center gap-7 min-w-0 py-[22px] px-1.5 text-[#ece3e2] no-underline max-[900px]:flex-col max-[900px]:items-start max-[900px]:gap-2 max-[780px]:w-full max-[640px]:py-4 max-[640px]:px-0" date="text-[15px] tracking-[0.08em] min-w-[140px] max-[900px]:min-w-[auto]" title="text-[18px] leading-[1.7] [overflow-wrap:anywhere] max-[780px]:text-[16px]" summary="mx-1.5 mt-0 mb-[22px] text-[rgba(236,227,226,0.82)] leading-[1.9]" itemactions="flex flex-wrap gap-2.5 px-1.5 pt-0 pb-[22px] max-[780px]:w-full max-[780px]:pt-0" managelink="inline-flex items-center justify-center shrink-0 min-w-[96px] min-h-[42px] px-[22px] gap-0 rounded-[999px] border border-[rgba(216,176,122,0.62)] bg-[rgba(216,176,122,0.18)] text-[#f7d6af] no-underline leading-none text-center whitespace-nowrap hover:bg-[rgba(236,227,226,0.12)]" managedanger="inline-flex items-center justify-center shrink-0 min-w-[96px] min-h-[42px] px-[22px] gap-0 rounded-[999px] border border-[rgba(210,108,96,0.68)] bg-[rgba(210,108,96,0.14)] text-[#f2c2bc] no-underline leading-none text-center whitespace-nowrap hover:bg-[rgba(236,227,226,0.12)]" empty="py-6 px-1.5 text-[rgba(236,227,226,0.84)] leading-[1.8]" %}
 
     {% include "nishimuraya/includes/site_header.html" %}
-    <header class="news-archive-header">
+    <header class="{{ arch_header }}">
         <p>NEWS</p>
         <h1>お知らせ一覧</h1>
-        <div class="news-page-actions">
+        <div class="{{ actions }}">
             {% if user.is_authenticated and user.is_staff %}
-            <a class="news-more" href="{% url 'news_create' %}">新規作成</a>
-            <a class="news-home-link" href="{% url 'news_drafts' %}">下書き一覧{% if draft_count %} ({{ draft_count }}){% endif %}</a>
+            <a class="{{ more }}" href="{% url 'news_create' %}">新規作成</a>
+            <a class="{{ homelink }}" href="{% url 'news_drafts' %}">下書き一覧{% if draft_count %} ({{ draft_count }}){% endif %}</a>
             {% endif %}
-            <a class="news-home-link" href="{% url 'home' %}#news">トップページへ戻る</a>
+            <a class="{{ homelink }}" href="{% url 'home' %}#news">トップページへ戻る</a>
         </div>
     </header>
 
     <main>
-        <section class="news news-archive">
+        <section class="{{ section }}">
             {% if messages %}
-            <div class="news-flash-list">
+            <div class="{{ flashlist }}">
                 {% for message in messages %}
-                <div class="news-flash-item">{{ message }}</div>
+                <div class="{{ flashitem }}">{{ message }}</div>
                 {% endfor %}
             </div>
             {% endif %}
 
             {% if available_years %}
-            <div class="news-filter-bar" aria-label="お知らせの年度絞り込み">
-                <a class="news-filter-link{% if not selected_year %} is-active{% endif %}" href="{% url 'news_archive' %}">すべて</a>
+            <div class="{{ filterbar }}" aria-label="お知らせの年度絞り込み">
+                <a class="{% if selected_year %}{{ pill }}{% else %}{{ pill_on }}{% endif %}" href="{% url 'news_archive' %}">すべて</a>
                 {% for year in available_years %}
-                <a class="news-filter-link{% if selected_year == year %} is-active{% endif %}" href="{% url 'news_archive' %}?year={{ year }}">{{ year }}年</a>
+                <a class="{% if selected_year == year %}{{ pill_on }}{% else %}{{ pill }}{% endif %}" href="{% url 'news_archive' %}?year={{ year }}">{{ year }}年</a>
                 {% endfor %}
             </div>
             {% endif %}
 
             {% if is_paginated %}
-            <nav class="news-pagination news-pagination-top" aria-label="お知らせ一覧のページ送り 上部">
+            <nav class="{{ pagination_top }}" aria-label="お知らせ一覧のページ送り 上部">
                 {% if page_obj.has_previous %}
-                <a class="news-pagination-link" href="{% url 'news_archive' %}?{{ year_query }}page={{ page_obj.previous_page_number }}">前へ</a>
+                <a class="{{ pill }}" href="{% url 'news_archive' %}?{{ year_query }}page={{ page_obj.previous_page_number }}">前へ</a>
                 {% endif %}
 
                 {% if show_first_page_link %}
-                <a class="news-pagination-link" href="{% url 'news_archive' %}?{{ year_query }}page=1">1</a>
+                <a class="{{ pill }}" href="{% url 'news_archive' %}?{{ year_query }}page=1">1</a>
                 {% endif %}
                 {% if show_leading_ellipsis %}
-                <span class="news-pagination-link news-pagination-gap" aria-hidden="true">...</span>
+                <span class="{{ pill }}" aria-hidden="true">...</span>
                 {% endif %}
                 {% for page_number in visible_page_numbers %}
                 {% if page_number == page_obj.number %}
-                <span class="news-pagination-link is-current">{{ page_number }}</span>
+                <span class="{{ pill_on }}">{{ page_number }}</span>
                 {% else %}
-                <a class="news-pagination-link" href="{% url 'news_archive' %}?{{ year_query }}page={{ page_number }}">{{ page_number }}</a>
+                <a class="{{ pill }}" href="{% url 'news_archive' %}?{{ year_query }}page={{ page_number }}">{{ page_number }}</a>
                 {% endif %}
                 {% endfor %}
                 {% if show_trailing_ellipsis %}
-                <span class="news-pagination-link news-pagination-gap" aria-hidden="true">...</span>
+                <span class="{{ pill }}" aria-hidden="true">...</span>
                 {% endif %}
                 {% if show_last_page_link %}
-                <a class="news-pagination-link" href="{% url 'news_archive' %}?{{ year_query }}page={{ paginator.num_pages }}">{{ paginator.num_pages }}</a>
+                <a class="{{ pill }}" href="{% url 'news_archive' %}?{{ year_query }}page={{ paginator.num_pages }}">{{ paginator.num_pages }}</a>
                 {% endif %}
 
                 {% if page_obj.has_next %}
-                <a class="news-pagination-link" href="{% url 'news_archive' %}?{{ year_query }}page={{ page_obj.next_page_number }}">次へ</a>
+                <a class="{{ pill }}" href="{% url 'news_archive' %}?{{ year_query }}page={{ page_obj.next_page_number }}">次へ</a>
                 {% endif %}
             </nav>
             {% endif %}
 
             {% if articles %}
-            <ul class="news-list news-list-archive">
+            <ul class="{{ list }}">
                 {% for article in articles %}
-                <li class="news-item">
-                    <div class="news-item-row">
-                        <a class="news-item-link" href="{{ article.get_absolute_url }}">
-                            <time class="news-date" datetime="{{ article.published_at|date:'Y-m-d' }}">{{ article.published_at|date:"Y.m.d" }}</time>
-                            <span class="news-title">{{ article.title }}</span>
+                <li class="{{ item }}">
+                    <div class="{{ itemrow }}">
+                        <a class="{{ itemlink }}" href="{{ article.get_absolute_url }}">
+                            <time class="{{ date }}" datetime="{{ article.published_at|date:'Y-m-d' }}">{{ article.published_at|date:"Y.m.d" }}</time>
+                            <span class="{{ title }}">{{ article.title }}</span>
                         </a>
                     </div>
-                    <p class="news-summary">{{ article.content|striptags|truncatechars:140 }}</p>
+                    <p class="{{ summary }}">{{ article.content|striptags|truncatechars:140 }}</p>
                     {% if user.is_authenticated and user.is_staff %}
-                    <div class="news-item-actions">
-                        <a class="news-manage-link" href="{% url 'news_update' article.url_segment %}">編集</a>
-                        <a class="news-manage-link news-manage-link-danger" href="{% url 'news_delete' article.url_segment %}">削除</a>
+                    <div class="{{ itemactions }}">
+                        <a class="{{ managelink }}" href="{% url 'news_update' article.url_segment %}">編集</a>
+                        <a class="{{ managedanger }}" href="{% url 'news_delete' article.url_segment %}">削除</a>
                     </div>
                     {% endif %}
                 </li>
                 {% endfor %}
             </ul>
             {% if is_paginated %}
-            <nav class="news-pagination" aria-label="お知らせ一覧のページ送り 下部">
+            <nav class="{{ pagination }}" aria-label="お知らせ一覧のページ送り 下部">
                 {% if page_obj.has_previous %}
-                <a class="news-pagination-link" href="{% url 'news_archive' %}?{{ year_query }}page={{ page_obj.previous_page_number }}">前へ</a>
+                <a class="{{ pill }}" href="{% url 'news_archive' %}?{{ year_query }}page={{ page_obj.previous_page_number }}">前へ</a>
                 {% endif %}
 
                 {% if show_first_page_link %}
-                <a class="news-pagination-link" href="{% url 'news_archive' %}?{{ year_query }}page=1">1</a>
+                <a class="{{ pill }}" href="{% url 'news_archive' %}?{{ year_query }}page=1">1</a>
                 {% endif %}
                 {% if show_leading_ellipsis %}
-                <span class="news-pagination-link news-pagination-gap" aria-hidden="true">...</span>
+                <span class="{{ pill }}" aria-hidden="true">...</span>
                 {% endif %}
                 {% for page_number in visible_page_numbers %}
                 {% if page_number == page_obj.number %}
-                <span class="news-pagination-link is-current">{{ page_number }}</span>
+                <span class="{{ pill_on }}">{{ page_number }}</span>
                 {% else %}
-                <a class="news-pagination-link" href="{% url 'news_archive' %}?{{ year_query }}page={{ page_number }}">{{ page_number }}</a>
+                <a class="{{ pill }}" href="{% url 'news_archive' %}?{{ year_query }}page={{ page_number }}">{{ page_number }}</a>
                 {% endif %}
                 {% endfor %}
                 {% if show_trailing_ellipsis %}
-                <span class="news-pagination-link news-pagination-gap" aria-hidden="true">...</span>
+                <span class="{{ pill }}" aria-hidden="true">...</span>
                 {% endif %}
                 {% if show_last_page_link %}
-                <a class="news-pagination-link" href="{% url 'news_archive' %}?{{ year_query }}page={{ paginator.num_pages }}">{{ paginator.num_pages }}</a>
+                <a class="{{ pill }}" href="{% url 'news_archive' %}?{{ year_query }}page={{ paginator.num_pages }}">{{ paginator.num_pages }}</a>
                 {% endif %}
 
                 {% if page_obj.has_next %}
-                <a class="news-pagination-link" href="{% url 'news_archive' %}?{{ year_query }}page={{ page_obj.next_page_number }}">次へ</a>
+                <a class="{{ pill }}" href="{% url 'news_archive' %}?{{ year_query }}page={{ page_obj.next_page_number }}">次へ</a>
                 {% endif %}
             </nav>
             {% endif %}
             {% else %}
-            <p class="news-empty-state">
+            <p class="{{ empty }}">
                 {% if selected_year %}
                 {{ selected_year }}年の公開済みニュースはまだ登録されていません。
                 {% else %}
@@ -140,6 +142,8 @@
     </main>
 
     {% include "nishimuraya/includes/site_footer.html" %}
+    {% endwith %}
+
     <script src="{% static 'js/script.js' %}"></script>
 </body>
 

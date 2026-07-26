@@ -9,56 +9,102 @@
 	<link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 
-<body class="lunch-page">
+<body class="lunch-page menu-page m-0 p-0 overflow-x-hidden font-mincho text-[var(--text)] [background:radial-gradient(circle_at_top_right,rgba(128,74,49,0.22),transparent_45%),linear-gradient(180deg,#2f1f1f_0%,var(--bg)_45%,#1f1414_100%)]">
+
+{% with main="w-[min(1120px,calc(100%_-_48px))] mx-auto pt-[calc(var(--header-offset,190px)_+_8px)] pb-[120px] [overflow-x:clip] max-[980px]:w-[min(1120px,calc(100%_-_30px))]" hero="border border-[var(--line)] rounded-[20px] p-[42px_44px] [background:linear-gradient(135deg,rgba(56,37,37,0.75),rgba(33,22,22,0.9))] max-[640px]:p-[28px_22px] [&_h1]:mx-0 [&_h1]:mt-2.5 [&_h1]:mb-[18px] [&_h1]:font-medium [&_h1]:text-[52px] max-[980px]:[&_h1]:text-[44px] max-[640px]:[&_h1]:text-[36px]" kicker="m-0 text-[var(--accent)] text-[13px] tracking-[0.16em]" hcopy="m-0 text-[var(--muted)] text-[17px] leading-[1.9] max-[640px]:text-[13px] max-[640px]:leading-[1.75]" sec="mt-[62px]" head="mb-[22px] pb-3 [border-bottom:1px_solid_var(--line)] [&_h2]:m-0 [&_h2]:font-medium [&_h2]:text-[34px] max-[640px]:[&_h2]:text-[26px] [&_p]:mt-1.5 [&_p]:mb-0 [&_p]:text-[var(--accent)] [&_p]:text-[13px] [&_p]:tracking-[0.12em] max-[640px]:[&_p]:text-[12px]" clist="grid gap-[14px]" citem="bg-[var(--panel-soft)] border border-[var(--line)] rounded-[14px] p-[18px_20px] [&_h3]:m-0 [&_h3]:font-medium [&_h3]:text-[22px] max-[640px]:[&_h3]:text-[18px] [&_p]:mt-2.5 [&_p]:mb-0 [&_p]:text-[var(--muted)] [&_p]:leading-[1.75] [&_p]:text-[15px] max-[640px]:[&_p]:text-[13px]" price_c="text-[18px]! max-[640px]:text-[15px]!" pbox="bg-[var(--panel)] border border-[var(--line)] rounded-[14px] p-6 [&>p]:m-0 [&>p]:text-[var(--muted)] [&>p]:leading-[1.9]" plink="inline-block mt-4 text-[var(--text)] no-underline [border-bottom:1px_solid_var(--accent)] hover:text-[var(--accent)]" blk_cd="mt-6 [&>h3]:mx-0 [&>h3]:mt-0 [&>h3]:mb-2.5 [&>h3]:font-medium [&>h3]:text-[22px] max-[640px]:[&>h3]:text-[15px]" mitems="m-0 p-0 list-none [border-top:1px_solid_var(--line)] [&>li]:flex [&>li]:justify-between [&>li]:gap-4 [&>li]:py-3.5 [&>li]:px-0.5 [&>li]:[border-bottom:1px_solid_var(--line)] [&>li]:leading-[1.6] max-[640px]:[&>li]:flex-col max-[640px]:[&>li]:gap-1 max-[640px]:[&>li]:text-[13px] max-[640px]:[&>li]:leading-[1.75] [&>li>span:last-child]:text-[var(--accent)] [&>li>span:last-child]:whitespace-nowrap" %}
 
 	{% include "nishimuraya/includes/site_header.html" %}
 
-	<main class="food-main">
-		<section class="menu-hero" id="top">
-			<p class="hero-kicker">A LITTLE LUXURY LUNCH COURSE</p>
+	<main class="{{ main }}">
+		<section class="{{ hero }}" id="top">
+			<p class="{{ kicker }}">A LITTLE LUXURY LUNCH COURSE</p>
 			<h1>Lunch Menu</h1>
-			<p class="hero-copy">
-				ちょっと贅沢ランチコース（御予約制・税込）<br>
-				3,500円 / 4,500円
+			<p class="{{ hcopy }}">
+				ランチ予約可能時間 11:30~13:00位<br>
+				2名様よりご予約可能です<br>
+				※ランチコースは前日までのご予約制です。<br>
 			</p>
 		</section>
 
-		<section class="menu-section" id="lunch-course">
-			<div class="section-head">
-				<h2>ランチコース</h2>
+		<section class="{{ sec }}" id="lunch-course">
+			<div class="{{ head }}">
+				<h2>お食事コース</h2>
 				<p>Lunch Course</p>
 			</div>
 
-			<div class="course-list">
-				<article class="course-item">
+			<div class="{{ clist }}">
+				<article class="{{ citem }}">
 					<h3>3,500円コース（税込）</h3>
 					<p>
 						御家族・御友人とのお食事や会食におすすめのスタンダードコース。<br>
 						前菜からデザートまで全6品をゆったりお楽しみいただけます。
 					</p>
-					<p class="price">3,500円</p>
 				</article>
 
-				<article class="course-item">
+				<article class="{{ citem }}">
 					<h3>4,500円コース（税込）</h3>
 					<p>
 						お祝いの席にも対応したグレードアップコース。<br>
 						肉料理は牛肉を含む内容でご用意します。
 					</p>
-					<p class="price">4,500円</p>
 				</article>
 			</div>
 		</section>
 
-		<section class="menu-section" id="course-detail">
-			<div class="section-head">
+		<section class="{{ sec }}" id="course-detail">
+			<div class="{{ head }}">
 				<h2>コース内容</h2>
 				<p>All 6 Dishes</p>
 			</div>
 
-			<div class="menu-block">
+			<div class="{{ blk_cd }}">
 				<h3>全6品</h3>
-				<ul class="menu-items">
+				<ul class="{{ mitems }}">
+					<li><span>前菜盛り合わせ</span><span></span></li>
+					<li><span>オーガニック海鮮サラダ</span><span></span></li>
+					<li><span>本日のパスタ</span><span></span></li>
+					<li><span>メイン一品（4,500円コースの場合、魚・肉 それぞれ一品ずつ）</span><span></span></li>
+					<li><span>デザート</span><span></span></li>
+					<li><span>コーヒー付き</span><span></span></li>
+				</ul>
+			</div>
+
+					<section class="{{ sec }}" id="lunch-course">
+			<div class="{{ head }}">
+				<h2>昼飲みコース</h2>
+				<p>Lunch Course</p>
+			</div>
+
+			<div class="{{ clist }}">
+				<article class="{{ citem }}">
+					<h3>3,500円コース（税込）</h3>
+					<p>
+						御家族・御友人とのお食事や会食におすすめのスタンダードコース。<br>
+						前菜からデザートまで全6品をゆったりお楽しみいただけます。
+					</p>
+					<p class="{{ price_c }}">3,500円</p>
+				</article>
+
+				<article class="{{ citem }}">
+					<h3>4,500円コース（税込）</h3>
+					<p>
+						お祝いの席にも対応したグレードアップコース。<br>
+						肉料理は牛肉を含む内容でご用意します。
+					</p>
+					<p class="{{ price_c }}">4,500円</p>
+				</article>
+			</div>
+		</section>
+
+		<section class="{{ sec }}" id="course-detail">
+			<div class="{{ head }}">
+				<h2>コース内容</h2>
+				<p>All 6 Dishes</p>
+			</div>
+
+			<div class="{{ blk_cd }}">
+				<h3>全6品</h3>
+				<ul class="{{ mitems }}">
 					<li><span>前菜盛り合わせ</span><span></span></li>
 					<li><span>オーガニック海鮮サラダ</span><span></span></li>
 					<li><span>本日のパスタ</span><span></span></li>
@@ -68,23 +114,23 @@
 				</ul>
 			</div>
 
-			<div class="pairing-box">
+			<div class="{{ pbox }}">
 				<p>
-					御家族・御友人とのお食事、会食、お祝いのご利用を承ります。<br>
-					お祝い利用のご相談は、ご予約時に必ずお伝えください。
+					家族の法事、会社の慰労会、友人との食事会などもOK<br>
+					人数多い時は予算、時間、飲み放題コース、貸切なども相談可能
 				</p>
 			</div>
 		</section>
 
-		<section class="menu-section" id="option">
-			<div class="section-head">
+		<section class="{{ sec }}" id="option">
+			<div class="{{ head }}">
 				<h2>オプション・ご案内</h2>
 				<p>Option & Info</p>
 			</div>
 
-			<div class="menu-block">
+			<div class="{{ blk_cd }}">
 				<h3>サプライズ・演出</h3>
-				<ul class="menu-items">
+				<ul class="{{ mitems }}">
 					<li><span>サプライズデザートプレート（文字のみ）</span><span>710円</span></li>
 					<li><span>サプライズデザートプレート（デザイン）</span><span>1,810円</span></li>
 					<li><span>BGM演出</span><span>ご相談</span></li>
@@ -92,17 +138,19 @@
 				</ul>
 			</div>
 
-			<div class="pairing-box">
+			<div class="{{ pbox }}">
 				<p>
 					コース提供時間は1時間程、2時間制のお席となります。<br>
 					テーブルマット印字製作の内容は事前相談制です。
 				</p>
-				<a class="pairing-link" href="https://airrsv.net/nishimuraya/calendar">ランチコースを予約する</a>
+				<a class="{{ plink }}" href="https://airrsv.net/nishimuraya/calendar">ランチコースを予約する</a>
 			</div>
 		</section>
 	</main>
 
 	{% include "nishimuraya/includes/site_footer.html" %}
+
+	{% endwith %}
 
 	<script src="{% static 'js/script.js' %}"></script>
 </body>
