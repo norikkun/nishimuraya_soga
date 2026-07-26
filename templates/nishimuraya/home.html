@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nishimuraya</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <link rel="stylesheet" href="{% static 'css/news_admin.css' %}">
 </head>
 
 <body>
@@ -84,7 +83,7 @@
                 </li>
                 {% empty %}
                 <li class="[border-bottom:1px_solid_rgba(236,227,226,0.35)]">
-                    <div class="news-empty">現在お知らせはありません。</div>
+                    <div class="py-6 px-1.5 text-[rgba(236,227,226,0.84)] leading-[1.8]">現在お知らせはありません。</div>
                 </li>
                 {% endfor %}
             </ul>

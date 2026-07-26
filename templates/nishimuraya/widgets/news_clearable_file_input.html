@@ -1,20 +1,28 @@
-<div class="news-clear-widget">
+{% with box="grid gap-2.5 py-4 px-[18px] rounded-[18px] border border-[rgba(236,227,226,0.18)] bg-[rgba(255,255,255,0.03)]" kicker="m-0 text-[rgba(236,227,226,0.74)] text-[12px] tracking-[0.08em]" %}
+<div class="grid gap-3.5">
     {% if widget.is_initial %}
-    <div class="news-clear-widget-current">
-        <p class="news-clear-widget-kicker">{{ widget.initial_text }}</p>
-        <a class="news-clear-widget-link" href="{{ widget.value.url }}" target="_blank" rel="noopener">{{ widget.value }}</a>
+    <div class="{{ box }}">
+        <p class="{{ kicker }}">{{ widget.initial_text }}</p>
+        <a class="text-[#f7d6af] no-underline [overflow-wrap:anywhere] hover:underline" href="{{ widget.value.url }}" target="_blank" rel="noopener">{{ widget.value }}</a>
     </div>
     {% if not widget.required %}
-    <label class="news-clear-toggle" for="{{ widget.checkbox_id }}">
+    <label class="relative flex items-center gap-3 py-3.5 px-4 rounded-[18px] border border-[rgba(210,108,96,0.36)] bg-[rgba(210,108,96,0.08)] cursor-pointer
+        [&_input]:absolute [&_input]:opacity-0 [&_input]:pointer-events-none
+        [&_input:checked+span]:border-[rgba(210,108,96,0.88)] [&_input:checked+span]:bg-[rgba(210,108,96,0.9)]
+        [&_input:checked+span]:after:content-[''] [&_input:checked+span]:after:absolute [&_input:checked+span]:after:top-1 [&_input:checked+span]:after:left-2
+        [&_input:checked+span]:after:w-[5px] [&_input:checked+span]:after:h-2.5
+        [&_input:checked+span]:after:[border-right:2px_solid_#fff] [&_input:checked+span]:after:[border-bottom:2px_solid_#fff]
+        [&_input:checked+span]:after:[transform:rotate(45deg)]" for="{{ widget.checkbox_id }}">
         <input type="checkbox" name="{{ widget.checkbox_name }}" id="{{ widget.checkbox_id }}"{% if widget.attrs.disabled %} disabled{% endif %}{% if widget.attrs.checked %} checked{% endif %}>
-        <span class="news-clear-toggle-box" aria-hidden="true"></span>
-        <span class="news-clear-toggle-copy">{{ widget.clear_checkbox_label }}</span>
+        <span class="relative w-6 h-6 shrink-0 rounded-[999px] border border-[rgba(236,227,226,0.4)] bg-[rgba(255,255,255,0.04)] [transition:background-color_0.2s_ease,border-color_0.2s_ease]" aria-hidden="true"></span>
+        <span class="text-white leading-[1.6]">{{ widget.clear_checkbox_label }}</span>
     </label>
     {% endif %}
     {% endif %}
 
-    <div class="news-clear-widget-input">
-        <p class="news-clear-widget-kicker">{% if widget.is_initial %}{{ widget.input_text }}{% else %}写真を選択{% endif %}</p>
+    <div class="{{ box }} [&_input[type=file]]:p-0 [&_input[type=file]]:border-0 [&_input[type=file]]:rounded-none [&_input[type=file]]:bg-transparent">
+        <p class="{{ kicker }}">{% if widget.is_initial %}{{ widget.input_text }}{% else %}写真を選択{% endif %}</p>
         {% include "django/forms/widgets/input.html" %}
     </div>
 </div>
+{% endwith %}
