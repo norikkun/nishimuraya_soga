@@ -279,7 +279,7 @@ class NewsArchiveViewTests(StaffUserMixin, TestCase):
         self.assertTrue(response.context["show_leading_ellipsis"])
         self.assertTrue(response.context["show_last_page_link"])
         self.assertTrue(response.context["show_trailing_ellipsis"])
-        self.assertContains(response, "news-pagination-gap", count=4, html=False)
+        self.assertContains(response, 'aria-hidden="true">...</span>', count=4, html=False)
 
     def test_archive_hides_admin_actions_from_public_users(self):
         published = NewsArticle.objects.create(
@@ -472,7 +472,7 @@ class NewsDraftListViewTests(StaffUserMixin, TestCase):
         self.assertTrue(response.context["show_leading_ellipsis"])
         self.assertTrue(response.context["show_last_page_link"])
         self.assertTrue(response.context["show_trailing_ellipsis"])
-        self.assertContains(response, "news-pagination-gap", count=4, html=False)
+        self.assertContains(response, 'aria-hidden="true">...</span>', count=4, html=False)
 
     def test_draft_delete_page_uses_draft_list_for_back_and_cancel_links(self):
         article = NewsArticle.objects.create(
