@@ -7,64 +7,81 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ page_title }} | Nishimuraya</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <link rel="stylesheet" href="{% static 'css/news_admin.css' %}">
 </head>
 
-<body class="news-detail-page news-editor-page">
+<body class="min-h-screen overflow-x-hidden">
+
+{% with homelink="text-[#ece3e2]" %}
 
     {% include "nishimuraya/includes/site_header.html" %}
-    <header class="news-archive-header">
+    <header class="mx-auto my-0 max-w-[1120px] px-6 pb-8 pt-[calc(var(--header-offset,120px)_+_16px)] text-[#ece3e2]
+        [&>p]:m-0 [&>p]:text-[14px] [&>p]:tracking-[0.08em]
+        [&>h1]:mx-0 [&>h1]:mt-3 [&>h1]:mb-5 [&>h1]:text-[46px] max-[780px]:[&>h1]:text-[36px]">
         <p>NEWS EDITOR</p>
         <h1>{{ page_title }}</h1>
-        <a class="news-home-link" href="{{ back_url }}">{{ back_label }}</a>
+        <a class="{{ homelink }}" href="{{ back_url }}">{{ back_label }}</a>
     </header>
 
-    <main class="news-detail-main">
-        <section class="news-form-panel">
-            <div class="news-editor-guide">
-                <span class="news-editor-status">{{ current_status }}</span>
-                <p class="news-editor-copy">この画面ではまだ保存されません。プレビュー画面で内容を確認したあと、公開または下書き保存を選びます。</p>
+    <main class="mx-auto mt-0 mb-[90px] w-[min(1120px,calc(100%_-_48px))] pt-9 [overflow-x:clip]
+        max-[640px]:mb-[60px] max-[640px]:w-[min(1120px,calc(100%_-_24px))]">
+        <section class="w-[min(100%,820px)] mx-auto mt-0 mb-24 p-8 rounded-[26px] border border-[rgba(236,227,226,0.22)] bg-[rgba(34,22,22,0.78)]
+            max-[780px]:py-6 max-[780px]:px-[18px]">
+            <div class="grid gap-3.5 mb-7">
+                <span class="inline-flex items-center justify-center w-fit min-h-[34px] px-3.5 rounded-[999px] bg-[rgba(236,227,226,0.12)] text-[#ece3e2] text-[13px] tracking-[0.08em]">{{ current_status }}</span>
+                <p class="m-0 text-[rgba(236,227,226,0.82)] leading-[1.8]">この画面ではまだ保存されません。プレビュー画面で内容を確認したあと、公開または下書き保存を選びます。</p>
             </div>
 
-            <form method="post" enctype="multipart/form-data" class="news-form">
+            <form method="post" enctype="multipart/form-data" class="grid gap-[22px]
+                [&_input[type=text]]:w-full [&_input[type=text]]:py-3.5 [&_input[type=text]]:px-4 [&_input[type=text]]:rounded-[16px] [&_input[type=text]]:border [&_input[type=text]]:border-[rgba(236,227,226,0.28)] [&_input[type=text]]:bg-[rgba(255,255,255,0.04)] [&_input[type=text]]:text-[#ece3e2]
+                [&_select]:w-full [&_select]:py-3.5 [&_select]:px-4 [&_select]:rounded-[16px] [&_select]:border [&_select]:border-[rgba(236,227,226,0.28)] [&_select]:bg-[rgba(255,255,255,0.04)] [&_select]:text-[#ece3e2]
+                [&_textarea]:w-full [&_textarea]:py-3.5 [&_textarea]:px-4 [&_textarea]:rounded-[16px] [&_textarea]:border [&_textarea]:border-[rgba(236,227,226,0.28)] [&_textarea]:bg-[rgba(255,255,255,0.04)] [&_textarea]:text-[#ece3e2] [&_textarea]:min-h-[220px] [&_textarea]:resize-y
+                [&_input[type=file]]:w-full [&_input[type=file]]:py-3.5 [&_input[type=file]]:px-4 [&_input[type=file]]:rounded-[16px] [&_input[type=file]]:border [&_input[type=file]]:border-[rgba(236,227,226,0.28)] [&_input[type=file]]:bg-[rgba(255,255,255,0.04)] [&_input[type=file]]:text-[#ece3e2]
+                [&_input[type=file]::file-selector-button]:mr-3.5 [&_input[type=file]::file-selector-button]:py-2.5 [&_input[type=file]::file-selector-button]:px-3.5 [&_input[type=file]::file-selector-button]:rounded-[999px] [&_input[type=file]::file-selector-button]:border [&_input[type=file]::file-selector-button]:border-[rgba(236,227,226,0.32)] [&_input[type=file]::file-selector-button]:bg-[rgba(255,255,255,0.08)] [&_input[type=file]::file-selector-button]:text-white [&_input[type=file]::file-selector-button]:cursor-pointer
+                [&_input[type=checkbox]]:[accent-color:#d8b07a]
+                [&_.news-clear-widget-input_input[type=file]]:p-0 [&_.news-clear-widget-input_input[type=file]]:border-0 [&_.news-clear-widget-input_input[type=file]]:rounded-none [&_.news-clear-widget-input_input[type=file]]:bg-transparent">
                 {% csrf_token %}
                 {% if active_preview_token %}
                 <input type="hidden" name="preview_token" value="{{ active_preview_token }}">
                 {% endif %}
 
                 {% if form.non_field_errors %}
-                <div class="news-form-errors">{{ form.non_field_errors }}</div>
+                <div class="text-[#ffb4a8] leading-[1.7]">{{ form.non_field_errors }}</div>
                 {% endif %}
 
                 {% for field in form %}
-                <div class="news-form-row">
+                <div class="grid gap-2.5 text-white [&_label]:text-white [&_a]:text-white [&_span]:text-white [&_div]:text-white
+                    [&>label]:text-[15px] [&>label]:tracking-[0.06em]">
                     <label for="{{ field.id_for_label }}">{{ field.label }}</label>
                     {{ field }}
                     {% if field.help_text %}
-                    <p class="news-form-help">{{ field.help_text }}</p>
+                    <p class="text-[rgba(236,227,226,0.66)] text-[13px] leading-[1.7]">{{ field.help_text }}</p>
                     {% endif %}
                     {% if field.errors %}
-                    <div class="news-form-errors">{{ field.errors }}</div>
+                    <div class="text-[#ffb4a8] leading-[1.7]">{{ field.errors }}</div>
                     {% endif %}
                 </div>
                 {% endfor %}
 
                 {% if form_image_preview %}
-                <div class="news-current-image">
+                <div class="grid gap-3 [&>p]:m-0 [&>p]:text-[rgba(236,227,226,0.82)] [&>img]:w-[min(100%,420px)] [&>img]:rounded-[18px]">
                     <p>{{ form_image_preview.label }}</p>
                     <img src="{{ form_image_preview.url }}" alt="ニュース写真プレビュー">
                 </div>
                 {% endif %}
 
-                <div class="news-form-actions">
-                    <button class="news-form-submit news-form-submit-primary" type="submit">プレビュー</button>
-                    <a class="news-home-link" href="{{ cancel_url }}">キャンセル</a>
+                <div class="flex flex-wrap items-center gap-x-[18px] gap-y-3.5">
+                    <button class="inline-flex items-center justify-center min-h-[46px] px-[22px] rounded-[999px] cursor-pointer no-underline
+                        border border-[rgba(216,176,122,0.68)] bg-[rgba(216,176,122,0.18)] text-[#f7d6af]
+                        hover:bg-[rgba(216,176,122,0.28)]" type="submit">プレビュー</button>
+                    <a class="{{ homelink }}" href="{{ cancel_url }}">キャンセル</a>
                 </div>
             </form>
         </section>
     </main>
 
     {% include "nishimuraya/includes/site_footer.html" %}
+
+{% endwith %}
 
     <script src="{% static 'js/script.js' %}"></script>
 </body>

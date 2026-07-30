@@ -7,33 +7,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>問い合わせ詳細 | Nishimuraya</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <link rel="stylesheet" href="{% static 'css/news_admin.css' %}">
 </head>
 
-<body class="news-detail-page contact-inquiry-page">
+<body class="min-h-screen overflow-x-hidden">
+
+{% with action="inline-flex items-center justify-center min-h-[46px] px-[22px] rounded-[999px] no-underline hover:bg-[rgba(236,227,226,0.12)] border border-[rgba(236,227,226,0.42)] bg-[rgba(255,255,255,0.03)] text-[#ece3e2]" action_primary="inline-flex items-center justify-center min-h-[46px] px-[22px] rounded-[999px] no-underline hover:bg-[rgba(236,227,226,0.12)] border border-[rgba(216,176,122,0.68)] bg-[rgba(216,176,122,0.18)] text-[#f7d6af]" flashlist="grid gap-3 mx-0 mt-0 mb-7" flashitem="py-3.5 px-[18px] border border-[rgba(216,176,122,0.32)] rounded-[18px] bg-[rgba(216,176,122,0.14)] text-[#f6ddbc]" draftmeta="flex flex-wrap items-center gap-x-4 gap-y-2.5" date="text-[15px] tracking-[0.08em] min-w-[140px] max-[900px]:min-w-[auto]" st_pending="inline-flex items-center justify-center w-fit min-h-[34px] px-3.5 rounded-[999px] text-[13px] tracking-[0.08em] bg-[rgba(216,176,122,0.18)] text-[#f7d6af]" st_handled="inline-flex items-center justify-center w-fit min-h-[34px] px-3.5 rounded-[999px] text-[13px] tracking-[0.08em] bg-[rgba(122,183,145,0.18)] text-[#bde7c9]" dl="grid gap-2 mx-1.5 my-[18px] [&>div]:flex [&>div]:items-baseline [&>div]:gap-2.5 [&>div]:min-w-0 max-[640px]:[&>div]:grid max-[640px]:[&>div]:gap-0.5 [&_dt]:min-w-[7.5em] [&_dt]:text-[rgba(236,227,226,0.68)] [&_dt]:text-[14px] [&_dt]:leading-[1.7] [&_dt]:whitespace-nowrap [&_dt]:after:content-[':'] max-[640px]:[&_dt]:min-w-0 [&_dd]:m-0 [&_dd]:text-[#ece3e2] [&_dd]:leading-[1.7] [&_dd]:[overflow-wrap:anywhere]" arch_header="mx-auto my-0 max-w-[1120px] px-6 pb-8 pt-[calc(var(--header-offset,120px)_+_16px)] text-[#ece3e2] [&>p]:m-0 [&>p]:text-[14px] [&>p]:tracking-[0.08em] [&>h1]:mx-0 [&>h1]:mt-3 [&>h1]:mb-5 [&>h1]:text-[46px] max-[780px]:[&>h1]:text-[36px]" main="mx-auto mt-0 mb-[90px] w-[min(1120px,calc(100%_-_48px))] pt-9 [overflow-x:clip] max-[640px]:mb-[60px] max-[640px]:w-[min(1120px,calc(100%_-_24px))]" article="p-[clamp(22px,4vw,40px)] rounded-[18px] border border-[rgba(236,227,226,0.32)] bg-[rgba(40,28,28,0.45)] text-[#ece3e2]" msg="mt-[26px] [&>h3]:mx-0 [&>h3]:mt-0 [&>h3]:mb-3.5 [&>h3]:text-[#ece3e2] [&>h3]:text-[20px]" content="mt-[18px] [overflow-wrap:anywhere] [&_p]:m-0 [&_p]:text-[18px] [&_p]:leading-[1.9] [&_p]:[overflow-wrap:anywhere] max-[780px]:[&_p]:text-[16px]" links="flex flex-wrap gap-[18px] mt-[26px] max-[780px]:justify-start max-[640px]:flex-col max-[640px]:gap-2.5" inlineform="m-0" submit="inline-flex items-center justify-center min-h-[46px] px-[22px] rounded-[999px] cursor-pointer no-underline border border-[rgba(216,176,122,0.68)] bg-[rgba(216,176,122,0.18)] text-[#f7d6af] hover:bg-[rgba(216,176,122,0.28)]" submit_secondary="inline-flex items-center justify-center min-h-[46px] px-[22px] rounded-[999px] cursor-pointer no-underline border border-[rgba(236,227,226,0.42)] bg-transparent text-[#ece3e2] hover:bg-[rgba(236,227,226,0.12)]" %}
 
     {% include "nishimuraya/includes/site_header.html" %}
-    <header class="news-archive-header">
+    <header class="{{ arch_header }}">
         <p>CONTACT DETAIL</p>
         <h1>問い合わせ詳細</h1>
     </header>
 
-    <main class="news-detail-main">
-        <article class="news-detail-article contact-inquiry-detail">
+    <main class="{{ main }}">
+        <article class="{{ article }}">
             {% if messages %}
-            <div class="news-flash-list">
+            <div class="{{ flashlist }}">
                 {% for message in messages %}
-                <div class="news-flash-item">{{ message }}</div>
+                <div class="{{ flashitem }}">{{ message }}</div>
                 {% endfor %}
             </div>
             {% endif %}
 
-            <div class="news-draft-meta">
-                <span class="news-editor-status contact-inquiry-status {{ inquiry.status_css_class }}">{{ inquiry.status_label }}</span>
-                <time class="news-date" datetime="{{ inquiry.created_at|date:'Y-m-d\\TH:i' }}">受付 {{ inquiry.created_at|date:"Y.m.d H:i" }}</time>
+            <div class="{{ draftmeta }}">
+                <span class="{% if inquiry.status_css_class == 'is-handled' %}{{ st_handled }}{% else %}{{ st_pending }}{% endif %}">{{ inquiry.status_label }}</span>
+                <time class="{{ date }}" datetime="{{ inquiry.created_at|date:'Y-m-d\\TH:i' }}">受付 {{ inquiry.created_at|date:"Y.m.d H:i" }}</time>
             </div>
 
-            <dl class="contact-inquiry-detail-list">
+            <dl class="{{ dl }}">
                 <div>
                     <dt>お名前</dt>
                     <dd>{{ inquiry.name }}</dd>
@@ -52,28 +53,30 @@
                 </div>
             </dl>
 
-            <section class="contact-inquiry-message" aria-labelledby="contact-inquiry-message-title">
+            <section class="{{ msg }}" aria-labelledby="contact-inquiry-message-title">
                 <h3 id="contact-inquiry-message-title">お問い合わせ内容</h3>
-                <div class="news-detail-content">{{ inquiry.message|linebreaks }}</div>
+                <div class="{{ content }}">{{ inquiry.message|linebreaks }}</div>
             </section>
 
-            <div class="news-detail-links">
-                <a class="news-detail-action news-detail-action-primary" href="{% url 'contact_inquiry_list' %}">問い合わせ一覧へ</a>
-                <a class="news-detail-action news-detail-action-primary" href="{{ inquiry.reply_gmail_url }}" target="_blank" rel="noopener">Gmailで返信する</a>
-                <form class="news-inline-form" method="post" action="{% url 'contact_inquiry_toggle' inquiry.pk %}">
+            <div class="{{ links }}">
+                <a class="{{ action_primary }}" href="{% url 'contact_inquiry_list' %}">問い合わせ一覧へ</a>
+                <a class="{{ action_primary }}" href="{{ inquiry.reply_gmail_url }}" target="_blank" rel="noopener">Gmailで返信する</a>
+                <form class="{{ inlineform }}" method="post" action="{% url 'contact_inquiry_toggle' inquiry.pk %}">
                     {% csrf_token %}
                     {% if inquiry.is_handled %}
-                    <button class="news-form-submit news-form-submit-secondary" type="submit">未対応に戻す</button>
+                    <button class="{{ submit_secondary }}" type="submit">未対応に戻す</button>
                     {% else %}
-                    <button class="news-form-submit news-form-submit-primary" type="submit">対応済みにする</button>
+                    <button class="{{ submit }}" type="submit">対応済みにする</button>
                     {% endif %}
                 </form>
-                <a class="news-detail-action" href="{% url 'home' %}#top">トップへ戻る</a>
+                <a class="{{ action }}" href="{% url 'home' %}#top">トップへ戻る</a>
             </div>
         </article>
     </main>
 
     {% include "nishimuraya/includes/site_footer.html" %}
+    {% endwith %}
+
     <script src="{% static 'js/script.js' %}"></script>
 </body>
 

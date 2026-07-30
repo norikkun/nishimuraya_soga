@@ -1,123 +1,95 @@
 {% load static %}
-<style>
-    .header-auth-form {
-        margin: 0;
-    }
-
-    .header-auth-button {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        min-height: 40px;
-        padding: 0 16px;
-        border: 1px solid rgba(203, 94, 76, 0.88);
-        border-radius: 999px;
-        background: rgba(181, 78, 64, 0.24);
-        color: #ffe1d8;
-        font-size: 15px;
-        line-height: 1;
-        cursor: pointer;
-        transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
-    }
-
-    .header-auth-button:hover {
-        border-color: rgba(221, 111, 92, 0.96);
-        background: rgba(200, 89, 71, 0.38);
-        color: #fff3ee;
-    }
-
-    .header-staff-link {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-    }
-
-    .header-pending-badge {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        min-height: 24px;
-        padding: 0 9px;
-        border-radius: 999px;
-        background: rgba(216, 176, 122, 0.22);
-        color: #f7d6af;
-        font-size: 12px;
-        line-height: 1;
-    }
-
-    .header-pending-badge.is-hidden {
-        display: none;
-    }
-
-    @media (max-width: 900px) {
-        .header-auth-form {
-            width: 100%;
-        }
-
-        .header-auth-button {
-            width: 100%;
-            justify-content: flex-start;
-            padding: 12px 14px;
-            font-size: 15px;
-            line-height: 1.6;
-        }
-
-        .header-staff-link {
-            justify-content: space-between;
-            width: 100%;
-        }
-    }
-</style>
-<header class="header">
-    <a class="header-logo" href="{% url 'home' %}#top">
-        <img src="{% static 'img/logo_nishimuraya.svg' %}" alt="Nishimuraya 和洋創作料理 ロゴ">
+{% with navlink="text-[var(--text)] no-underline text-[17px] max-[1200px]:text-[15px] [.menu-page_&]:max-[1200px]:text-[17px] [.menu-page_&]:max-[960px]:text-[15px] hover:text-[var(--accent)] [&[aria-current=page]]:text-[var(--accent)] max-[900px]:block max-[900px]:w-full max-[900px]:leading-[1.6]" %}
+<header class="header fixed top-0 left-0 w-full z-[1000] flex justify-between items-center bg-[var(--hdr-bg)] backdrop-blur-[8px] [transform:translateY(0)] [transition:transform_0.28s_ease] [will-change:transform] before:content-none
+    py-1.5 px-10
+    max-[1200px]:py-2 max-[1200px]:px-5
+    max-[960px]:px-3.5 max-[960px]:flex-wrap max-[960px]:gap-x-4 max-[960px]:gap-y-2
+    max-[900px]:flex-nowrap max-[900px]:gap-2.5
+    [.menu-page_&]:max-[1200px]:py-1.5 [.menu-page_&]:max-[1200px]:px-10
+    [.menu-page_&]:max-[960px]:px-[18px]
+    [.menu-page_&]:max-[900px]:py-2 [.menu-page_&]:max-[900px]:px-3.5
+    [&.header--hidden]:[transform:translateY(-100%)]">
+    <a class="header-logo block max-[900px]:shrink-0" href="{% url 'home' %}#top">
+        <img class="block w-[192px] max-[640px]:w-[120px]" src="{% static 'img/logo_nishimuraya.svg' %}" alt="Nishimuraya 和洋創作料理 ロゴ">
     </a>
 
-    <button class="nav-toggle" type="button" aria-label="メニューを開く" aria-expanded="false" aria-controls="primary-nav">
-        <span></span>
-        <span></span>
-        <span></span>
+    <button class="nav-toggle hidden w-[42px] h-[42px] px-2 py-[9px] rounded-[10px] border-0 bg-[rgba(23,12,12,0.72)] cursor-pointer max-[900px]:block max-[900px]:ml-auto [&>span+span]:mt-1.5" type="button" aria-label="メニューを開く" aria-expanded="false" aria-controls="primary-nav">
+        <span class="block w-full h-0.5 bg-[var(--text)]"></span>
+        <span class="block w-full h-0.5 bg-[var(--text)]"></span>
+        <span class="block w-full h-0.5 bg-[var(--text)]"></span>
     </button>
 
-    <nav class="header-nav" id="primary-nav" aria-label="メインナビゲーション">
-        <ul class="nav-list">
-            <li><a href="{% url 'home' %}#top">Concept</a></li>
-            <li><a href="{% url 'home' %}#pickup">Pick Up</a></li>
-            <li><a href="{% url 'home' %}#news">News</a></li>
-            <li><a href="{% url 'home' %}#access">Access</a></li>
-            <li><a href="{% url 'recruit' %}"{% if request.resolver_match.url_name == "recruit" %} aria-current="page"{% endif %}>Recruit</a></li>
-            <li class="menu">
-                <a href="#">Menu</a>
-                <ul class="dropdown">
-                    <li><a href="{% url 'lunch' %}">Lunch Menu</a></li>
-                    <li><a href="{% url 'food' %}">Food</a></li>
-                    <li><a href="{% url 'drink' %}">Drink</a></li>
-                    <li><a href="{% url 'dessert' %}">Dessert</a></li>
+    <nav class="header-nav
+        max-[960px]:w-full
+        max-[900px]:absolute max-[900px]:top-[calc(100%_+_8px)] max-[900px]:right-2.5 max-[900px]:left-auto max-[900px]:z-[1001]
+        max-[900px]:w-[min(72vw,360px)] max-[900px]:min-w-[240px]
+        max-[900px]:bg-[var(--nav-panel-bg)] max-[900px]:border max-[900px]:border-[var(--nav-panel-line)] max-[900px]:rounded-[18px]
+        max-[900px]:shadow-[0_14px_30px_rgba(0,0,0,0.28)]
+        max-[900px]:max-h-0 max-[900px]:opacity-0 max-[900px]:invisible max-[900px]:overflow-hidden
+        max-[900px]:[transform:translateY(-6px)]
+        max-[900px]:[transition:max-height_0.28s_ease,opacity_0.2s_ease,transform_0.2s_ease,visibility_0.2s_ease]
+        max-[640px]:w-[min(88vw,360px)] max-[640px]:min-w-0
+        max-[900px]:before:content-[''] max-[900px]:before:absolute max-[900px]:before:top-[-10px] max-[900px]:before:right-[18px]
+        max-[900px]:before:[border-width:0_10px_10px] max-[900px]:before:[border-style:solid]
+        max-[900px]:before:[border-color:transparent_transparent_var(--nav-panel-bg)]
+        [.menu-open_&]:max-[900px]:max-h-[calc(100vh_-_90px)] [.menu-open_&]:max-[900px]:opacity-100
+        [.menu-open_&]:max-[900px]:visible [.menu-open_&]:max-[900px]:overflow-y-auto
+        [.menu-open_&]:max-[900px]:[transform:translateY(0)]" id="primary-nav" aria-label="メインナビゲーション">
+        <ul class="nav-list m-0 p-0 list-none flex items-center gap-[34px]
+            max-[1200px]:gap-[18px]
+            max-[960px]:gap-[14px] max-[960px]:flex-wrap max-[960px]:justify-start
+            max-[900px]:flex-col max-[900px]:items-start max-[900px]:gap-2.5 max-[900px]:pt-3.5 max-[900px]:px-4 max-[900px]:pb-4
+            [&>li]:max-[900px]:w-full
+            [.menu-page_&]:max-[1200px]:gap-[34px] [.menu-page_&]:max-[960px]:gap-5 [.menu-page_&]:max-[900px]:gap-2.5">
+            <li><a class="{{ navlink }}" href="{% url 'home' %}#top">Concept</a></li>
+            <li><a class="{{ navlink }}" href="{% url 'home' %}#pickup">Pick Up</a></li>
+            <li><a class="{{ navlink }}" href="{% url 'home' %}#news">News</a></li>
+            <li><a class="{{ navlink }}" href="{% url 'home' %}#access">Access</a></li>
+            <li><a class="{{ navlink }}" href="{% url 'recruit' %}"{% if request.resolver_match.url_name == "recruit" %} aria-current="page"{% endif %}>Recruit</a></li>
+            <li class="menu relative max-[900px]:w-full">
+                <a class="{{ navlink }}" href="#">Menu</a>
+                <ul class="dropdown m-0 list-none absolute top-[calc(100%_+_8px)] right-0 min-w-[150px] py-3.5 px-4
+                    border border-[var(--line)] rounded-[12px] bg-[var(--dropdown-bg)]
+                    opacity-0 invisible [transform:translateY(-6px)]
+                    [transition:opacity_0.2s_ease,transform_0.2s_ease,visibility_0.2s_ease]
+                    max-[960px]:left-0 max-[960px]:right-auto
+                    max-[900px]:static max-[900px]:top-auto max-[900px]:right-auto max-[900px]:hidden max-[900px]:mt-1.5 max-[900px]:min-w-0
+                    max-[900px]:pt-0 max-[900px]:pr-0 max-[900px]:pb-0 max-[900px]:pl-3
+                    max-[900px]:border-0 max-[900px]:rounded-none max-[900px]:bg-transparent
+                    max-[900px]:opacity-100 max-[900px]:visible max-[900px]:[transform:none]
+                    [.menu-page_&]:max-[960px]:right-0 [.menu-page_&]:max-[900px]:right-auto
+                    [.menu:hover_&]:opacity-100 [.menu:hover_&]:visible [.menu:hover_&]:[transform:translateY(0)]
+                    [&>li+li]:max-[900px]:mt-1 [.menu-page_&]:[&>li+li]:mt-2 [.menu-page_&]:[&>li+li]:max-[900px]:mt-1 [.menu.is-open_&]:max-[900px]:block">
+                    <li class="block m-0"><a class="text-[var(--text)] no-underline text-[15px] leading-[1.8] [.menu-page_&]:text-[17px] [.menu-page_&]:max-[960px]:text-[15px] [.menu-page_&]:max-[900px]:text-[14px] max-[900px]:block max-[900px]:w-full max-[900px]:text-[14px] max-[900px]:leading-[1.6] hover:text-[var(--accent)]" href="{% url 'lunch' %}">Lunch Menu</a></li>
+                    <li class="block m-0"><a class="text-[var(--text)] no-underline text-[15px] leading-[1.8] [.menu-page_&]:text-[17px] [.menu-page_&]:max-[960px]:text-[15px] [.menu-page_&]:max-[900px]:text-[14px] max-[900px]:block max-[900px]:w-full max-[900px]:text-[14px] max-[900px]:leading-[1.6] hover:text-[var(--accent)]" href="{% url 'food' %}">Food</a></li>
+                    <li class="block m-0"><a class="text-[var(--text)] no-underline text-[15px] leading-[1.8] [.menu-page_&]:text-[17px] [.menu-page_&]:max-[960px]:text-[15px] [.menu-page_&]:max-[900px]:text-[14px] max-[900px]:block max-[900px]:w-full max-[900px]:text-[14px] max-[900px]:leading-[1.6] hover:text-[var(--accent)]" href="{% url 'drink' %}">Drink</a></li>
+                    <li class="block m-0"><a class="text-[var(--text)] no-underline text-[15px] leading-[1.8] [.menu-page_&]:text-[17px] [.menu-page_&]:max-[960px]:text-[15px] [.menu-page_&]:max-[900px]:text-[14px] max-[900px]:block max-[900px]:w-full max-[900px]:text-[14px] max-[900px]:leading-[1.6] hover:text-[var(--accent)]" href="{% url 'dessert' %}">Dessert</a></li>
                 </ul>
             </li>
             {% if user.is_authenticated %}
             {% if user.is_staff %}
             <li>
-                <a class="header-staff-link" href="{% url 'contact_inquiry_list' %}"
+                <a class="inline-flex items-center gap-2 {{ navlink }}" href="{% url 'contact_inquiry_list' %}"
                     data-contact-status-url="{% url 'contact_inquiry_status' %}"
                     data-contact-pending-initial="{{ pending_contact_inquiry_count|default:0 }}"
                     data-contact-latest-inquiry-id="{{ latest_contact_inquiry_id|default:0 }}"
                     data-contact-inquiry-total="{{ contact_inquiry_total_count|default:0 }}">
                     問い合わせ一覧
-                    <span class="header-pending-badge{% if not pending_contact_inquiry_count %} is-hidden{% endif %}" data-contact-pending-count>未対応 {{ pending_contact_inquiry_count|default:0 }}</span>
+                    <span class="inline-flex items-center justify-center min-h-6 px-[9px] rounded-[999px] bg-[rgba(216,176,122,0.22)] text-[#f7d6af] text-[12px] leading-none{% if not pending_contact_inquiry_count %} hidden{% endif %}" data-contact-pending-count>未対応 {{ pending_contact_inquiry_count|default:0 }}</span>
                 </a>
             </li>
             {% endif %}
             <li>
-                <form method="post" action="{% url 'staff_logout' %}" class="header-auth-form">
+                <form method="post" action="{% url 'staff_logout' %}" class="m-0 max-[900px]:w-full">
                     {% csrf_token %}
-                    <button class="header-auth-button" type="submit">ログアウト</button>
+                    <button class="inline-flex items-center justify-center min-h-10 px-4 rounded-[999px] border border-[rgba(203,94,76,0.88)] bg-[rgba(181,78,64,0.24)] text-[#ffe1d8] text-[15px] leading-none cursor-pointer [transition:background-color_0.2s_ease,border-color_0.2s_ease,color_0.2s_ease] hover:border-[rgba(221,111,92,0.96)] hover:bg-[rgba(200,89,71,0.38)] hover:text-[#fff3ee] max-[900px]:w-full max-[900px]:justify-start max-[900px]:py-3 max-[900px]:px-3.5 max-[900px]:leading-[1.6]" type="submit">ログアウト</button>
                 </form>
             </li>
             {% endif %}
         </ul>
     </nav>
 </header>
+{% endwith %}
 {% if user.is_authenticated and user.is_staff %}
 <script>
     (() => {
@@ -135,7 +107,7 @@
 
         const renderPendingCount = (count) => {
             badge.textContent = `未対応 ${count}`;
-            badge.classList.toggle("is-hidden", count <= 0);
+            badge.classList.toggle("hidden", count <= 0);
         };
 
         const refreshContactStatus = async () => {

@@ -9,23 +9,23 @@
 	<link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 
-<body class="contact-page">
+<body class="contact-page [background:radial-gradient(circle_at_78%_8%,rgba(150,97,70,0.2),transparent_44%),linear-gradient(180deg,#5a4141_0%,#503838_46%,#3f2f2f_100%)]">
 
 	{% include "nishimuraya/includes/site_header.html" %}
 
-	<main class="contact-main" id="top">
-		<section class="contact-hero">
-			<p class="home-kicker">THANK YOU</p>
-			<h1>送信が完了しました</h1>
-			<p>お問い合わせありがとうございます。内容を確認し、順次ご連絡いたします。</p>
+	<main id="top" class="grid mx-auto w-[min(980px,calc(100%_-_40px))] gap-[22px] pt-[calc(var(--header-offset,130px)_+_18px)] pb-24 max-[640px]:w-[min(100%,calc(100%_-_24px))] max-[640px]:pb-[72px]">
+		<section class="border border-[rgba(236,227,226,0.24)] rounded-[18px] bg-[rgba(35,24,24,0.42)] p-[clamp(24px,4vw,44px)] max-[640px]:rounded-[14px]">
+			<p class="m-0 text-[#ece3e2] text-[12px] tracking-[0.16em] leading-[1.8]">THANK YOU</p>
+			<h1 class="mt-2 mb-[14px] text-[#ece3e2] text-[length:clamp(30px,5vw,44px)] font-medium">送信が完了しました</h1>
+			<p class="m-0 text-[#ece3e2] leading-[1.8]">お問い合わせありがとうございます。内容を確認し、順次ご連絡いたします。</p>
 		</section>
 
-		<section class="contact-form-wrap" aria-labelledby="contact-done-title">
-			<h2 id="contact-done-title">次の操作</h2>
-			<p class="contact-note contact-next-step">
+		<section class="border border-[rgba(236,227,226,0.24)] rounded-[18px] bg-[rgba(35,24,24,0.42)] p-[clamp(20px,3.2vw,34px)] max-[640px]:rounded-[14px]" aria-labelledby="contact-done-title">
+			<h2 id="contact-done-title" class="mt-0 mb-4 text-[#ece3e2] text-[length:clamp(22px,3.5vw,30px)] font-medium">次の操作</h2>
+			<p class="mt-0 text-[#ece3e2] text-[15px]">
 				追加のご質問がある場合は、再度フォームからご連絡ください。
 			</p>
-			<p class="contact-next-action">
+			<p class="mt-4">
 				<a class="site-footer-contact-btn" href="{% url 'contact' %}">お問い合わせフォームへ戻る</a>
 			</p>
 		</section>

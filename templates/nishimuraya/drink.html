@@ -9,31 +9,33 @@
 	<link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 
-<body class="drink-page">
+<body class="drink-page menu-page m-0 p-0 overflow-x-hidden font-mincho text-[var(--text)] [background:radial-gradient(circle_at_8%_6%,rgba(154,61,83,0.26),transparent_45%),linear-gradient(180deg,#2b1b1d_0%,var(--bg)_46%,#1b1112_100%)]">
+
+{% with main="w-[min(1120px,calc(100%_-_48px))] mx-auto pt-[calc(var(--header-offset,190px)_+_8px)] pb-[120px] [overflow-x:clip] max-[980px]:w-[min(1120px,calc(100%_-_30px))]" hero="border border-[var(--line)] rounded-[20px] p-[42px_44px] [background:linear-gradient(135deg,rgba(68,34,43,0.74),rgba(37,21,23,0.9))] max-[640px]:p-[28px_22px] [&_h1]:mx-0 [&_h1]:mt-2.5 [&_h1]:mb-[18px] [&_h1]:font-medium [&_h1]:text-[52px] max-[980px]:[&_h1]:text-[44px] max-[640px]:[&_h1]:text-[36px]" kicker="m-0 text-[var(--accent)] text-[13px] tracking-[0.16em]" hcopy="m-0 text-[var(--muted)] text-[17px] leading-[1.9] max-[640px]:text-[15px]" sec="mt-[62px]" head="mb-[22px] pb-3 [border-bottom:1px_solid_var(--line)] [&_h2]:m-0 [&_h2]:font-medium [&_h2]:text-[34px] max-[640px]:[&_h2]:text-[28px] [&_p]:mt-1.5 [&_p]:mb-0 [&_p]:text-[var(--accent)] [&_p]:text-[13px] [&_p]:tracking-[0.12em]" notice="mx-0 mt-0 mb-2.5 text-[var(--muted)] text-[14px]" blk="mt-6 scroll-mt-[120px] [&>h3]:mx-0 [&>h3]:mt-0 [&>h3]:mb-2.5 [&>h3]:font-medium [&>h3]:text-[24px] max-[640px]:[&>h3]:text-[21px]" msum="grid gap-2 mb-5 text-[var(--muted)] leading-[1.9]" cnav="flex flex-wrap gap-2.5 max-[640px]:gap-2 [&>a]:inline-flex [&>a]:items-center [&>a]:min-h-[38px] [&>a]:px-[14px] [&>a]:border [&>a]:border-[var(--line)] [&>a]:rounded-[999px] [&>a]:text-[var(--text)] [&>a]:no-underline [&>a]:bg-[rgba(56,35,38,0.58)] [&>a]:[transition:border-color_0.2s_ease,color_0.2s_ease,background-color_0.2s_ease] [&>a:hover]:text-[var(--accent)] [&>a:hover]:border-[rgba(208,162,107,0.7)] [&>a:hover]:bg-[rgba(78,47,52,0.78)] max-[640px]:[&>a]:min-h-[34px] max-[640px]:[&>a]:px-3 max-[640px]:[&>a]:text-[13px]" dlist="m-0 p-0 list-none [border-top:1px_solid_var(--line)] [&>li]:flex [&>li]:justify-between [&>li]:items-start [&>li]:gap-[18px] [&>li]:py-[15px] [&>li]:px-0.5 [&>li]:[border-bottom:1px_solid_var(--line)] max-[640px]:[&>li]:flex-col max-[640px]:[&>li]:gap-1.5 [&>li>div]:flex-1 [&>li>div]:min-w-0 [&_strong]:block [&_strong]:font-semibold [&_strong]:text-[17px] [&_p]:mx-0 [&_p]:mt-1.5 [&_p]:mb-0 [&_p]:text-[var(--muted)] [&_p]:leading-[1.75] [&>li>span]:text-[var(--accent)] [&>li>span]:font-semibold [&>li>span]:whitespace-nowrap [&>li>span]:text-right [&>li>span]:max-w-[32%] max-[640px]:[&>li>span]:whitespace-normal max-[640px]:[&>li>span]:max-w-none" pbox="bg-[var(--panel)] border border-[var(--line)] rounded-[14px] p-6 [&>p]:m-0 [&>p]:text-[var(--muted)] [&>p]:leading-[1.9]" plink="inline-block mt-4 text-[var(--text)] no-underline [border-bottom:1px_solid_var(--wine)] hover:text-[var(--accent)]" %}
 
 	{% include "nishimuraya/includes/site_header.html" %}
 
-	<main class="drink-main">
-		<section class="menu-hero" id="top">
-			<p class="hero-kicker">WINE & ALCOHOL SELECTION</p>
+	<main class="{{ main }}">
+		<section class="{{ hero }}" id="top">
+			<p class="{{ kicker }}">WINE & ALCOHOL SELECTION</p>
 			<h1>Drink Menu</h1>
-			<p class="hero-copy">
+			<p class="{{ hcopy }}">
 				ワインをはじめ、ビール・カクテル・ノンアルコールまで幅広くご用意しています。<br>
 				お食事に合わせた一杯から、食後にゆっくり楽しむ一杯までお選びいただけます。
 			</p>
 		</section>
 
-		<section class="menu-section" id="drink-guide">
-			<div class="section-head">
+		<section class="{{ sec }}" id="drink-guide">
+			<div class="{{ head }}">
 				<h2>ドリンクカテゴリー</h2>
 				<p>Category Guide</p>
 			</div>
 
-			<div class="menu-summary">
+			<div class="{{ msum }}">
 				<p>カテゴリごとに見やすく整理しています。気になる一杯があれば、そのまま下の一覧で内容をご確認いただけます。</p>
 			</div>
 
-			<div class="category-nav" aria-label="ドリンクメニューカテゴリ">
+			<div class="{{ cnav }}" aria-label="ドリンクメニューカテゴリ">
 				<a href="#menu-wine">ワイン</a>
 				<a href="#menu-beer">ビール</a>
 				<a href="#menu-cocktail">カクテル</a>
@@ -45,17 +47,17 @@
 			</div>
 		</section>
 
-		<section class="menu-section" id="menu-wine">
-			<div class="section-head">
+		<section class="{{ sec }}" id="menu-wine">
+			<div class="{{ head }}">
 				<h2>ワイン</h2>
 				<p>Wine</p>
 			</div>
 
-			<p class="notice">ソムリエセレクションは上記の3種です。そのほかのワインは下記をご覧ください。</p>
+			<p class="{{ notice }}">ソムリエセレクションは上記の3種です。そのほかのワインは下記をご覧ください。</p>
 
-			<div class="menu-block">
+			<div class="{{ blk }}">
 				<h3>ハウスワイン</h3>
-				<ul class="detailed-menu-list">
+				<ul class="{{ dlist }}">
 					<li>
 						<div><strong>白ワイン シャルドネ</strong>
 							<p>グラス / デキャンター（約4～5杯分）</p>
@@ -69,9 +71,9 @@
 				</ul>
 			</div>
 
-			<div class="menu-block">
+			<div class="{{ blk }}">
 				<h3>スパークリング・ワインカクテル</h3>
-				<ul class="detailed-menu-list">
+				<ul class="{{ dlist }}">
 					<li>
 						<div><strong>スパークリングワイン</strong>
 							<p>グラス / ボトル</p>
@@ -86,13 +88,13 @@
 			</div>
 		</section>
 
-		<section class="menu-section" id="menu-beer">
-			<div class="section-head">
+		<section class="{{ sec }}" id="menu-beer">
+			<div class="{{ head }}">
 				<h2>ビール</h2>
 				<p>Beer</p>
 			</div>
 
-			<ul class="detailed-menu-list">
+			<ul class="{{ dlist }}">
 				<li>
 					<div><strong>エビス 樽生</strong>
 						<p>グラス / 中</p>
@@ -111,15 +113,15 @@
 			</ul>
 		</section>
 
-		<section class="menu-section" id="menu-cocktail">
-			<div class="section-head">
+		<section class="{{ sec }}" id="menu-cocktail">
+			<div class="{{ head }}">
 				<h2>カクテル</h2>
 				<p>Cocktail</p>
 			</div>
 
-			<div class="menu-block">
+			<div class="{{ blk }}">
 				<h3>スタンダードカクテル</h3>
-				<ul class="detailed-menu-list">
+				<ul class="{{ dlist }}">
 					<li>
 						<div><strong>ウォッカ</strong>
 							<p>モスコミュール / スクリュードライバー / ソルティドッグ</p>
@@ -163,9 +165,9 @@
 				</ul>
 			</div>
 
-			<div class="menu-block">
+			<div class="{{ blk }}">
 				<h3>ワイン・ビールベース</h3>
-				<ul class="detailed-menu-list">
+				<ul class="{{ dlist }}">
 					<li>
 						<div><strong>ワイン</strong>
 							<p>キール / カーディナル</p>
@@ -180,13 +182,13 @@
 			</div>
 		</section>
 
-		<section class="menu-section" id="menu-shochu">
-			<div class="section-head">
+		<section class="{{ sec }}" id="menu-shochu">
+			<div class="{{ head }}">
 				<h2>焼酎</h2>
 				<p>Shochu</p>
 			</div>
 
-			<ul class="detailed-menu-list">
+			<ul class="{{ dlist }}">
 				<li>
 					<div><strong>焼酎 各種</strong>
 						<p>ロック / ソーダ割り / お湯割り</p>
@@ -195,15 +197,15 @@
 			</ul>
 		</section>
 
-		<section class="menu-section" id="menu-fruit">
-			<div class="section-head">
+		<section class="{{ sec }}" id="menu-fruit">
+			<div class="{{ head }}">
 				<h2>果実酒</h2>
 				<p>Fruit Liqueur</p>
 			</div>
 
-			<p class="notice">ロック or ソーダ割りでお楽しみいただけます。</p>
+			<p class="{{ notice }}">ロック or ソーダ割りでお楽しみいただけます。</p>
 
-			<ul class="detailed-menu-list">
+			<ul class="{{ dlist }}">
 				<li>
 					<div><strong>柚子酒</strong></div><span>660円～</span>
 				</li>
@@ -222,17 +224,17 @@
 			</ul>
 		</section>
 
-		<section class="menu-section" id="menu-herbal">
-			<div class="section-head">
+		<section class="{{ sec }}" id="menu-herbal">
+			<div class="{{ head }}">
 				<h2>ハーブコーディアル</h2>
 				<p>Herbal Cordial</p>
 			</div>
 
-			<div class="menu-summary">
+			<div class="{{ msum }}">
 				<p>美容・健康にうれしいノンアルコールドリンクです。ソーダ割り / HOT お湯割りは各500円～、スパークリングワイン割り（アルコール）は750円～です。</p>
 			</div>
 
-			<ul class="detailed-menu-list">
+			<ul class="{{ dlist }}">
 				<li>
 					<div><strong>エルダーフラワー</strong>
 						<p>リラックス効果</p>
@@ -261,13 +263,13 @@
 			</ul>
 		</section>
 
-		<section class="menu-section" id="menu-nonalcohol">
-			<div class="section-head">
+		<section class="{{ sec }}" id="menu-nonalcohol">
+			<div class="{{ head }}">
 				<h2>ノンアルコール</h2>
 				<p>Non-Alcohol</p>
 			</div>
 
-			<ul class="detailed-menu-list">
+			<ul class="{{ dlist }}">
 				<li>
 					<div><strong>ノンアルコール ビール 龍馬1865 無添加</strong></div><span>495円</span>
 				</li>
@@ -299,16 +301,16 @@
 			</ul>
 		</section>
 
-		<section class="menu-section" id="menu-softdrink">
-			<div class="section-head">
+		<section class="{{ sec }}" id="menu-softdrink">
+			<div class="{{ head }}">
 				<h2>ソフトドリンク</h2>
 				<p>Soft Drink</p>
 			</div>
 
-			<div class="menu-block">
+			<div class="{{ blk }}">
 				<h3>定番ドリンク</h3>
-				<p class="notice">各種 418円</p>
-				<ul class="detailed-menu-list">
+				<p class="{{ notice }}">各種 418円</p>
+				<ul class="{{ dlist }}">
 					<li>
 						<div><strong>コーヒー</strong>
 							<p>アイス or ホット</p>
@@ -358,9 +360,9 @@
 				</ul>
 			</div>
 
-			<div class="menu-block">
+			<div class="{{ blk }}">
 				<h3>おすすめソフトドリンク</h3>
-				<ul class="detailed-menu-list">
+				<ul class="{{ dlist }}">
 					<li>
 						<div><strong>有機レモンスカッシュ</strong></div><span>418円</span>
 					</li>
@@ -377,18 +379,20 @@
 			</div>
 		</section>
 
-		<section class="menu-section" id="pairing-link">
-			<div class="pairing-box">
+		<section class="{{ sec }}" id="pairing-link">
+			<div class="{{ pbox }}">
 				<p>
 					料理との組み合わせに迷った場合は、
 					コース・アラカルトどちらもペアリング提案が可能です。お気軽にご相談ください。
 				</p>
-				<a class="pairing-link" href="{% url 'food' %}">フードメニューを見る</a>
+				<a class="{{ plink }}" href="{% url 'food' %}">フードメニューを見る</a>
 			</div>
 		</section>
 	</main>
 
 	{% include "nishimuraya/includes/site_footer.html" %}
+
+	{% endwith %}
 
 	<script src="{% static 'js/script.js' %}"></script>
 </body>

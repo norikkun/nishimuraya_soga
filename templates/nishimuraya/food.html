@@ -9,90 +9,92 @@
 	<link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 
-<body class="food-page">
+<body class="food-page menu-page m-0 p-0 overflow-x-hidden font-mincho text-[var(--text)] [background:radial-gradient(circle_at_top_right,rgba(128,74,49,0.22),transparent_45%),linear-gradient(180deg,#2f1f1f_0%,var(--bg)_45%,#1f1414_100%)]">
+
+{% with main="w-[min(1120px,calc(100%_-_48px))] mx-auto pt-[calc(var(--header-offset,190px)_+_8px)] pb-[120px] [overflow-x:clip] max-[980px]:w-[min(1120px,calc(100%_-_30px))]" hero="border border-[var(--line)] rounded-[20px] p-[42px_44px] [background:linear-gradient(135deg,rgba(56,37,37,0.75),rgba(33,22,22,0.9))] max-[640px]:p-[28px_22px] [&_h1]:mx-0 [&_h1]:mt-2.5 [&_h1]:mb-[18px] [&_h1]:font-medium [&_h1]:text-[52px] max-[980px]:[&_h1]:text-[44px] max-[640px]:[&_h1]:text-[36px]" kicker="m-0 text-[var(--accent)] text-[13px] tracking-[0.16em]" hcopy="m-0 text-[var(--muted)] text-[17px] leading-[1.9] max-[640px]:text-[13px] max-[640px]:leading-[1.75]" sec="mt-[62px]" head="mb-[22px] pb-3 [border-bottom:1px_solid_var(--line)] [&_h2]:m-0 [&_h2]:font-medium [&_h2]:text-[34px] max-[640px]:[&_h2]:text-[26px] [&_p]:mt-1.5 [&_p]:mb-0 [&_p]:text-[var(--accent)] [&_p]:text-[13px] [&_p]:tracking-[0.12em] max-[640px]:[&_p]:text-[12px]" sgrid="grid gap-[22px] grid-cols-2 max-[980px]:grid-cols-1" scard="bg-[var(--panel)] border border-[var(--line)] rounded-[16px] overflow-hidden [&_img]:block [&_img]:w-full [&_img]:h-[200px] [&_img]:object-cover [&_h3]:m-0 [&_h3]:font-medium [&_h3]:text-[22px] max-[640px]:[&_h3]:text-[18px] [&_p]:mt-2.5 [&_p]:mb-0 [&_p]:text-[var(--muted)] [&_p]:leading-[1.75]" scardbody="pt-[18px] px-[18px] pb-5" price_s="text-[20px]! max-[640px]:text-[15px]!" price_c="text-[18px]! max-[640px]:text-[15px]!" clist="grid gap-[14px]" citem="bg-[var(--panel-soft)] border border-[var(--line)] rounded-[14px] p-[18px_20px] [&_h3]:m-0 [&_h3]:font-medium [&_h3]:text-[22px] max-[640px]:[&_h3]:text-[18px] [&_p]:mt-2.5 [&_p]:mb-0 [&_p]:text-[var(--muted)] [&_p]:leading-[1.75] [&_p]:text-[15px] max-[640px]:[&_p]:text-[13px]" blk="mt-6 scroll-mt-[120px] [&>h3]:mx-0 [&>h3]:mt-0 [&>h3]:mb-2.5 [&>h3]:font-medium [&>h3]:text-[24px] max-[640px]:[&>h3]:text-[18px]" blk_cd="mt-6 scroll-mt-[120px] [&>h3]:mx-0 [&>h3]:mt-0 [&>h3]:mb-2.5 [&>h3]:font-medium [&>h3]:text-[22px] max-[640px]:[&>h3]:text-[15px]" cdlist="mt-3 mb-0 mx-0 pl-[18px] text-[var(--muted)] [&>li]:py-1.5 [&>li]:text-[15px] [&>li]:leading-[1.8] max-[640px]:[&>li]:text-[13px] max-[640px]:[&>li]:leading-[1.75]" cnote="mt-3 mb-0 mx-0 text-[var(--muted)] text-[15px] leading-[1.8] max-[640px]:text-[13px] max-[640px]:leading-[1.75]" clink="text-[var(--text)] no-underline [border-bottom:1px_solid_rgba(216,176,122,0.45)] hover:text-[var(--accent)] hover:[border-bottom-color:var(--accent)]" msum="grid gap-2 mb-5 text-[var(--muted)] leading-[1.9] max-[640px]:text-[13px] max-[640px]:leading-[1.75] [&>p]:m-0" cnav="flex flex-wrap gap-2.5 mb-[26px] max-[640px]:gap-2 [&>a]:inline-flex [&>a]:items-center [&>a]:min-h-[38px] [&>a]:px-[14px] [&>a]:border [&>a]:border-[var(--line)] [&>a]:rounded-[999px] [&>a]:text-[var(--text)] [&>a]:no-underline [&>a]:bg-[rgba(59,40,40,0.55)] [&>a]:[transition:border-color_0.2s_ease,color_0.2s_ease,background-color_0.2s_ease] [&>a:hover]:text-[var(--accent)] [&>a:hover]:border-[rgba(216,176,122,0.65)] [&>a:hover]:bg-[rgba(70,46,46,0.78)] max-[640px]:[&>a]:min-h-[34px] max-[640px]:[&>a]:px-3 max-[640px]:[&>a]:text-[12px]" bnote="mx-0 mt-0 mb-3 text-[var(--muted)] leading-[1.8] max-[640px]:text-[13px] max-[640px]:leading-[1.75]" sub="mt-6 [&>h4]:mx-0 [&>h4]:mt-0 [&>h4]:mb-3 [&>h4]:text-[var(--accent)] [&>h4]:text-[18px] [&>h4]:font-medium [&>h4]:tracking-[0.06em] max-[640px]:[&>h4]:text-[15px]" dlist="m-0 p-0 list-none [border-top:1px_solid_var(--line)] [&>li]:flex [&>li]:justify-between [&>li]:items-start [&>li]:gap-[18px] [&>li]:py-[15px] [&>li]:px-0.5 [&>li]:[border-bottom:1px_solid_var(--line)] max-[640px]:[&>li]:flex-col max-[640px]:[&>li]:gap-1.5 [&>li>div]:flex-1 [&>li>div]:min-w-0 [&_strong]:block [&_strong]:font-semibold [&_strong]:text-[#f5eee7d6] [&_strong]:text-[17px] max-[640px]:[&_strong]:text-[14px] [&_p]:mx-0 [&_p]:mt-1.5 [&_p]:mb-0 [&_p]:text-[var(--muted)] [&_p]:leading-[1.75] max-[640px]:[&_p]:text-[13px] [&>li>span]:text-[var(--accent)] [&>li>span]:font-semibold [&>li>span]:whitespace-nowrap max-[640px]:[&>li>span]:whitespace-normal max-[640px]:[&>li>span]:text-[13px] max-[640px]:[&>li>span]:leading-[1.75]" dcompact="m-0 p-0 list-none [border-top:1px_solid_var(--line)] [&>li]:flex [&>li]:justify-between [&>li]:items-start [&>li]:gap-[18px] [&>li]:py-[15px] [&>li]:px-0.5 [&>li]:[border-bottom:1px_solid_var(--line)] max-[640px]:[&>li]:flex-col max-[640px]:[&>li]:gap-1.5 [&>li>div]:flex-1 [&>li>div]:min-w-0 [&_strong]:block [&_strong]:font-semibold [&_strong]:text-[#f5eee7d6] [&_strong]:text-[16px] max-[640px]:[&_strong]:text-[14px] [&_p]:mx-0 [&_p]:mt-1 [&_p]:mb-0 [&_p]:text-[var(--muted)] [&_p]:leading-[1.75] max-[640px]:[&_p]:text-[13px] [&>li>span]:text-[var(--accent)] [&>li>span]:font-semibold [&>li>span]:whitespace-nowrap max-[640px]:[&>li>span]:whitespace-normal max-[640px]:[&>li>span]:text-[13px] max-[640px]:[&>li>span]:leading-[1.75]" pbox="bg-[var(--panel)] border border-[var(--line)] rounded-[14px] p-6 [&>p]:m-0 [&>p]:text-[var(--muted)] [&>p]:leading-[1.9]" plink="inline-block mt-4 text-[var(--text)] no-underline [border-bottom:1px_solid_var(--accent)] hover:text-[var(--accent)]" %}
 
 	{% include "nishimuraya/includes/site_header.html" %}
 
-	<main class="food-main">
-		<section class="menu-hero" id="top">
-			<p class="hero-kicker">SEASONAL ITALIAN CUISINE</p>
+	<main class="{{ main }}">
+		<section class="{{ hero }}" id="top">
+			<p class="{{ kicker }}">SEASONAL ITALIAN CUISINE</p>
 			<h1>Food Menu</h1>
-			<p class="hero-copy">
+			<p class="{{ hcopy }}">
 				季節の食材に合わせて、四季ごとに構成を更新する和風×イタリアンメニューです。<br>
 				定番の手打ちパスタに加え、旬を活かした前菜とメイン料理をご用意しています。
 			</p>
 		</section>
 
-		<section class="menu-section" id="seasonal">
-			<div class="section-head">
+		<section class="{{ sec }}" id="seasonal">
+			<div class="{{ head }}">
 				<h2>季節のおすすめ</h2>
 				<p>Seasonal Highlights</p>
 			</div>
 
-			<div class="seasonal-grid">
-				<article class="seasonal-card">
+			<div class="{{ sgrid }}">
+				<article class="{{ scard }}">
 					<img src="{% static 'img/meat.jpg' %}" alt="ジャージー牛">
-					<div class="seasonal-card-body">
+					<div class="{{ scardbody }}">
 						<h3>～横芝ジャージー牛～</h3>
 						<p>柑橘の香りを効かせたヴィネグレットで、軽やかに仕上げた一皿。</p>
-						<p class="price">1,078円～</p>
+						<p class="{{ price_s }}">1,078円～</p>
 					</div>
 				</article>
 
-				<article class="seasonal-card">
+				<article class="{{ scard }}">
 					<img src="{% static 'img/carpaccio.jpg' %}" alt="カルパッチョ">
-					<div class="seasonal-card-body">
+					<div class="{{ scardbody }}">
 						<h3>～カルパッチョ～本日の鮮魚～</h3>
 						<p>季節野菜のグリルと赤ワインソースを添えたメインディッシュ。</p>
-						<p class="price">3,200円</p>
+						<p class="{{ price_s }}">3,200円</p>
 					</div>
 				</article>
 			</div>
 		</section>
 
-		<section class="menu-section" id="course">
-			<div class="section-head">
+		<section class="{{ sec }}" id="course">
+			<div class="{{ head }}">
 				<h2>コース</h2>
 				<p>Course</p>
 			</div>
 
-			<div class="course-list">
-				<article class="course-item">
-					<h3><a class="course-link" href="#course-party-share">ディナーコース / パーティーコース（3名以上・大皿シェア）</a></h3>
+			<div class="{{ clist }}">
+				<article class="{{ citem }}">
+					<h3><a class="{{ clink }}" href="#course-party-share">ディナーコース / パーティーコース（3名以上・大皿シェア）</a></h3>
 					<p>仲の良い家族・友人・会社同僚で大皿料理を囲んでシェアするスタイル。</p>
-					<p class="price">4,000円 / 5,000円（税込）</p>
+					<p class="{{ price_c }}">4,000円 / 5,000円（税込）</p>
 				</article>
 
-				<article class="course-item">
-					<h3><a class="course-link" href="#course-hospitality">おもてなしコース（レストラン形式）</a></h3>
+				<article class="{{ citem }}">
+					<h3><a class="{{ clink }}" href="#course-hospitality">おもてなしコース（レストラン形式）</a></h3>
 					<p>お祝い・お誕生日・記念日に。お一人様1皿ずつ提供するコース。</p>
-					<p class="price">4,000円〜 / フルコース 6,000円・8,000円・10,000円（税込）</p>
+					<p class="{{ price_c }}">4,000円〜 / フルコース 6,000円・8,000円・10,000円（税込）</p>
 				</article>
 
-				<article class="course-item">
-					<h3><a class="course-link" href="#course-kaiseki">和洋懐石料理 お酒に合わせた料理コース</a></h3>
+				<article class="{{ citem }}">
+					<h3><a class="{{ clink }}" href="#course-kaiseki">和洋懐石料理 お酒に合わせた料理コース</a></h3>
 					<p>接待や会食向け。小皿中心で日本酒・焼酎・ワインに合わせた構成。</p>
-					<p class="price">5,000円 / 8,000円 / 10,000円（税込）</p>
+					<p class="{{ price_c }}">5,000円 / 8,000円 / 10,000円（税込）</p>
 				</article>
 
-				<article class="course-item">
-					<h3><a class="course-link" href="#course-all-you-can-drink">飲み放題付パーティーコース スタンダード（3名様〜）</a></h3>
+				<article class="{{ citem }}">
+					<h3><a class="{{ clink }}" href="#course-all-you-can-drink">飲み放題付パーティーコース スタンダード（3名様〜）</a></h3>
 					<p>2時間飲み放題付きの大皿シェア料理。プレミアムプランへの変更も可能。※要相談</p>
-					<p class="price">6,000円（税込）</p>
+					<p class="{{ price_c }}">6,000円（税込）</p>
 				</article>
 			</div>
 		</section>
 
-		<section class="menu-section" id="course-detail">
-			<div class="section-head">
+		<section class="{{ sec }}" id="course-detail">
+			<div class="{{ head }}">
 				<h2>コース詳細</h2>
 				<p>Course Detail</p>
 			</div>
 
-			<div class="menu-block" id="course-party-share">
+			<div class="{{ blk_cd }}" id="course-party-share">
 				<h3>ディナーコース / パーティーコース（3名以上・大皿シェア）</h3>
-				<p class="notice">税込 4,000円 / 5,000円</p>
-				<ul class="course-detail-list">
+				<p>税込 4,000円 / 5,000円</p>
+				<ul class="{{ cdlist }}">
 					<li>ちはら台無農薬海鮮サラダ</li>
 					<li>特選カルパッチョ数種盛り合わせ</li>
 					<li>揚げ物（当日鮮魚：あなご・白身魚・野菜等）</li>
@@ -101,14 +103,14 @@
 					<li>肉料理（骨付き肉など当日おまかせ）</li>
 					<li>軽いデザート（全6〜8品）</li>
 				</ul>
-				<p class="course-note">金額により食材が変わります。デザートプレートは文字のみ 710円 / デザイン 1,810円。単品金額から差し引いた価格設定です。BGM演出も対応可能です。
+				<p class="{{ cnote }}">金額により食材が変わります。デザートプレートは文字のみ 710円 / デザイン 1,810円。単品金額から差し引いた価格設定です。BGM演出も対応可能です。
 				</p>
 			</div>
 
-			<div class="menu-block" id="course-hospitality">
+			<div class="{{ blk_cd }}" id="course-hospitality">
 				<h3>おもてなしコース（レストラン形式 / お一人様1皿ずつ）</h3>
-				<p class="notice">税込 4,000円〜希望価格 / フルコース 6,000円・8,000円・10,000円</p>
-				<ul class="course-detail-list">
+				<p>税込 4,000円〜希望価格 / フルコース 6,000円・8,000円・10,000円</p>
+				<ul class="{{ cdlist }}">
 					<li>アンティパストミスト（前菜盛り合わせプレート）</li>
 					<li>オーガニック海鮮サラダ（海老・鮪など当日内容）</li>
 					<li>パスタ（魚介ブロード使用の特別パスタあり）</li>
@@ -117,14 +119,14 @@
 					<li>デザート盛り合わせ</li>
 					<li>珈琲・紅茶・エスプレッソ / 1ドリンク付き（全6〜7品）</li>
 				</ul>
-				<p class="course-note">提供時間 1時間30分〜2時間。開始時間厳守・遅れての待ち合わせ不可。デザートプレート（要予約）は4,000円コース：文字のみ 710円 / デザイン
+				<p class="{{ cnote }}">提供時間 1時間30分〜2時間。開始時間厳守・遅れての待ち合わせ不可。デザートプレート（要予約）は4,000円コース：文字のみ 710円 / デザイン
 					1,810円、6,000円以上：文字のみ 550円 / デザイン 1,650円です。</p>
 			</div>
 
-			<div class="menu-block" id="course-kaiseki">
+			<div class="{{ blk_cd }}" id="course-kaiseki">
 				<h3>和洋懐石料理 お酒に合わせた料理コース</h3>
-				<p class="notice">税込 5,000円 / 8,000円 / 10,000円</p>
-				<ul class="course-detail-list">
+				<p>税込 5,000円 / 8,000円 / 10,000円</p>
+				<ul class="{{ cdlist }}">
 					<li>前菜盛り合わせ</li>
 					<li>小鉢数品（酢の物・小サラダ・珍味等）</li>
 					<li>刺身やカルパッチョ（和酒・洋酒に合わせて調整）</li>
@@ -134,14 +136,14 @@
 					<li>おしのぎ（麺・ご飯物 少量）</li>
 					<li>甘味（軽いデザート）</li>
 				</ul>
-				<p class="course-note">接待・お酒のおつまみ中心のコースです。和酒（日本酒・焼酎）または洋酒（ワイン）のご希望を事前にお伝えください。デザートプレート等のお祝い演出には不向きな内容です。
+				<p class="{{ cnote }}">接待・お酒のおつまみ中心のコースです。和酒（日本酒・焼酎）または洋酒（ワイン）のご希望を事前にお伝えください。デザートプレート等のお祝い演出には不向きな内容です。
 				</p>
 			</div>
 
-			<div class="menu-block" id="course-all-you-can-drink">
+			<div class="{{ blk_cd }}" id="course-all-you-can-drink">
 				<h3>飲み放題付パーティーコース スタンダード（3名様〜）</h3>
-				<p class="notice">税込 6,000円（2時間飲み放題） / プレミアム 7,000円</p>
-				<ul class="course-detail-list">
+				<p>税込 6,000円（2時間飲み放題） / プレミアム 7,000円</p>
+				<ul class="{{ cdlist }}">
 					<li>ちはら台無農薬海鮮サラダ</li>
 					<li>カルパッチョ盛り合わせ</li>
 					<li>フリット（鮮魚・野菜）</li>
@@ -149,24 +151,24 @@
 					<li>本日のPizza</li>
 					<li>本日のお肉料理</li>
 				</ul>
-				<p class="course-note">全て大皿シェア料理です。2時間30分までに退席、延長料金は1時間
+				<p class="{{ cnote }}">全て大皿シェア料理です。2時間30分までに退席、延長料金は1時間
 					1,100円。開始時間厳守。生ビール・瓶ビール・カクテル各種・黒霧島・日本酒・角ハイボール・サワー各種・ソフトドリンク・ノンアルコールカクテルに対応。
 				</p>
 			</div>
 		</section>
 
-		<section class="menu-section" id="alacarte">
-			<div class="section-head">
+		<section class="{{ sec }}" id="alacarte">
+			<div class="{{ head }}">
 				<h2>フードメニュー</h2>
 				<p>Food Menu</p>
 			</div>
 
-			<div class="menu-summary">
+			<div class="{{ msum }}">
 				<p>コースの下に、店内で選びやすいようカテゴリごとに整理して掲載しています。</p>
 				<p>肉・魚は当日の仕入れやサイズで内容が変わるため、「～」表記や時価の商品がございます。金額は税別です。</p>
 			</div>
 
-			<div class="category-nav" aria-label="フードメニューカテゴリ">
+			<div class="{{ cnav }}" aria-label="フードメニューカテゴリ">
 				<a href="#menu-meat">肉料理</a>
 				<a href="#menu-fish">魚料理</a>
 				<a href="#menu-smallplates">その他1品</a>
@@ -180,13 +182,13 @@
 				<a href="#menu-risotto">リゾット</a>
 			</div>
 
-			<div class="menu-block" id="menu-meat">
+			<div class="{{ blk }}" id="menu-meat">
 				<h3>肉料理</h3>
-				<p class="block-note">ジビエから和牛まで、主役になる肉料理をカテゴリ別にまとめています。</p>
+				<p class="{{ bnote }}">ジビエから和牛まで、主役になる肉料理をカテゴリ別にまとめています。</p>
 
-				<div class="menu-subgroup">
+				<div class="{{ sub }}">
 					<h4>ジビエ</h4>
-					<ul class="detailed-menu-list">
+					<ul class="{{ dlist }}">
 						<li>
 							<div><strong>猪</strong>
 								<p>猪もも肉のボンレスハム</p>
@@ -225,9 +227,9 @@
 					</ul>
 				</div>
 
-				<div class="menu-subgroup">
+				<div class="{{ sub }}">
 					<h4>ビーフ</h4>
-					<ul class="detailed-menu-list">
+					<ul class="{{ dlist }}">
 						<li>
 							<div><strong>千葉せんば牛（交雑牛 A5）</strong>
 								<p>もも肉 たたき 150g</p>
@@ -281,9 +283,9 @@
 					</ul>
 				</div>
 
-				<div class="menu-subgroup">
+				<div class="{{ sub }}">
 					<h4>ポーク</h4>
-					<ul class="detailed-menu-list">
+					<ul class="{{ dlist }}">
 						<li>
 							<div><strong>いも豚のロース厚切りステーキ</strong>
 								<p>230g</p>
@@ -307,9 +309,9 @@
 					</ul>
 				</div>
 
-				<div class="menu-subgroup">
+				<div class="{{ sub }}">
 					<h4>チキン</h4>
-					<ul class="detailed-menu-list">
+					<ul class="{{ dlist }}">
 						<li>
 							<div><strong>ローストチキン</strong>
 								<p>130g / レモン塩</p>
@@ -324,10 +326,10 @@
 				</div>
 			</div>
 
-			<div class="menu-block" id="menu-fish">
+			<div class="{{ blk }}" id="menu-fish">
 				<h3>魚料理</h3>
-				<p class="block-note">鮮魚は時価です。刺身・カルパッチョ・火入れ料理からお選びいただけます。</p>
-				<ul class="detailed-menu-list">
+				<p class="{{ bnote }}">鮮魚は時価です。刺身・カルパッチョ・火入れ料理からお選びいただけます。</p>
+				<ul class="{{ dlist }}">
 					<li>
 						<div><strong>本マグロ（三重県）</strong>
 							<p>赤身 刺身 1枚 / 中トロ 刺身 1枚</p>
@@ -371,9 +373,9 @@
 				</ul>
 			</div>
 
-			<div class="menu-block" id="menu-smallplates">
+			<div class="{{ blk }}" id="menu-smallplates">
 				<h3>その他1品</h3>
-				<ul class="detailed-menu-list">
+				<ul class="{{ dlist }}">
 					<li>
 						<div><strong>生牡蠣（岡山）</strong>
 							<p>牡蠣酢 SS / S / M</p>
@@ -417,10 +419,10 @@
 				</ul>
 			</div>
 
-			<div class="menu-block" id="menu-cheese">
+			<div class="{{ blk }}" id="menu-cheese">
 				<h3>チーズ・前菜</h3>
-				<p class="block-note">少量2種 400円から、1ヶ追加は200円です。</p>
-				<ul class="detailed-menu-list">
+				<p class="{{ bnote }}">少量2種 400円から、1ヶ追加は200円です。</p>
+				<ul class="{{ dlist }}">
 					<li>
 						<div><strong>チーズ盛り合わせ</strong>
 							<p>少量2種 / 3種 / 4種 / 5種</p>
@@ -476,9 +478,9 @@
 				</ul>
 			</div>
 
-			<div class="menu-block" id="menu-salad">
+			<div class="{{ blk }}" id="menu-salad">
 				<h3>サラダ</h3>
-				<ul class="detailed-menu-list">
+				<ul class="{{ dlist }}">
 					<li>
 						<div><strong>サーモンとぶりのマリネとフレッシュチーズサラダ</strong>
 							<p>S 1～2名様 / M 3～4名様</p>
@@ -504,9 +506,9 @@
 					</li>
 				</ul>
 
-				<div class="menu-subgroup">
+				<div class="{{ sub }}">
 					<h4>トッピング</h4>
-					<ul class="detailed-menu-list compact-list">
+					<ul class="{{ dcompact }}">
 						<li>
 							<div><strong>トリュフバターミックスナッツ</strong></div><span>420円</span>
 						</li>
@@ -525,9 +527,9 @@
 				</div>
 			</div>
 
-			<div class="menu-block" id="menu-fry">
+			<div class="{{ blk }}" id="menu-fry">
 				<h3>フライ</h3>
-				<ul class="detailed-menu-list">
+				<ul class="{{ dlist }}">
 					<li>
 						<div><strong>フレンチフライドポテト</strong></div><span>420円～</span>
 					</li>
@@ -563,9 +565,9 @@
 				</ul>
 			</div>
 
-			<div class="menu-block" id="menu-gridd">
+			<div class="{{ blk }}" id="menu-gridd">
 				<h3>グリッド</h3>
-				<ul class="detailed-menu-list">
+				<ul class="{{ dlist }}">
 					<li>
 						<div><strong>天然酵母バケットスライス</strong></div><span>000円</span>
 					</li>
@@ -589,9 +591,9 @@
 				</ul>
 			</div>
 
-			<div class="menu-block" id="menu-stew">
+			<div class="{{ blk }}" id="menu-stew">
 				<h3>シチュー</h3>
-				<ul class="detailed-menu-list">
+				<ul class="{{ dlist }}">
 					<li>
 						<div><strong>トリッパ（モツ）トマト煮込み</strong></div><span>980円～</span>
 					</li>
@@ -607,9 +609,9 @@
 				</ul>
 			</div>
 
-			<div class="menu-block" id="menu-pasta">
+			<div class="{{ blk }}" id="menu-pasta">
 				<h3>パスタ</h3>
-				<ul class="detailed-menu-list">
+				<ul class="{{ dlist }}">
 					<li>
 						<div><strong>ペペロンチーノ</strong></div><span>1,280円～</span>
 					</li>
@@ -643,9 +645,9 @@
 				</ul>
 			</div>
 
-			<div class="menu-block" id="menu-pizza">
+			<div class="{{ blk }}" id="menu-pizza">
 				<h3>ピザ</h3>
-				<ul class="detailed-menu-list">
+				<ul class="{{ dlist }}">
 					<li>
 						<div><strong>ゼッポリーニ</strong></div><span>600円～</span>
 					</li>
@@ -667,9 +669,9 @@
 				</ul>
 			</div>
 
-			<div class="menu-block" id="menu-risotto">
+			<div class="{{ blk }}" id="menu-risotto">
 				<h3>リゾット</h3>
-				<ul class="detailed-menu-list">
+				<ul class="{{ dlist }}">
 					<li>
 						<div><strong>ポルチーニとトリュフのクリーム 白のリゾット</strong></div><span>1,380円～</span>
 					</li>
@@ -683,23 +685,25 @@
 			</div>
 		</section>
 
-		<section class="menu-section" id="dessert-pairing">
-			<div class="section-head">
+		<section class="{{ sec }}" id="dessert-pairing">
+			<div class="{{ head }}">
 				<h2>ドルチェ・ペアリング</h2>
 				<p>Dessert & Pairing</p>
 			</div>
 
-			<div class="pairing-box">
+			<div class="{{ pbox }}">
 				<p>
 					ティラミスや季節のタルトなどのドルチェは、
 					デザートワインまたはエスプレッソとのペアリング提案も可能です。
 				</p>
-				<a class="pairing-link" href="{% url 'dessert' %}">デザートメニューを見る</a>
+				<a class="{{ plink }}" href="{% url 'dessert' %}">デザートメニューを見る</a>
 			</div>
 		</section>
 	</main>
 
 	{% include "nishimuraya/includes/site_footer.html" %}
+
+	{% endwith %}
 
 	<script src="{% static 'js/script.js' %}"></script>
 </body>

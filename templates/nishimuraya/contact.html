@@ -7,57 +7,56 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>お問い合わせ | Nishimuraya</title>
 	<link rel="stylesheet" href="{% static 'css/style.css' %}">
-	<link rel="stylesheet" href="{% static 'css/contact.css' %}">
 </head>
 
-<body class="contact-page">
+<body class="contact-page [background:radial-gradient(circle_at_78%_8%,rgba(150,97,70,0.2),transparent_44%),linear-gradient(180deg,#5a4141_0%,#503838_46%,#3f2f2f_100%)]">
 
 	{% include "nishimuraya/includes/site_header.html" %}
 
-	<main class="contact-main" id="top">
-		<section class="contact-hero">
-			<p class="home-kicker">CONTACT</p>
-			<h1>お問い合わせフォーム</h1>
-			<p>
+	<main id="top" class="grid mx-auto w-[min(980px,calc(100%_-_40px))] gap-[22px] pt-[calc(var(--header-offset,130px)_+_18px)] pb-24 max-[640px]:w-[min(100%,calc(100%_-_24px))] max-[640px]:pb-[72px]">
+		<section class="border border-[rgba(236,227,226,0.24)] rounded-[18px] bg-[rgba(35,24,24,0.42)] p-[clamp(24px,4vw,44px)] max-[640px]:rounded-[14px]">
+			<p class="m-0 text-[#ece3e2] text-[12px] tracking-[0.16em] leading-[1.8]">CONTACT</p>
+			<h1 class="mt-2 mb-[14px] text-[#ece3e2] text-[length:clamp(30px,5vw,44px)] font-medium">お問い合わせフォーム</h1>
+			<p class="m-0 text-[#ece3e2] leading-[1.8]">
 				ご予約に関するご相談、貸切利用、アレルギー対応などはこちらからお問い合わせください。
 			</p>
 		</section>
 
-		<section class="contact-form-wrap" aria-labelledby="contact-form-title">
-			<h2 id="contact-form-title">お問い合わせ内容</h2>
+		<section class="border border-[rgba(236,227,226,0.24)] rounded-[18px] bg-[rgba(35,24,24,0.42)] p-[clamp(20px,3.2vw,34px)] max-[640px]:rounded-[14px]" aria-labelledby="contact-form-title">
+			<h2 id="contact-form-title" class="mt-0 mb-4 text-[#ece3e2] text-[length:clamp(22px,3.5vw,30px)] font-medium">お問い合わせ内容</h2>
 
-			<form class="contact-form" action="{% url 'contact' %}" method="post" novalidate>
+			<form class="grid gap-2.5" action="{% url 'contact' %}" method="post" novalidate>
 				{% csrf_token %}
 
 				{% if form.non_field_errors %}
-				<div class="contact-form-errors">{{ form.non_field_errors }}</div>
+				<div class="mx-0 mt-[-2px] mb-2 text-[#ffb8ad] text-[13px] leading-[1.7] [&_ul]:m-0 [&_ul]:p-0 [&_ul]:list-none">{{ form.non_field_errors }}</div>
 				{% endif %}
 
-				<label for="{{ form.name.id_for_label }}">{{ form.name.label }}</label>
+				<label class="text-[#d8b07a] text-[14px]" for="{{ form.name.id_for_label }}">{{ form.name.label }}</label>
 				{{ form.name }}
 				{% if form.name.errors %}
-				<div class="contact-form-errors">{{ form.name.errors }}</div>
+				<div class="mx-0 mt-[-2px] mb-2 text-[#ffb8ad] text-[13px] leading-[1.7] [&_ul]:m-0 [&_ul]:p-0 [&_ul]:list-none">{{ form.name.errors }}</div>
 				{% endif %}
 
-				<label for="{{ form.email.id_for_label }}">{{ form.email.label }}</label>
+				<label class="text-[#d8b07a] text-[14px]" for="{{ form.email.id_for_label }}">{{ form.email.label }}</label>
 				{{ form.email }}
 				{% if form.email.errors %}
-				<div class="contact-form-errors">{{ form.email.errors }}</div>
+				<div class="mx-0 mt-[-2px] mb-2 text-[#ffb8ad] text-[13px] leading-[1.7] [&_ul]:m-0 [&_ul]:p-0 [&_ul]:list-none">{{ form.email.errors }}</div>
 				{% endif %}
 
-				<label for="{{ form.phone.id_for_label }}">{{ form.phone.label }}</label>
+				<label class="text-[#d8b07a] text-[14px]" for="{{ form.phone.id_for_label }}">{{ form.phone.label }}</label>
 				{{ form.phone }}
 				{% if form.phone.errors %}
-				<div class="contact-form-errors">{{ form.phone.errors }}</div>
+				<div class="mx-0 mt-[-2px] mb-2 text-[#ffb8ad] text-[13px] leading-[1.7] [&_ul]:m-0 [&_ul]:p-0 [&_ul]:list-none">{{ form.phone.errors }}</div>
 				{% endif %}
 
-				<label for="{{ form.message.id_for_label }}">{{ form.message.label }}</label>
+				<label class="text-[#d8b07a] text-[14px]" for="{{ form.message.id_for_label }}">{{ form.message.label }}</label>
 				{{ form.message }}
 				{% if form.message.errors %}
-				<div class="contact-form-errors">{{ form.message.errors }}</div>
+				<div class="mx-0 mt-[-2px] mb-2 text-[#ffb8ad] text-[13px] leading-[1.7] [&_ul]:m-0 [&_ul]:p-0 [&_ul]:list-none">{{ form.message.errors }}</div>
 				{% endif %}
 
-				<button type="submit">送信する</button>
+				<button type="submit" class="mt-1.5 justify-self-start min-h-[44px] px-5 border border-[#d8b07a] rounded-[999px] bg-transparent text-[#f3ebe3] cursor-pointer text-[14px] tracking-[0.04em] hover:bg-[rgba(216,176,122,0.18)]">送信する</button>
 			</form>
 
 		</section>
